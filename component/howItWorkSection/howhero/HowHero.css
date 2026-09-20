@@ -1,0 +1,53 @@
+.how-hero {
+  width: 100%;
+  min-height: 320px;
+  background: #f9eee9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+}
+
+.how-hero-content {
+  max-width: 700px;
+}
+
+.how-small-title {
+  display: inline-block;
+  color: #b43861;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.how-hero h1 {
+  margin: 0 0 15px;
+  font-size: 48px;
+  font-weight: 600;
+  color: #222;
+}
+
+.how-hero h1 span {
+  color: #b43861;
+}
+
+.how-hero p {
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .how-hero {
+    min-height: 280px;
+    padding: 45px 20px;
+  }
+
+  .how-hero h1 {
+    font-size: 36px;
+  }
+}

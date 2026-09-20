@@ -1,0 +1,99 @@
+.product-options {
+    margin-bottom: 24px;
+}
+
+.option-section {
+    margin-bottom: 20px;
+}
+
+.option-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.option-label span {
+    font-weight: 400;
+    color: #666;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    outline: 1px solid #ccc;
+    transition: transform 0.1s ease;
+}
+
+.color-circle.active {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
+.size-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.size-guide-btn {
+    background: none;
+    border: none;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #555;
+}
+
+.size-options {
+    display: flex;
+    gap: 10px;
+}
+
+.size-box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-box.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.quantity-selector {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.quantity-selector button {
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.quantity-selector span {
+    width: 40px;
+    text-align: center;
+    font-weight: 600;
+}

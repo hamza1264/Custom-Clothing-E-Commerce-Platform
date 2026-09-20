@@ -1,0 +1,75 @@
+.contact-hero {
+    width: 100%;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    background: #fbf3ef;
+    overflow: hidden;
+    /* border: 2px solid black; */
+}
+
+.contact-hero-content {
+    width: 50%;
+    padding-left: 0px;
+    /* border: 2px solid black; */
+    text-align: center;
+}
+
+.contact-small-title {
+    color: #b43861;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.contact-hero-content h1 {
+    font-size: 42px;
+    font-weight: 500;
+    margin: 0 0 18px;
+    color: #222;
+}
+
+.contact-hero-content h1 span {
+    color: #b43861;
+    font-style: italic;
+}
+
+.contact-hero-content p:last-child {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.contact-hero-image {
+    width: 50%;
+    height: 350px;
+}
+
+.contact-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .contact-hero {
+        flex-direction: column;
+    }
+
+    .contact-hero-content,
+    .contact-hero-image {
+        width: 100%;
+    }
+
+    .contact-hero-content {
+        padding: 45px 25px;
+    }
+
+    .contact-hero-image {
+        height: 300px;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 34px;
+    }
+}

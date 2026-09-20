@@ -1,0 +1,52 @@
+.custom-cta {
+  width: 100%;
+  padding: 70px 20px;
+  background: #f9eee9;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.custom-cta-content {
+  max-width: 650px;
+  margin: auto;
+}
+
+.custom-cta h2 {
+  margin: 0 0 12px;
+  color: #222;
+  font-size: 30px;
+}
+
+.custom-cta p {
+  margin: 0 0 25px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.custom-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 25px;
+  background: #b43861;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.custom-cta-btn:hover {
+  background: #982c4f;
+}
+
+@media (max-width: 600px) {
+  .custom-cta {
+    padding: 50px 20px;
+  }
+
+  .custom-cta h2 {
+    font-size: 26px;
+  }
+}

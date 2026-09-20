@@ -1,0 +1,148 @@
+/* Footer Base Styles */
+.footer-section {
+    background-color: #FAF4F0;
+    border-top: 1px solid #f0e6e0;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-top: 60px;
+}
+
+.footer-col {
+    margin: 0px 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* Brand Column */
+.footer-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #b8465e;
+    margin-bottom: 12px;
+
+}
+
+.brand-desc {
+    font-size: 13.5px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+/* .social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    font-size: 12px;
+    font-weight: 500;
+    color: #b8465e;
+    text-decoration: none;
+    background-color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #e8d8d0;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #b8465e;
+    color: #ffffff;
+} */
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #f8e9ed;
+    color: #b43861;
+
+    text-decoration: none;
+    font-size: 17px;
+
+    transition: 0.3s ease;
+}
+
+.social-icon:hover {
+    background: #b43861;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+
+/* Secure Checkout */
+
+.payment-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    color: #666;
+}
+
+.payment-icon {
+    display: flex;
+    align-items: center;
+    color: #b43861;
+    font-size: 20px;
+}
+
+
+/* Headings & Links */
+.footer-heading {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 16px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    font-size: 13.5px;
+    color: #666666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #b8465e;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    border-top: 1px solid #ebdcd5;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    color: #777777;
+}

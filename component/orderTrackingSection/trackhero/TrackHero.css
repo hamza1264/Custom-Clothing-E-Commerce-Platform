@@ -1,0 +1,63 @@
+.track-hero {
+  width: 100%;
+  min-height: 300px;
+  background: #f9eee9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.track-hero-content {
+  max-width: 650px;
+}
+
+.track-hero-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #fff;
+  color: #b43861;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.track-hero-content > span {
+  color: #b43861;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.track-hero h1 {
+  margin: 10px 0 12px;
+  color: #222;
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.track-hero h1 strong {
+  color: #b43861;
+}
+
+.track-hero p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .track-hero {
+    min-height: 270px;
+  }
+
+  .track-hero h1 {
+    font-size: 34px;
+  }
+}

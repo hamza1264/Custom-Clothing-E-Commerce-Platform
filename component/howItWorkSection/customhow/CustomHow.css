@@ -1,0 +1,82 @@
+.custom-how-section {
+  max-width: 1250px;
+  margin: 20px auto 70px;
+  padding: 55px;
+  background: #f9eee9;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.custom-how-content h2 {
+  margin: 5px 0 18px;
+  color: #222;
+  font-size: 34px;
+  line-height: 1.3;
+}
+
+.custom-how-content h2 span {
+  color: #b43861;
+}
+
+.custom-how-content p {
+  margin: 0 0 25px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.custom-how-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  background: #b43861;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.custom-how-btn:hover {
+  background: #982c4f;
+}
+
+.custom-how-image {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.custom-how-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .custom-how-section {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-how-section {
+    margin: 10px 15px 50px;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .custom-how-content h2 {
+    font-size: 28px;
+  }
+
+  .custom-how-image {
+    height: 240px;
+  }
+}

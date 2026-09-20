@@ -1,0 +1,129 @@
+/* Container Wrapper */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Category Section */
+.category-section {
+  padding: 50px 0;
+}
+
+/* Section Header */
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.category-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 4px;
+}
+
+.category-subtitle {
+  font-size: 14px;
+  color: #666666;
+}
+
+.view-all-btn {
+  font-size: 13px;
+  font-weight: 500;
+  color: #b8465e;
+  border: 1px solid #e0c8ce;
+  padding: 8px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background-color: #b8465e;
+  color: #ffffff;
+}
+
+/* Category Grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+/* Individual Category Card */
+.category-card {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-image-wrapper {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f3ece7;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.05);
+}
+
+/* Category Text Info */
+.category-info {
+  text-align: center;
+}
+
+.category-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 3px;
+}
+
+.category-count {
+  font-size: 12px;
+  color: #888888;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .category-image-wrapper {
+    height: 200px;
+  }
+
+  .category-title {
+    font-size: 22px;
+  }
+}

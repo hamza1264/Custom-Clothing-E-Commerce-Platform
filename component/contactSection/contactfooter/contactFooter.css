@@ -1,0 +1,161 @@
+.contact-footer {
+    background: #fff;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 50px;
+
+    padding: 45px 70px;
+}
+
+.newsletter,
+.follow-us {
+    padding: 10px 50px;
+}
+
+.newsletter {
+    border-right: 1px solid #eee;
+}
+
+.newsletter h2,
+.follow-us h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.newsletter p,
+.follow-us p {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 600px;
+    font-weight: 700;
+}
+
+.subscribe-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.subscribe-box input {
+    width: 250px;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+.subscribe-box button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 4px;
+    background: #b43861;
+    color: white;
+    cursor: pointer;
+}
+
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f8e9ed;
+    color: #b43861;
+    text-decoration: none;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #b43861;
+    color: white;
+    transform: translateY(-3px);
+}
+
+
+/* Service Icons */
+
+.service-icon {
+    font-size: 28px;
+    color: #b43861;
+    flex-shrink: 0;
+}
+
+.service-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #b43861;
+    color: white;
+    padding: 22px 50px;
+    gap: 25px;
+}
+
+.service-bar>div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.service-bar span {
+    font-size: 25px;
+}
+
+.service-bar h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.service-bar p {
+    margin: 0;
+    font-size: 15px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* @media (max-width: 800px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+    }
+
+    .newsletter {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 30px;
+    }
+
+    .service-bar {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .service-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .subscribe-box {
+        flex-direction: column;
+    }
+
+    .subscribe-box input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+} */

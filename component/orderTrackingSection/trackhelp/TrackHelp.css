@@ -1,0 +1,49 @@
+.track-help {
+  padding: 65px 20px;
+  text-align: center;
+  background: #fff;
+}
+
+.track-help-icon {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #f8e9ed;
+  color: #b43861;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.track-help h2 {
+  margin: 0 0 12px;
+  color: #222;
+  font-size: 28px;
+}
+
+.track-help p {
+  max-width: 550px;
+  margin: 0 auto 25px;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.track-help-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: #b43861;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.track-help-btn:hover {
+  background: #982c4f;
+}

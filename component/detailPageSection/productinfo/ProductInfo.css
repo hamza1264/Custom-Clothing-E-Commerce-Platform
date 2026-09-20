@@ -1,0 +1,58 @@
+.product-info-header {
+  margin-bottom: 20px;
+}
+
+.product-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.price-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.current-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+}
+
+.original-price {
+  font-size: 16px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  background-color: #d32f2f;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #444;
+}
+
+.product-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #444;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

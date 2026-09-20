@@ -1,0 +1,161 @@
+/* Custom Banner Section */
+/* globle ma  */
+
+.custom-banner-container {
+    background-color: #f9f0fa;
+    border-radius: 12px;
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #F0E2D9;
+    /* border: 2px solid black; */
+}
+
+/* Center Content */
+.banner-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.banner-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 6px;
+}
+
+.banner-subtitle-badge {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #b8465e;
+    margin-bottom: 12px;
+}
+
+.banner-description {
+    font-size: 13.5px;
+    color: #666666;
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+/* Custom Button */
+.banner-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #ffffff;
+    color: #b8465e;
+    border: 1px solid #b8465e;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.banner-btn:hover {
+    background-color: #b8465e;
+    color: #ffffff;
+}
+
+.btn-icon {
+    font-size: 14px;
+}
+
+/* Side Decorative Graphics */
+.banner-decor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    /* border: 2px solid black; */
+}
+
+.left-decor {
+    opacity: 0.85;
+}
+
+.right-decor {
+    opacity: 0.95;
+}
+
+.decor-img {
+    object-fit: contain;
+}
+
+/* ==========================================
+   2. TRUST BADGES / FEATURES SECTION
+   ========================================== */
+.trust-badges-section {
+    padding: 25px 0;
+    margin-top: 10px;
+    border-top: 1px solid #f0e6e0;
+    border-bottom: 1px solid #f0e6e0;
+    width: 100%;
+}
+
+.trust-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: center;
+}
+
+.badge-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px;
+}
+
+.badge-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    background-color: #FAF4F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.badge-icon {
+    font-size: 28px;
+    color: #b43861;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.badge-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 2px;
+}
+
+.badge-desc {
+    font-size: 12px;
+    color: #777777;
+}

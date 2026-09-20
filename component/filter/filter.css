@@ -1,0 +1,146 @@
+.filter-sidebar {
+    width: 240px;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+
+/* Header */
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #222;
+}
+
+.clear-filter {
+    border: none;
+    background: none;
+    color: #b43861;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+/* Sections */
+
+.filter-section {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-section:last-child {
+    border-bottom: none;
+}
+
+.filter-section h3 {
+    margin: 0 0 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+}
+
+
+/* Checkbox */
+
+.filter-section label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 12px;
+
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+}
+
+.filter-section label:last-child {
+    margin-bottom: 0;
+}
+
+.filter-section input[type="checkbox"] {
+    accent-color: #b43861;
+    cursor: pointer;
+}
+
+
+/* Price */
+
+.price-inputs {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.price-inputs input {
+    width: 80px;
+    padding: 9px 7px;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    outline: none;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.price-inputs input:focus {
+    border-color: #b43861;
+}
+
+.price-inputs span {
+    color: #777;
+}
+
+
+/* Size */
+
+.size-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.size-options button {
+    width: 42px;
+    height: 34px;
+
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 4px;
+
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.size-options button:hover {
+    background: #b43861;
+    color: #fff;
+    border-color: #b43861;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .filter-sidebar {
+        width: 100%;
+    }
+
+}

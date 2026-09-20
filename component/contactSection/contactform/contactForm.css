@@ -1,0 +1,202 @@
+.contact-form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 50px 50px;
+    background: #fff;
+    align-items: start;
+    /* border: 2px solid black; */
+}
+
+/* =========================
+   Contact Form
+========================= */
+
+.contact-form-box {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 30px;
+    background: #fff;
+    /* border: 2px solid black; */
+}
+
+.contact-form-box h2 {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0 0 25px;
+    color: #222;
+}
+
+.contact-form-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form-box label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    color: #333;
+}
+
+.contact-form-box input,
+.contact-form-box select,
+.contact-form-box textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 17px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    background: #fff;
+    /* border: 2px solid black; */
+}
+
+.contact-form-box input:focus,
+.contact-form-box select:focus,
+.contact-form-box textarea:focus {
+    border-color: #b43861;
+}
+
+.contact-form-box textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form-box button {
+    border: none;
+    padding: 13px;
+    background: #b43861;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.contact-form-box button:hover {
+    background: #982c4f;
+}
+
+.contact-whatsapp-link,
+.contact-phone-link,
+.contact-email-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-whatsapp-link .contact-info-item,
+.contact-phone-link .contact-info-item,
+.contact-email-link .contact-info-item {
+    cursor: pointer;
+}
+
+/* =========================
+   Contact Information Cards
+========================= */
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px;
+    margin-bottom: 12px;
+    background: #fcf7f4;
+    border-radius: 7px;
+    border: 1px solid #f0e7e2;
+    min-height: 65px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    /* border: 2px solid black; */
+}
+
+.contact-info-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Icons */
+
+.contact-icon {
+    font-size: 35px;
+    min-width: 35px;
+    flex-shrink: 0;
+}
+
+.whatsapp-icon {
+    color: #25D366;
+}
+
+.phone-icon {
+    color: #e83e6f;
+}
+
+.email-icon {
+    color: #6c4ce8;
+}
+
+.location-icon {
+    color: #e83e6f;
+}
+
+
+/* Text */
+
+.contact-info-item h3 {
+    margin: 0 0 5px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #222;
+}
+
+.contact-info-item p {
+    margin: 0 0 3px;
+    font-size: 16px;
+    color: #555;
+}
+
+.contact-info-item small {
+    color: #777;
+    font-size: 11px;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+    .contact-form-section {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-form-section {
+        padding: 30px 15px;
+        gap: 20px;
+    }
+
+    .contact-form-box {
+        padding: 22px;
+    }
+
+    .contact-form-box h2 {
+        font-size: 21px;
+    }
+
+    .contact-info-item {
+        padding: 15px;
+    }
+
+    .contact-icon {
+        font-size: 27px;
+    }
+}
