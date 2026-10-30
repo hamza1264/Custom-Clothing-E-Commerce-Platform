@@ -1,5 +1,5 @@
 .stats-section {
-    padding: 50px 70px 70px;
+    padding: 50px clamp(18px, 5vw, 70px) 70px;
     background: #fff;
 }
 
@@ -9,11 +9,13 @@
     background: #fbf3ef;
     border-radius: 8px;
     padding: 35px 20px;
+    min-width: 0;
 }
 
 .stat {
     text-align: center;
     border-right: 1px solid #eadbd5;
+    min-width: 0;
 }
 
 .stat:last-child {
@@ -50,7 +52,7 @@
 
 .bottom-boxes div {
     border: 1px solid #eee;
-    padding: 25px;
+    padding: clamp(18px, 2.5vw, 25px);
     border-radius: 7px;
     background: #fbf3ef;
     /* border: 2px solid black; */
@@ -67,14 +69,10 @@
     line-height: 1.6;
 }
 
-/* @media (max-width: 700px) {
-    .stats-section {
-        padding: 40px 20px;
-    }
-
+@media (max-width: 800px) {
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+        gap: 24px 0;
     }
 
     .stat {
@@ -82,6 +80,31 @@
     }
 
     .bottom-boxes {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-} */
+}
+
+@media (max-width: 560px) {
+    .stats-section {
+        padding: 38px 16px 48px;
+    }
+
+    .stats-container {
+        padding: 26px 12px;
+        gap: 22px 4px;
+    }
+
+    .stat h2 {
+        font-size: 25px;
+    }
+
+    .stat p {
+        font-size: 12px;
+    }
+
+    .bottom-boxes {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 24px;
+    }
+}

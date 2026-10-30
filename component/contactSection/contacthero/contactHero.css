@@ -10,7 +10,9 @@
 
 .contact-hero-content {
     width: 50%;
-    padding-left: 0px;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 30px clamp(20px, 5vw, 60px);
     /* border: 2px solid black; */
     text-align: center;
 }
@@ -23,7 +25,7 @@
 }
 
 .contact-hero-content h1 {
-    font-size: 42px;
+    font-size: clamp(32px, 3.5vw, 42px);
     font-weight: 500;
     margin: 0 0 18px;
     color: #222;
@@ -43,6 +45,7 @@
 .contact-hero-image {
     width: 50%;
     height: 350px;
+    min-width: 0;
 }
 
 .contact-hero-image img {
@@ -70,6 +73,6 @@
     }
 
     .contact-hero-content h1 {
-        font-size: 34px;
+        font-size: clamp(30px, 8vw, 34px);
     }
 }

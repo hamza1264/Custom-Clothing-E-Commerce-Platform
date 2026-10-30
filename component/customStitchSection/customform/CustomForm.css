@@ -31,6 +31,7 @@
 
 .custom-form-container {
   max-width: 850px;
+  width: 100%;
   margin: auto;
   background: #fff;
   padding: 35px;
@@ -54,12 +55,13 @@
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
 .form-field {
   margin-bottom: 20px;
+  min-width: 0;
 }
 
 .form-field label {
@@ -144,7 +146,7 @@
   }
 
   .custom-form-container {
-    padding: 22px;
+    padding: clamp(16px, 5vw, 22px);
   }
 
   .form-row {

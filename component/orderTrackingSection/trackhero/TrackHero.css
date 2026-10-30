@@ -11,7 +11,9 @@
 }
 
 .track-hero-content {
+  width: 100%;
   max-width: 650px;
+  min-width: 0;
 }
 
 .track-hero-icon {
@@ -37,8 +39,9 @@
 .track-hero h1 {
   margin: 10px 0 12px;
   color: #222;
-  font-size: 42px;
+  font-size: clamp(30px, 8vw, 42px);
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .track-hero h1 strong {
@@ -50,14 +53,16 @@
   color: #666;
   font-size: 14px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 600px) {
   .track-hero {
-    min-height: 270px;
+    min-height: 250px;
+    padding: 40px 16px;
   }
 
-  .track-hero h1 {
-    font-size: 34px;
+  .track-hero-content > span {
+    letter-spacing: 1.5px;
   }
 }

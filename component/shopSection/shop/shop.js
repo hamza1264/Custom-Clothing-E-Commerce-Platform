@@ -5,8 +5,25 @@ import "./shop.css";
 import ProductCard from "@/component/productcard/productCard";
 import Filter from "@/component/filter/filter";
 
-function Shop() {
+function Shop({ searchTerm = '' }) {
   const [showMore, setShowMore] = useState(false);
+  const [filters, setFilters] = useState({
+    categories: [],
+    minPrice: '',
+    maxPrice: '',
+    sizes: [],
+    colors: [],
+  });
+  const normalizedSearch = searchTerm.trim();
+  const clearFilters = () => {
+    setFilters({
+      categories: [],
+      minPrice: '',
+      maxPrice: '',
+      sizes: [],
+      colors: [],
+    });
+  };
 
   return (
     <div className="shop-container">
@@ -15,15 +32,20 @@ function Shop() {
 
         {/* Left Filter */}
         <div className="filter-container">
-          <Filter />
+          <Filter filters={filters} onChange={setFilters} onClear={clearFilters} />
         </div>
 
         {/* Right Side */}
         <div className="products-area">
+          {normalizedSearch && (
+            <p className="search-results-message" aria-live="polite">
+              {`Search results for "${normalizedSearch}"`}
+            </p>
+          )}
 
           {/* Products */}
           <div className="products-container">
-            <ProductCard />
+            <ProductCard searchTerm={normalizedSearch} filters={filters} />
           </div>
 
           {/* Button - Products ke neeche */}

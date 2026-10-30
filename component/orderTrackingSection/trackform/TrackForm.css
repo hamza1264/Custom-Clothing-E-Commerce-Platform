@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 550px;
   margin: auto;
-  padding: 35px;
+  padding: clamp(20px, 5vw, 35px);
   border: 1px solid #eee;
   border-radius: 10px;
   box-sizing: border-box;
@@ -30,7 +30,7 @@
 .track-form-box h2 {
   margin: 0 0 8px;
   color: #222;
-  font-size: 25px;
+  font-size: clamp(21px, 6vw, 25px);
 }
 
 .track-form-box > p {
@@ -58,6 +58,8 @@
 
 .track-input-box input {
   width: 100%;
+  min-width: 0;
+  min-height: 44px;
   padding: 13px 42px 13px 13px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -81,7 +83,8 @@
 .track-form-box button {
   width: 100%;
   margin-top: 15px;
-  padding: 13px;
+  min-height: 44px;
+  padding: 11px 13px;
   border: none;
   border-radius: 5px;
   background: #b43861;
@@ -104,10 +107,6 @@
 
 @media (max-width: 600px) {
   .track-form-section {
-    padding: 50px 15px;
-  }
-
-  .track-form-box {
-    padding: 25px 20px;
+    padding: 40px 16px;
   }
 }

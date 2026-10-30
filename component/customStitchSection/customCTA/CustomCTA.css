@@ -9,6 +9,8 @@
 .custom-cta-content {
   max-width: 650px;
   margin: auto;
+  width: 100%;
+  min-width: 0;
 }
 
 .custom-cta h2 {
@@ -35,6 +37,8 @@
   border-radius: 5px;
   font-size: 13px;
   transition: 0.3s;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .custom-cta-btn:hover {

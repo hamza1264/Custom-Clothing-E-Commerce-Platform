@@ -19,7 +19,7 @@
 .order-status-heading h2 {
   margin: 8px 0 12px;
   color: #222;
-  font-size: 30px;
+  font-size: clamp(24px, 6vw, 30px);
 }
 
 .order-status-heading p {
@@ -29,6 +29,7 @@
 }
 
 .order-timeline {
+  width: 100%;
   max-width: 850px;
   margin: auto;
   display: grid;
@@ -88,9 +89,13 @@
   color: #777;
   font-size: 11px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 750px) {
+  .order-status-section {
+    padding: 48px 16px;
+  }
 
   .order-timeline {
     grid-template-columns: 1fr;
@@ -119,5 +124,16 @@
 
   .status-content p {
     margin: 0;
+    max-width: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .order-status-heading {
+    margin-bottom: 32px;
+  }
+
+  .status-item {
+    gap: 12px;
   }
 }

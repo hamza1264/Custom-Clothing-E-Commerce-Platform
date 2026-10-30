@@ -2,6 +2,7 @@
   padding: 65px 20px;
   text-align: center;
   background: #fff;
+  overflow-wrap: anywhere;
 }
 
 .track-help-icon {
@@ -20,7 +21,7 @@
 .track-help h2 {
   margin: 0 0 12px;
   color: #222;
-  font-size: 28px;
+  font-size: clamp(22px, 6vw, 28px);
 }
 
 .track-help p {
@@ -34,8 +35,11 @@
 .track-help-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 22px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 18px;
   background: #b43861;
   color: #fff;
   text-decoration: none;
@@ -46,4 +50,10 @@
 
 .track-help-btn:hover {
   background: #982c4f;
+}
+
+@media (max-width: 480px) {
+  .track-help {
+    padding: 48px 16px;
+  }
 }

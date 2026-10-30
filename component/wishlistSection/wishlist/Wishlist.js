@@ -1,44 +1,59 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useSyncExternalStore } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { ShoppingBag } from 'lucide-react';
+import { getCartSnapshot, saveCart } from '@/data/cartStore';
+import {
+  getServerWishlistSnapshot,
+  getWishlistSnapshot,
+  saveWishlist,
+  subscribeToWishlist,
+} from '@/data/wishlistStore';
 import './Wishlist.css';
 
 export default function Wishlist() {
-  const [wishlistItems, setWishlistItems] = useState([
-    {
-      id: 1,
-      name: "Embroidered Lawn Suit",
-      price: 4500,
-      description:
-        "Beautiful embroidered lawn suit made with premium quality fabric.",
-      image: "/category/femail01.jpg",
-    },
-    {
-      id: 2,
-      name: "Silk Party Dress",
-      price: 6500,
-      description:
-        "Elegant silk party dress with beautiful detailing for special occasions.",
-      image: "/category/femail02.jpg",
-    },
-    {
-      id: 3,
-      name: "Printed Lawn Dress",
-      price: 3200,
-      description:
-        "Comfortable printed lawn dress with a stylish and modern design.",
-      image: "/category/femail03.jpg",
-    },
-  ]);
+  const router = useRouter();
+  const wishlistItems = JSON.parse(
+    useSyncExternalStore(
+      subscribeToWishlist,
+      getWishlistSnapshot,
+      getServerWishlistSnapshot
+    )
+  );
 
   const handleRemove = (id) => {
-    setWishlistItems(wishlistItems.filter((item) => item.id !== id));
+    saveWishlist(wishlistItems.filter((item) => item.id !== id));
   };
 
   const handleMoveToCart = (item) => {
-    console.log('Moved to cart:', item);
+    const cartItem = {
+      productId: item.id,
+      title: item.name,
+      price: item.price,
+      image: item.image,
+      size: 'M',
+      color: 'Default',
+      quantity: 1,
+    };
+    const currentCart = JSON.parse(getCartSnapshot());
+    const existingItem = currentCart.find(
+      (cartEntry) =>
+        cartEntry.productId === cartItem.productId &&
+        cartEntry.size === cartItem.size &&
+        cartEntry.color === cartItem.color
+    );
+
+    if (existingItem) {
+      existingItem.quantity += cartItem.quantity;
+    } else {
+      currentCart.push(cartItem);
+    }
+
+    saveCart(currentCart);
+    saveWishlist(wishlistItems.filter((wishlistItem) => wishlistItem.id !== item.id));
+    router.push('/cart');
   };
 
   return (
@@ -82,7 +97,7 @@ export default function Wishlist() {
                   onClick={() => handleRemove(item.id)}
                   title="Remove item"
                 >
-                  ❤️
+                  Remove
                 </button>
               </div>
             </div>

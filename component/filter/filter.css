@@ -1,5 +1,6 @@
 .filter-sidebar {
-    width: 240px;
+    width: 100%;
+    min-width: 0;
     padding: 22px;
     background: #fff;
     border: 1px solid #eee;
@@ -60,12 +61,11 @@
     display: flex;
     align-items: center;
     gap: 9px;
-
     margin-bottom: 12px;
-
     font-size: 13px;
     color: #555;
     cursor: pointer;
+    overflow-wrap: anywhere;
 }
 
 .filter-section label:last-child {
@@ -84,10 +84,13 @@
     display: flex;
     align-items: center;
     gap: 7px;
+    min-width: 0;
 }
 
 .price-inputs input {
     width: 80px;
+    min-width: 0;
+    flex: 1 1 0;
     padding: 9px 7px;
 
     border: 1px solid #ddd;
@@ -134,6 +137,12 @@
     border-color: #b43861;
 }
 
+.size-options button.selected {
+    background: #b43861;
+    color: #fff;
+    border-color: #b43861;
+}
+
 
 /* Mobile */
 
@@ -141,6 +150,17 @@
 
     .filter-sidebar {
         width: 100%;
+        padding: 18px;
     }
 
+}
+
+@media (max-width: 380px) {
+    .filter-sidebar {
+        padding: 14px;
+    }
+
+    .filter-header h2 {
+        font-size: 18px;
+    }
 }

@@ -146,3 +146,42 @@
     font-size: 12.5px;
     color: #777777;
 }
+
+@media (max-width: 900px) {
+    .footer-col {
+        margin: 0 24px;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+    }
+
+    .footer-bottom {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 560px) {
+    .footer-section {
+        padding-top: 32px;
+        margin-top: 36px;
+    }
+
+    .footer-col {
+        margin: 0 16px;
+    }
+
+    .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        margin-bottom: 28px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        font-size: 12px;
+    }
+}

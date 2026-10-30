@@ -1,10 +1,14 @@
 import React from 'react'
 import Shop from '@/component/shopSection/shop/shop'
 
-function page() {
+async function page({ searchParams }) {
+    const params = await searchParams;
+    const searchValue = params.search;
+    const search = Array.isArray(searchValue) ? searchValue[0] ?? '' : searchValue ?? '';
+
     return (
         <div>
-            <Shop />
+            <Shop searchTerm={search} />
             {/* <h1>Shop</h1> */}
         </div>
     )

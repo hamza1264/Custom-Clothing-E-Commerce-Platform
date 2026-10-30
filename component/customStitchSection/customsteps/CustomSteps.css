@@ -34,7 +34,7 @@
 
 .custom-steps-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -44,6 +44,7 @@
   border-radius: 8px;
   background: #fff;
   transition: 0.3s ease;
+  min-width: 0;
 }
 
 .custom-step-card:hover {
@@ -91,7 +92,7 @@
 
 @media (max-width: 1000px) {
   .custom-steps-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

@@ -1,7 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import {
+  getCartSnapshot,
+  getServerCartSnapshot,
+  subscribeToCart,
+} from "@/data/cartStore";
+import {
+  getServerWishlistSnapshot,
+  getWishlistSnapshot,
+  subscribeToWishlist,
+} from "@/data/wishlistStore";
 import "./navbar.css";
 
 import {
@@ -10,9 +20,24 @@ import {
   FaUser,
   FaHeart,
   FaShoppingCart,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const cart = JSON.parse(
+    useSyncExternalStore(subscribeToCart, getCartSnapshot, getServerCartSnapshot)
+  );
+  const wishlist = JSON.parse(
+    useSyncExternalStore(
+      subscribeToWishlist,
+      getWishlistSnapshot,
+      getServerWishlistSnapshot
+    )
+  );
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <>
       {/* Top Shipping Bar */}
@@ -22,6 +47,16 @@ function Navbar() {
       </div>
 
       <nav className="navbar">
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
+        >
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
 
         {/* Logo */}
         <Link href="/" className="logo">
@@ -29,16 +64,21 @@ function Navbar() {
         </Link>
 
         {/* Search */}
-        <div className="search-box">
+        <form action="/shop" method="get" className="search-box">
           <input
             type="text"
+            name="search"
             placeholder="Search for outfits, categories..."
+            aria-label="Search products"
           />
 
-          <button aria-label="Search">
+          <button
+            type="submit"
+            aria-label="Search products"
+          >
             <FaSearch />
           </button>
-        </div>
+        </form>
 
         {/* Right Icons */}
         <div className="nav-actions">
@@ -51,25 +91,53 @@ function Navbar() {
             <FaUser />
           </Link>
 
-          <Link href="/wishlist" className="nav-icon" aria-label="Wishlist">
+          <Link
+            href="/wishlist"
+            className="nav-icon nav-icon-with-count"
+            aria-label={`Wishlist, ${wishlist.length} items`}
+          >
             <FaHeart />
+            <span className="nav-count">{wishlist.length}</span>
           </Link>
 
-          <Link href="/cart" className="nav-icon" aria-label="Cart">
+          <Link
+            href="/cart"
+            className="nav-icon nav-icon-with-count"
+            aria-label={`Cart, ${cartCount} items`}
+          >
             <FaShoppingCart />
+            <span className="nav-count">{cartCount}</span>
           </Link>
 
         </div>
       </nav>
 
       {/* Navigation Links */}
-      <div className="nav-links">
-        <Link href="/">Home</Link>
-        <Link href="/shop">Shop</Link>
-        <Link href="/customStitch">Custom Stitch</Link>
-        <Link href="/howItWork">How It Works</Link>
-        <Link href="/about">About Us</Link>
-        <Link href="/contect">Contact</Link>
+      {isMenuOpen && (
+        <button
+          type="button"
+          className="mobile-menu-backdrop"
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="Close navigation menu"
+        />
+      )}
+      <div
+        className={`nav-links ${isMenuOpen ? "open" : ""}`}
+        id="primary-navigation"
+      >
+        <Link
+          href="/"
+          className="mobile-drawer-logo"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          UnStage<span>✦</span>
+        </Link>
+        <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+        <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+        <Link href="/customStitch" onClick={() => setIsMenuOpen(false)}>Custom Stitch</Link>
+        <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+        <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+        <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
       </div>
     </>
   );

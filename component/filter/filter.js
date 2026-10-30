@@ -1,14 +1,28 @@
 import React from "react";
 import "./filter.css";
 
-function Filter() {
+const CATEGORIES = ["Unstitched", "Stitched / Ready-Made", "Custom Design"];
+const COLORS = ["Black", "White", "Pink", "Blue"];
+const SIZES = ["XS", "S", "M", "L", "XL"];
+
+function Filter({ filters, onChange, onClear }) {
+  const toggleValue = (key, value) => {
+    const selected = filters[key];
+    onChange({
+      ...filters,
+      [key]: selected.includes(value)
+        ? selected.filter((item) => item !== value)
+        : [...selected, value],
+    });
+  };
+
   return (
     <aside className="filter-sidebar">
 
       <div className="filter-header">
         <h2>Filters</h2>
 
-        <button className="clear-filter">
+        <button type="button" className="clear-filter" onClick={onClear}>
           Clear All
         </button>
       </div>
@@ -19,20 +33,16 @@ function Filter() {
 
         <h3>Category</h3>
 
-        <label>
-          <input type="checkbox" />
-          Unstitched
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          Stitched / Ready-Made
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          Custom Design
-        </label>
+        {CATEGORIES.map((category) => (
+          <label key={category}>
+            <input
+              type="checkbox"
+              checked={filters.categories.includes(category)}
+              onChange={() => toggleValue("categories", category)}
+            />
+            {category}
+          </label>
+        ))}
 
       </div>
 
@@ -47,6 +57,10 @@ function Filter() {
           <input
             type="number"
             placeholder="Min"
+            min="0"
+            aria-label="Minimum price"
+            value={filters.minPrice}
+            onChange={(event) => onChange({ ...filters, minPrice: event.target.value })}
           />
 
           <span>-</span>
@@ -54,6 +68,10 @@ function Filter() {
           <input
             type="number"
             placeholder="Max"
+            min="0"
+            aria-label="Maximum price"
+            value={filters.maxPrice}
+            onChange={(event) => onChange({ ...filters, maxPrice: event.target.value })}
           />
 
         </div>
@@ -68,11 +86,17 @@ function Filter() {
 
         <div className="size-options">
 
-          <button>XS</button>
-          <button>S</button>
-          <button>M</button>
-          <button>L</button>
-          <button>XL</button>
+          {SIZES.map((size) => (
+            <button
+              type="button"
+              key={size}
+              className={filters.sizes.includes(size) ? "selected" : ""}
+              aria-pressed={filters.sizes.includes(size)}
+              onClick={() => toggleValue("sizes", size)}
+            >
+              {size}
+            </button>
+          ))}
 
         </div>
 
@@ -84,25 +108,16 @@ function Filter() {
 
         <h3>Color</h3>
 
-        <label>
-          <input type="checkbox" />
-          Black
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          White
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          Pink
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          Blue
-        </label>
+        {COLORS.map((color) => (
+          <label key={color}>
+            <input
+              type="checkbox"
+              checked={filters.colors.includes(color)}
+              onChange={() => toggleValue("colors", color)}
+            />
+            {color}
+          </label>
+        ))}
 
       </div>
 

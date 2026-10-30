@@ -1,5 +1,5 @@
 .who-section {
-    padding: 70px;
+    padding: 70px clamp(20px, 5vw, 70px);
     background: white;
 }
 
@@ -23,13 +23,14 @@
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
     margin-top: 40px;
 }
 
 .feature-card {
-    padding: 30px 70px;
+    padding: 30px clamp(18px, 3vw, 42px);
+    min-width: 0;
     text-align: center;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -55,18 +56,27 @@
     font-weight: 700;
 }
 
-/* @media (max-width: 900px) {
+@media (max-width: 900px) {
     .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 560px) {
     .who-section {
-        padding: 50px 20px;
+        padding: 45px 16px;
     }
 
     .feature-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
-} */
+
+    .feature-card {
+        padding: 24px 20px;
+    }
+
+    .who-heading h2 {
+        font-size: 28px;
+    }
+}

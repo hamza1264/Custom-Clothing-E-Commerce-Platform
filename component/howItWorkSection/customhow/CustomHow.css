@@ -1,7 +1,7 @@
 .custom-how-section {
   max-width: 1250px;
   margin: 20px auto 70px;
-  padding: 55px;
+  padding: clamp(28px, 4vw, 55px);
   background: #f9eee9;
   border-radius: 10px;
   display: grid;
@@ -9,6 +9,7 @@
   gap: 50px;
   align-items: center;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .custom-how-content h2 {
@@ -49,6 +50,7 @@
   height: 320px;
   overflow: hidden;
   border-radius: 8px;
+  min-width: 0;
 }
 
 .custom-how-image img {
@@ -67,7 +69,8 @@
 
 @media (max-width: 600px) {
   .custom-how-section {
-    margin: 10px 15px 50px;
+    width: calc(100% - 30px);
+    margin: 10px auto 50px;
     padding: 30px 20px;
     gap: 30px;
   }
@@ -77,6 +80,6 @@
   }
 
   .custom-how-image {
-    height: 240px;
+    height: clamp(200px, 60vw, 300px);
   }
 }

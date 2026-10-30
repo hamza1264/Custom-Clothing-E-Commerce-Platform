@@ -4,7 +4,7 @@
   padding: 70px 8%;
   background: #f9eee9;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: 50px;
   box-sizing: border-box;
@@ -12,6 +12,7 @@
 
 .custom-hero-content {
   max-width: 600px;
+  min-width: 0;
 }
 
 .custom-hero-small {
@@ -62,6 +63,7 @@
   height: 380px;
   overflow: hidden;
   border-radius: 10px;
+  min-width: 0;
 }
 
 .custom-hero-image img {
@@ -87,6 +89,6 @@
   }
 
   .custom-hero h1 {
-    font-size: 36px;
+    font-size: clamp(30px, 8vw, 36px);
   }
 }

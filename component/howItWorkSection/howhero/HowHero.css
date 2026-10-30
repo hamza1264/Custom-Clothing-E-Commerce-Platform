@@ -12,6 +12,8 @@
 
 .how-hero-content {
   max-width: 700px;
+  width: 100%;
+  min-width: 0;
 }
 
 .how-small-title {
@@ -48,6 +50,6 @@
   }
 
   .how-hero h1 {
-    font-size: 36px;
+    font-size: clamp(30px, 8vw, 36px);
   }
 }
