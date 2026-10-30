@@ -1,0 +1,238 @@
+.page {
+  display: grid;
+  min-height: 65vh;
+  place-items: center;
+  padding: 48px 16px;
+  background: #fdf8f6;
+}
+
+.card {
+  width: min(100%, 460px);
+  padding: clamp(24px, 6vw, 42px);
+  border: 1px solid #f0e2d9;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgb(74 32 44 / 8%);
+}
+
+.eyebrow {
+  margin: 0 0 9px;
+  color: #b43861;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+
+.title {
+  margin: 0;
+  color: #222;
+  font-size: clamp(26px, 6vw, 34px);
+  line-height: 1.2;
+}
+
+.description {
+  margin: 10px 0 24px;
+  color: #707070;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.setupNotice {
+  margin: 0 0 18px;
+  padding: 11px 12px;
+  border: 1px solid #ecd5a2;
+  border-radius: 6px;
+  background: #fffaf0;
+  color: #72541b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-bottom: 22px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #f8f2f1;
+}
+
+.tabs button {
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.tabs .activeTab {
+  background: #fff;
+  color: #a83255;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 8%);
+}
+
+.form {
+  display: grid;
+  gap: 17px;
+}
+
+.form label {
+  display: grid;
+  gap: 7px;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form input {
+  width: 100%;
+  min-height: 45px;
+  padding: 10px 12px;
+  border: 1px solid #ded8d6;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-weight: 400;
+}
+
+.form input:focus {
+  border-color: #b43861;
+  outline: 3px solid rgb(180 56 97 / 12%);
+}
+
+.passwordInput {
+  position: relative;
+  display: block;
+}
+
+.form .passwordInput input {
+  padding-right: 48px;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.passwordToggle:hover {
+  background: #f8f2f1;
+  color: #a83255;
+}
+
+.passwordToggle:focus-visible {
+  outline: 2px solid #a83255;
+  outline-offset: 1px;
+}
+
+.hint {
+  color: #777;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.error {
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #f3c7c7;
+  border-radius: 6px;
+  background: #fff5f5;
+  color: #a12626;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.submit {
+  min-height: 46px;
+  margin-top: 2px;
+  border: 0;
+  border-radius: 6px;
+  background: #a83255;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition: background 160ms ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: #872643;
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.switchMode {
+  margin: 20px 0 0;
+  color: #666;
+  font-size: 13px;
+  text-align: center;
+}
+
+.switchMode button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #a83255;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.dashboard {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 64px) 16px;
+}
+
+.dashboardCard {
+  padding: clamp(22px, 5vw, 36px);
+  border: 1px solid #f0e2d9;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.dashboardCard h1 {
+  margin: 0 0 8px;
+  color: #222;
+  font-size: clamp(26px, 5vw, 34px);
+}
+
+.dashboardCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.logout {
+  margin-top: 12px;
+  padding: 11px 18px;
+  border: 1px solid #a83255;
+  border-radius: 6px;
+  background: #fff;
+  color: #a83255;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.logout:hover {
+  background: #fff5f7;
+}

@@ -18,6 +18,21 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
+## MongoDB account login
+
+The account icon opens the login and signup page. Accounts are stored in MongoDB,
+passwords are hashed, and signed-in sessions use an HTTP-only cookie.
+
+1. Start a local MongoDB server or create a MongoDB Atlas cluster.
+2. Copy `.env.example` to `.env.local`.
+3. Set `MONGODB_URI` to your MongoDB connection string and `MONGODB_DB_NAME`
+   to your database name.
+4. Set `AUTH_SECRET` to a private random value with at least 32 characters.
+   Generate one with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
+5. Restart the Next.js development server.
+
+Keep `.env.local` private and never commit database credentials or session secrets.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
