@@ -92,12 +92,21 @@
     opacity: 0.95;
 }
 
-.decor-img {
+.banner-image {
     object-fit: contain;
     width: 100%;
     max-width: 240px;
     height: auto;
     display: block;
+}
+
+.banner-image-fill {
+    object-fit: contain;
+}
+
+.custom-banner-section .decor-img {
+    width: 100% !important;
+    height: auto !important;
 }
 
 /* ==========================================

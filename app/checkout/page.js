@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import {
   getCartSnapshot,
   getServerCartSnapshot,
@@ -28,13 +28,13 @@ export default function CheckoutPage() {
   const [orderNumber, setOrderNumber] = useState("");
 
   const subtotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
   const shipping = getShippingCost(subtotal);
   const total = subtotal + shipping;
 
-  const handleChange = (event) => {
+  const updateCustomer = (event) => {
     setCustomer({ ...customer, [event.target.name]: event.target.value });
   };
 
@@ -109,7 +109,7 @@ export default function CheckoutPage() {
             <input
               autoComplete="name"
               name="name"
-              onChange={handleChange}
+              onChange={updateCustomer}
               required
               value={customer.name}
             />
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
               autoComplete="tel"
               inputMode="tel"
               name="phone"
-              onChange={handleChange}
+              onChange={updateCustomer}
               required
               type="tel"
               value={customer.phone}
@@ -131,7 +131,7 @@ export default function CheckoutPage() {
             <textarea
               autoComplete="street-address"
               name="address"
-              onChange={handleChange}
+              onChange={updateCustomer}
               required
               rows="4"
               value={customer.address}
@@ -152,7 +152,10 @@ export default function CheckoutPage() {
         <aside className="checkout-summary">
           <h2>Your order</h2>
           {cart.map((item) => (
-            <div className="checkout-item" key={`${item.productId}-${item.size}-${item.color}`}>
+            <div
+              className="checkout-item"
+              key={`${item.productId}-${item.size}-${item.color}`}
+            >
               <Image src={item.image} alt="" width={56} height={68} />
               <div>
                 <h3>{item.title}</h3>
@@ -160,7 +163,9 @@ export default function CheckoutPage() {
                   {item.size} · {item.color} · Qty {item.quantity}
                 </p>
               </div>
-              <strong>Rs. {(item.price * item.quantity).toLocaleString()}</strong>
+              <strong>
+                Rs. {(item.price * item.quantity).toLocaleString()}
+              </strong>
             </div>
           ))}
           <div className="checkout-total-row">

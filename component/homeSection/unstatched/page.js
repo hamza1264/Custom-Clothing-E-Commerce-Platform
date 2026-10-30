@@ -56,9 +56,9 @@ export default function CustomStitchBanner() {
               <Image
                 src="/unstitched.jpeg"
                 alt="Measuring Tape"
-                width={220}
-                height={220}
-                className="decor-img"
+                fill
+                sizes="(max-width: 650px) 0px, 220px"
+                className="banner-image-fill"
               />
 
             </div>
@@ -105,7 +105,7 @@ export default function CustomStitchBanner() {
                 alt="Custom Stitching Mannequin"
                 width={240}
                 height={240}
-                className="decor-img"
+                className="banner-image"
               />
 
             </div>
