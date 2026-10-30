@@ -130,6 +130,22 @@
   text-decoration: none;
 }
 
+.cart-checkout-button {
+  display: block;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 5px;
+  background: #b43861;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cart-checkout-button:hover {
+  background: #982c4f;
+}
+
 @media (max-width: 700px) {
   .cart-content {
     grid-template-columns: 1fr;

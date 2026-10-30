@@ -3,6 +3,7 @@
 import React, { useState, use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCartSnapshot, saveCart } from '@/data/cartStore';
 import './detailpage.css';
 
 // --- Mock Database ---
@@ -149,6 +150,7 @@ export default function Page({ params }) {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(product?.images?.[0] || '');
   const [activeTab, setActiveTab] = useState('description');
+  const [cartMessage, setCartMessage] = useState('');
 
   if (!product) {
     return (
@@ -165,6 +167,38 @@ export default function Page({ params }) {
   const handleQuantityChange = (type) => {
     if (type === 'inc') setQuantity((prev) => prev + 1);
     if (type === 'dec' && quantity > 1) setQuantity((prev) => prev - 1);
+  };
+
+  const handleAddToCart = () => {
+    const cart = JSON.parse(getCartSnapshot());
+    const existingItem = cart.find(
+      (item) =>
+        item.productId === product.id &&
+        item.size === selectedSize &&
+        item.color === selectedColor
+    );
+
+    const nextCart = existingItem
+      ? cart.map((item) =>
+          item === existingItem
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+      : [
+          ...cart,
+          {
+            productId: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.images[0],
+            size: selectedSize,
+            color: selectedColor,
+            quantity,
+          },
+        ];
+
+    saveCart(nextCart);
+    setCartMessage(`${quantity} item(s) added to your cart.`);
   };
 
   return (
@@ -286,7 +320,8 @@ export default function Page({ params }) {
           {/* 4. Action Buttons Component */}
           <div className="action-buttons">
             <button
-              onClick={() => alert(`Added ${quantity} item(s) to cart`)}
+              type="button"
+              onClick={handleAddToCart}
               className="add-to-cart-button"
             >
               Add to Cart
@@ -299,6 +334,11 @@ export default function Page({ params }) {
               Order on WhatsApp
             </Link>
           </div>
+          {cartMessage && (
+            <p className="cart-feedback" role="status">
+              {cartMessage} <Link href="/cart">View cart</Link>
+            </p>
+          )}
 
         </div>
       </div>

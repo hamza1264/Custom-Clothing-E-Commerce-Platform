@@ -1,5 +1,13 @@
 export const CART_STORAGE_KEY = 'maintainiq-cart';
 const CART_UPDATED_EVENT = 'maintainiq-cart-updated';
+export const FREE_SHIPPING_THRESHOLD = 5000;
+export const SHIPPING_FEE = 250;
+
+export function getShippingCost(subtotal) {
+  return subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD
+    ? 0
+    : SHIPPING_FEE;
+}
 
 export function getCartSnapshot() {
   return localStorage.getItem(CART_STORAGE_KEY) || '[]';

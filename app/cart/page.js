@@ -6,6 +6,7 @@ import Link from 'next/link';
 import {
   getCartSnapshot,
   getServerCartSnapshot,
+  getShippingCost,
   saveCart,
   subscribeToCart,
 } from '@/data/cartStore';
@@ -53,6 +54,7 @@ export default function CartPage() {
   }
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const shipping = getShippingCost(total);
 
   return (
     <main className="cart-page">
@@ -114,7 +116,16 @@ export default function CartPage() {
             <span>Subtotal</span>
             <strong>Rs. {total.toLocaleString()}</strong>
           </p>
+          <p>
+            <span>Delivery</span>
+            <strong>{shipping === 0 ? 'Free' : `Rs. ${shipping.toLocaleString()}`}</strong>
+          </p>
+          <p>
+            <span>Total</span>
+            <strong>Rs. {(total + shipping).toLocaleString()}</strong>
+          </p>
           <Link href="/shop" className="cart-continue-shopping">Continue Shopping</Link>
+          <Link href="/checkout" className="cart-checkout-button">Proceed to Checkout</Link>
         </aside>
       </div>
     </main>

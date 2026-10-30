@@ -274,6 +274,17 @@
   background: #25d366;
 }
 
+.cart-feedback {
+  margin: -20px 0 20px;
+  color: #276749;
+  font-size: 14px;
+}
+
+.cart-feedback a {
+  color: #b43861;
+  font-weight: 600;
+}
+
 .tabs-container {
   margin-top: 32px;
   padding-top: 20px;
