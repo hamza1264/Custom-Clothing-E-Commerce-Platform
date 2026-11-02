@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Auth.module.css";
 
-export default function LogoutButton() {
+export default function LogoutButton({ onLoggedOut }) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,6 +19,7 @@ export default function LogoutButton() {
         setError("Could not log out. Please try again.");
         return;
       }
+      onLoggedOut?.();
       router.replace("/login");
       router.refresh();
     } catch {

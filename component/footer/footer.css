@@ -87,6 +87,33 @@
     transform: translateY(-3px);
 }
 
+.social-icon[aria-label="Facebook"] {
+    background: #2867e8;
+    color: #fff;
+}
+
+.social-icon[aria-label="Instagram"] {
+    background: linear-gradient(35deg, #ffc84a, #ef347c 55%, #853bd5);
+    color: #fff;
+}
+
+.social-icon[aria-label="WhatsApp"] {
+    background: #18b957;
+    color: #fff;
+}
+
+.social-icon[aria-label="Facebook"]:hover {
+    background: #1d4ed8;
+}
+
+.social-icon[aria-label="Instagram"]:hover {
+    background: linear-gradient(35deg, #f3b935, #df286d 55%, #7430c4);
+}
+
+.social-icon[aria-label="WhatsApp"]:hover {
+    background: #139947;
+}
+
 
 /* Secure Checkout */
 

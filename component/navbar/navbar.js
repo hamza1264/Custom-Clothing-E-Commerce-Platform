@@ -12,6 +12,7 @@ import {
   getWishlistSnapshot,
   subscribeToWishlist,
 } from "@/data/wishlistStore";
+import LogoutButton from "@/component/auth/LogoutButton";
 import "./navbar.css";
 
 import {
@@ -22,6 +23,9 @@ import {
   FaShoppingCart,
   FaBars,
   FaTimes,
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 function Navbar() {
@@ -125,19 +129,77 @@ function Navbar() {
         className={`nav-links ${isMenuOpen ? "open" : ""}`}
         id="primary-navigation"
       >
-        <Link
-          href="/"
-          className="mobile-drawer-logo"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Nayab Fashion<span>✦</span>
-        </Link>
-        <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-        <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-        <Link href="/customStitch" onClick={() => setIsMenuOpen(false)}>Custom Stitch</Link>
-        <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
-        <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-        <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+        <form action="/shop" method="get" className="mobile-drawer-search">
+          <input
+            type="text"
+            name="search"
+            placeholder="Search products"
+            aria-label="Search products"
+          />
+          <button type="submit" aria-label="Search products">
+            <FaSearch />
+          </button>
+        </form>
+
+        <section className="mobile-drawer-pages" aria-label="Pages">
+          <div className="mobile-page-links">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+            <Link href="/customStitch" onClick={() => setIsMenuOpen(false)}>Custom Stitching</Link>
+            <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+            <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link href="/orderTracking" onClick={() => setIsMenuOpen(false)}>Track Order</Link>
+          </div>
+        </section>
+
+        <div className="mobile-drawer-auth">
+          <Link href="/login" onClick={() => setIsMenuOpen(false)}>Login</Link>
+          <Link href="/login?mode=signup" onClick={() => setIsMenuOpen(false)}>Sign up</Link>
+        </div>
+
+        <div className="mobile-drawer-socials" aria-label="Social media">
+          <a
+            href="https://www.facebook.com/share/19UX7knCGD/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="facebook"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://www.instagram.com/hamzaansari2985?igsh=MXQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="instagram"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://wa.me/923710313814"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            className="whatsapp"
+          >
+            <FaWhatsapp />
+          </a>
+        </div>
+
+        <div className="mobile-drawer-logout">
+          <LogoutButton onLoggedOut={() => setIsMenuOpen(false)} />
+        </div>
+
+        <div className="desktop-nav-links">
+          <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+          <Link href="/customStitch" onClick={() => setIsMenuOpen(false)}>Custom Stitch</Link>
+          <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+          <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+          <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+        </div>
       </div>
     </>
   );

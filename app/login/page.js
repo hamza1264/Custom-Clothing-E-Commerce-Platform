@@ -5,7 +5,9 @@ import { getSession, isAuthConfigured } from "@/data/auth";
 
 export const dynamic = "force-dynamic";
 
-export default async function LoginPage() {
+export default async function LoginPage({ searchParams }) {
+  const params = await searchParams;
+  const initialMode = params?.mode === "signup" ? "signup" : "login";
   const isConfigured = isAuthConfigured();
   if (isConfigured && (await getSession())) {
     redirect("/customerDashboard");
@@ -13,7 +15,7 @@ export default async function LoginPage() {
 
   return (
     <main className={styles.page}>
-      <AuthForm isConfigured={isConfigured} />
+      <AuthForm initialMode={initialMode} isConfigured={isConfigured} />
     </main>
   );
 }

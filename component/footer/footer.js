@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="footer-col brand-col">
 
             <h2 className="footer-logo">
-              Nayab Fashion.
+              Nayab Clothes.
             </h2>
 
             <p className="brand-desc">
@@ -130,7 +130,7 @@ export default function Footer() {
           </p>
 
           <p>
-            <strong>Nayab Fashion</strong> — Custom Clothing & Fashion
+            <strong>Nayab Clothes</strong> — Custom Clothing & Fashion
           </p>
 
           <div className="payment-badges">

@@ -96,7 +96,9 @@ body.filter-drawer-open {
         position: relative;
         top: -43px;
         z-index: 51;
-        display: inline-flex;
+        display: flex;
+        width: fit-content;
+        margin-right: auto;
         align-items: center;
         gap: 7px;
         min-height: 40px;
@@ -131,7 +133,7 @@ body.filter-drawer-open {
         border-radius: 18px 18px 0 0;
         box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.16);
         transform: translateY(105%);
-        transition: transform 0.25s ease, visibility 0.25s ease;
+        transition: transform 0.6s ease, visibility 0.6s ease;
         visibility: hidden;
     }
 
@@ -182,6 +184,14 @@ body.filter-drawer-open {
 }
 
 @media (max-width: 760px) {
+    .mobile-filter-toggle {
+        top: -90px;
+    }
+
+    .products-area {
+        margin-top: -90px;
+    }
+
     .products-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }

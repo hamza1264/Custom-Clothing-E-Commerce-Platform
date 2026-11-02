@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./Auth.module.css";
 
-export default function AuthForm({ isConfigured }) {
+export default function AuthForm({ initialMode = "login", isConfigured }) {
   const router = useRouter();
-  const [mode, setMode] = useState("login");
+  const [mode, setMode] = useState(initialMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
