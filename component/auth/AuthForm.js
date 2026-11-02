@@ -58,7 +58,7 @@ export default function AuthForm({ isConfigured }) {
       {!isConfigured && (
         <p className={styles.setupNotice} role="status">
           Account access needs MongoDB configuration. Set MONGODB_URI,
-          MONGODB_DB_NAME, and AUTH_SECRET in your local .env.local file.
+          MONGODB_DB_NAME, and AUTH_SECRET in your deployment environment settings.
         </p>
       )}
 

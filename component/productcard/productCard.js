@@ -66,23 +66,18 @@ function ProductCard({ limit, searchTerm = "", filters }) {
     .filter((product) => {
       if (!filters) return true;
 
-      const { categories, minPrice, maxPrice, sizes, colors } = filters;
+      const { categories, minPrice, maxPrice, sizes } = filters;
       const matchesCategory =
         categories.length === 0 || categories.includes(product.category);
       const matchesMinPrice = minPrice === "" || product.price >= Number(minPrice);
       const matchesMaxPrice = maxPrice === "" || product.price <= Number(maxPrice);
       const matchesSize =
         sizes.length === 0 || sizes.some((size) => product.sizes.includes(size));
-      const matchesColor =
-        colors.length === 0 ||
-        colors.some((color) => product.colors.some((item) => item.name === color));
-
       return (
         matchesCategory &&
         matchesMinPrice &&
         matchesMaxPrice &&
-        matchesSize &&
-        matchesColor
+        matchesSize
       );
     })
     .slice(0, limit ?? products.length);
@@ -105,34 +100,36 @@ function ProductCard({ limit, searchTerm = "", filters }) {
         );
 
         return (
-          <div className="product-card" key={product.id}>
-            <div className="product-image">
-              <img src={product.image} alt={product.name} />
-              <button
-                type="button"
-                className={`product-wishlist-button ${isSaved ? "is-saved" : ""}`}
-                onClick={() => toggleWishlist(product)}
-                aria-label={isSaved ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
-                aria-pressed={isSaved}
-              >
-                <span aria-hidden="true">❤️</span>
-              </button>
-            </div>
-
-            <div className="product-info">
-              <h3>{product.name}</h3>
-              <p className="product-description">{product.description}</p>
-              <div className="product-bottom">
-                <span className="product-price">Rs. {product.price}</span>
-                <Link
-                  className="add-cart-btn"
-                  href={`/detailPage/${product.id}`}
-                >
-                  View Details
-                </Link>
+          <article className="product-card" key={product.id}>
+            <Link
+              className="product-card-link"
+              href={`/detailPage/${product.id}`}
+              aria-label={`View details for ${product.name}`}
+            >
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
               </div>
-            </div>
-          </div>
+
+              <div className="product-info">
+                <h3>{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+                <div className="product-bottom">
+                  <span className="product-price">Rs. {product.price}</span>
+                  <span className="add-cart-btn">View Details</span>
+                </div>
+              </div>
+            </Link>
+
+            <button
+              type="button"
+              className={`product-wishlist-button ${isSaved ? "is-saved" : ""}`}
+              onClick={() => toggleWishlist(product)}
+              aria-label={isSaved ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
+              aria-pressed={isSaved}
+            >
+              <span aria-hidden="true">❤️</span>
+            </button>
+          </article>
         );
       })}
     </>

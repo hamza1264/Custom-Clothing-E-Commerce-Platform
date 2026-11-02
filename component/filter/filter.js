@@ -2,10 +2,9 @@ import React from "react";
 import "./filter.css";
 
 const CATEGORIES = ["Unstitched", "Stitched / Ready-Made", "Custom Design"];
-const COLORS = ["Black", "White", "Pink", "Blue"];
 const SIZES = ["XS", "S", "M", "L", "XL"];
 
-function Filter({ filters, onChange, onClear }) {
+function Filter({ filters, onChange, onClear, onClose }) {
   const toggleValue = (key, value) => {
     const selected = filters[key];
     onChange({
@@ -24,6 +23,14 @@ function Filter({ filters, onChange, onClear }) {
 
         <button type="button" className="clear-filter" onClick={onClear}>
           Clear All
+        </button>
+        <button
+          type="button"
+          className="mobile-filter-close"
+          onClick={onClose}
+          aria-label="Close filters"
+        >
+          ×
         </button>
       </div>
 
@@ -101,26 +108,6 @@ function Filter({ filters, onChange, onClear }) {
         </div>
 
       </div>
-
-
-      {/* Color */}
-      <div className="filter-section">
-
-        <h3>Color</h3>
-
-        {COLORS.map((color) => (
-          <label key={color}>
-            <input
-              type="checkbox"
-              checked={filters.colors.includes(color)}
-              onChange={() => toggleValue("colors", color)}
-            />
-            {color}
-          </label>
-        ))}
-
-      </div>
-
     </aside>
   );
 }

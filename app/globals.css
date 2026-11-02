@@ -19,6 +19,13 @@ svg {
   max-width: 100%;
 }
 
+@media (max-width: 319px) {
+  html,
+  body {
+    min-width: 0;
+  }
+}
+
 .custom-banner-section {
     height: auto;
     min-height: 200px;

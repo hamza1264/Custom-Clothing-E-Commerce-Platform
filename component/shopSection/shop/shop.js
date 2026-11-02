@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./shop.css";
 import ProductCard from "@/component/productcard/productCard";
 import Filter from "@/component/filter/filter";
 
 function Shop({ searchTerm = '' }) {
   const [showMore, setShowMore] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     categories: [],
     minPrice: '',
     maxPrice: '',
     sizes: [],
-    colors: [],
   });
   const normalizedSearch = searchTerm.trim();
   const clearFilters = () => {
@@ -21,9 +21,24 @@ function Shop({ searchTerm = '' }) {
       minPrice: '',
       maxPrice: '',
       sizes: [],
-      colors: [],
     });
   };
+
+  useEffect(() => {
+    if (!showFilters) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setShowFilters(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.classList.add("filter-drawer-open");
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.classList.remove("filter-drawer-open");
+    };
+  }, [showFilters]);
 
   return (
     <div className="shop-container">
@@ -32,7 +47,32 @@ function Shop({ searchTerm = '' }) {
 
         {/* Left Filter */}
         <div className="filter-container">
-          <Filter filters={filters} onChange={setFilters} onClear={clearFilters} />
+          <button
+            type="button"
+            className="mobile-filter-toggle"
+            aria-expanded={showFilters}
+            aria-controls="shop-filters"
+            onClick={() => setShowFilters((isOpen) => !isOpen)}
+          >
+            <span aria-hidden="true">☷</span>
+            Filters
+          </button>
+          <div
+            className={`mobile-filter-backdrop ${showFilters ? "is-open" : ""}`}
+            onClick={() => setShowFilters(false)}
+            aria-hidden="true"
+          />
+          <div
+            id="shop-filters"
+            className={`filter-content ${showFilters ? "is-open" : ""}`}
+          >
+            <Filter
+              filters={filters}
+              onChange={setFilters}
+              onClear={clearFilters}
+              onClose={() => setShowFilters(false)}
+            />
+          </div>
         </div>
 
         {/* Right Side */}

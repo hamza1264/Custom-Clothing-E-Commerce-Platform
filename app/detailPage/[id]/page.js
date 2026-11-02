@@ -127,10 +127,6 @@ export default function Page({ params }) {
           <h1 className="product-title">{product.title}</h1>
           <p className="current-price">Rs. {product.price.toLocaleString()}</p>
           <p className="detail-description">{product.description}</p>
-          <p className="detail-fabric">{product.fabric}</p>
-          <ul className="product-features">
-            {product.features.map((feature) => <li key={feature}>{feature}</li>)}
-          </ul>
 
           <div className="option-section">
             <strong>Color: {selectedColor}</strong>
@@ -178,9 +174,8 @@ export default function Page({ params }) {
           <button type="button" className="add-to-cart-button" onClick={handleAddToCart}>
             Add to Cart
           </button>
-          <p className="detail-fabric-care">Fabric care: {product.fabricCare}</p>
-          <p className="detail-reviews-count">{product.reviewsCount} reviews</p>
         </div>
+
       </div>
     </div>
   );

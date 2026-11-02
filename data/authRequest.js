@@ -13,7 +13,7 @@ export function authNotConfiguredResponse() {
   return Response.json(
     {
       error:
-        "Account login is not configured. Set MONGODB_URI, MONGODB_DB_NAME, and AUTH_SECRET in .env.local.",
+        "Account login is not configured. Set MONGODB_URI, MONGODB_DB_NAME, and AUTH_SECRET in your deployment environment settings.",
     },
     { status: 503 }
   );
