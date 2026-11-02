@@ -45,14 +45,14 @@ export default function AuthForm({ isConfigured }) {
 
   return (
     <section className={styles.card}>
-      <p className={styles.eyebrow}>UNSTAGE ACCOUNT</p>
+      <p className={styles.eyebrow}>NAYAB CLOTHES ACCOUNT</p>
       <h1 className={styles.title}>
         {isSignup ? "Create your account" : "Welcome back"}
       </h1>
       <p className={styles.description}>
         {isSignup
           ? "Sign up to keep your orders and outfits in one place."
-          : "Log in to continue shopping with UnStage."}
+          : "Log in to continue shopping with Nayab Clothes."}
       </p>
 
       {!isConfigured && (
@@ -158,7 +158,7 @@ export default function AuthForm({ isConfigured }) {
       </form>
 
       <p className={styles.switchMode}>
-        {isSignup ? "Already have an account?" : "New to UnStage?"}{" "}
+        {isSignup ? "Already have an account?" : "New to Nayab Fashion?"}{" "}
         <button
           type="button"
           onClick={() => {

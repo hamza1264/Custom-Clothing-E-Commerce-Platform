@@ -60,7 +60,7 @@ function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="logo">
-          UnStage<span>✦</span>
+          Nayab Clothes<span>✦</span>
         </Link>
 
         {/* Search */}
@@ -130,7 +130,7 @@ function Navbar() {
           className="mobile-drawer-logo"
           onClick={() => setIsMenuOpen(false)}
         >
-          UnStage<span>✦</span>
+          Nayab Fashion<span>✦</span>
         </Link>
         <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
         <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>

@@ -14,8 +14,8 @@ function AboutHero() {
                 </h1>
 
                 <p className="about-description">
-                    At UnStage, we believe fashion is more than just clothing —
-                    it's about you. We stitch happiness with every thread.
+                    At Nayab Clothes, we believe fashion is more than just clothing —
+                    it&apos;s about you. We stitch happiness with every thread.
                 </p>
 
                 <button>Our Journey</button>

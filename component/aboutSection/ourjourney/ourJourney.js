@@ -41,7 +41,7 @@ function OurJourney() {
         </h2>
 
         <p>
-          UnStage started with a simple idea — to make custom stitching
+          Nayab Clothes started with a simple idea — to make custom stitching
           easy, affordable, and reliable for everyone. What began as a
           small passion project has now grown into a trusted brand loved
           by customers.

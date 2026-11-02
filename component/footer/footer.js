@@ -9,7 +9,7 @@
 
 //                     {/* Brand Info Column */}
 //                     <div className="footer-col brand-col">
-//                         <h2 className="footer-logo">UnStage.</h2>
+//                         <h2 className="footer-logo">Nayab Fashion.</h2>
 //                         <p className="brand-desc">
 //                             Your destination for premium quality fabrics and custom-stitched clothing tailored perfectly to your style.
 //                         </p>
@@ -63,13 +63,13 @@
 
 //                 {/* Bottom Bar */}
 //                 <div className="footer-bottom">
-//                     {/* <p>© {new Date().getFullYear()} UnStage. All rights reserved.</p> */}
+//                     {/* <p>© {new Date().getFullYear()} Nayab Fashion. All rights reserved.</p> */}
 //                     <p>
 //                         © {new Date().getFullYear()}  <strong>Hamza Ansari</strong>. All Rights Reserved.
 //                     </p>
 
 //                     <p>
-//                         <strong>UnStage</strong> — Custom Clothing & Fashion
+//                         <strong>Nayab Fashion</strong> — Custom Clothing & Fashion
 //                     </p>
 //                     <div className="payment-badges">
 //                         <span>💳 Secure Checkout</span>
@@ -103,7 +103,7 @@ export default function Footer() {
           <div className="footer-col brand-col">
 
             <h2 className="footer-logo">
-              UnStage.
+              Nayab Fashion.
             </h2>
 
             <p className="brand-desc">
@@ -213,7 +213,7 @@ export default function Footer() {
           </p>
 
           <p>
-            <strong>UnStage</strong> — Custom Clothing & Fashion
+            <strong>Nayab Fashion</strong> — Custom Clothing & Fashion
           </p>
 
           <div className="payment-badges">

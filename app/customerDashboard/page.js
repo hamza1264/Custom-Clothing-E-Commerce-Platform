@@ -14,7 +14,7 @@ export default async function CustomerDashboardPage() {
   return (
     <main className={styles.dashboard}>
       <section className={styles.dashboardCard}>
-        <p className={styles.eyebrow}>YOUR UNSTAGE ACCOUNT</p>
+        <p className={styles.eyebrow}>YOUR NAYAB CLOTHES ACCOUNT</p>
         <h1>Welcome, {session.name}</h1>
         <p>You are signed in as {session.email}.</p>
         <LogoutButton />
