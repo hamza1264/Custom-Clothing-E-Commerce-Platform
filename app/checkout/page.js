@@ -26,6 +26,8 @@ export default function CheckoutPage() {
     address: "",
   });
   const [orderNumber, setOrderNumber] = useState("");
+  const [orderError, setOrderError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -38,30 +40,38 @@ export default function CheckoutPage() {
     setCustomer({ ...customer, [event.target.name]: event.target.value });
   };
 
-  const placeOrder = (event) => {
+  const placeOrder = async (event) => {
     event.preventDefault();
-    if (cart.length === 0) return;
+    if (cart.length === 0 || isSubmitting) return;
 
-    const order = {
-      id: `UNS-${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      customer,
-      items: cart,
-      subtotal,
-      shipping,
-      total,
-      paymentMethod: "Cash on Delivery",
-    };
-    const orders = JSON.parse(
-      localStorage.getItem("maintainiq-orders") || "[]"
-    );
+    setIsSubmitting(true);
+    setOrderError("");
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer,
+          items: cart.map(({ productId, size, color, quantity }) => ({
+            productId: String(productId),
+            size,
+            color,
+            quantity,
+          })),
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Could not place your order.");
+      }
 
-    localStorage.setItem(
-      "maintainiq-orders",
-      JSON.stringify([...orders, order])
-    );
-    saveCart([]);
-    setOrderNumber(order.id);
+      saveCart([]);
+      setOrderNumber(result.order.orderNumber);
+    } catch (error) {
+      setOrderError(error.message || "Could not place your order.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (orderNumber) {
@@ -74,6 +84,7 @@ export default function CheckoutPage() {
           Your order <strong>{orderNumber}</strong> has been placed with Cash
           on Delivery.
         </p>
+        <p>Track it using this order number and the phone number you provided.</p>
         <Link href="/shop" className="checkout-submit">
           Continue shopping
         </Link>
@@ -141,8 +152,11 @@ export default function CheckoutPage() {
             <span>Payment method</span>
             <strong>Cash on Delivery</strong>
           </div>
-          <button type="submit" className="checkout-submit">
-            Place order · Rs. {total.toLocaleString()}
+          {orderError && <p className="checkout-error" role="alert">{orderError}</p>}
+          <button type="submit" className="checkout-submit" disabled={isSubmitting}>
+            {isSubmitting
+              ? "Placing order..."
+              : `Place order · Rs. ${total.toLocaleString()}`}
           </button>
           <Link href="/cart" className="checkout-back">
             Back to cart

@@ -98,6 +98,41 @@
   background: #982c4f;
 }
 
+.track-form-box button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.track-error {
+  margin: 16px 0 0;
+  color: #b42318;
+  font-size: 13px;
+}
+
+.track-result {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  color: #444;
+  text-align: left;
+}
+
+.track-result h3 {
+  margin: 0 0 10px;
+  color: #222;
+}
+
+.track-result p {
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.track-result ul {
+  padding-left: 20px;
+  font-size: 13px;
+}
+
 .track-form-box small {
   display: block;
   margin-top: 18px;

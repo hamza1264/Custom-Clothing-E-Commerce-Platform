@@ -79,7 +79,7 @@ export default function CustomStitchBanner() {
               <p className="banner-description">
                 Send us your design, size & details on WhatsApp
                 <br />
-                and we'll stitch it exactly how you want.
+                and we&apos;ll stitch it exactly how you want.
               </p>
 
               <Link

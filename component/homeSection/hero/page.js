@@ -131,7 +131,7 @@ export default function Home() {
 
           <div className="feature-text">
             <h4>Customer Support</h4>
-            <p>We're Here For You</p>
+            <p>We&apos;re Here For You</p>
           </div>
 
         </div>

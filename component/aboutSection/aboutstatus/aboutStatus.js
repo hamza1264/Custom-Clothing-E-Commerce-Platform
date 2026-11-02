@@ -65,7 +65,7 @@ function AboutStats() {
         <div>
           <h3>Our Vision</h3>
           <p>
-            To become Pakistan's most trusted custom stitching brand.
+            To become Pakistan&apos;s most trusted custom stitching brand.
           </p>
         </div>
 

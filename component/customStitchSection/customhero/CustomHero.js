@@ -20,7 +20,7 @@ function CustomHero() {
 
         <p>
           Have a design in mind? Share your idea, choose your fabric,
-          provide your measurements, and we'll create your outfit
+          provide your measurements, and we&apos;ll create your outfit
           according to your requirements.
         </p>
 

@@ -24,7 +24,7 @@ export default function CartPage() {
   const changeQuantity = (itemToUpdate, amount) => {
     const nextCart = cart
       .map((item) =>
-        item.productId === itemToUpdate.productId &&
+        String(item.productId) === String(itemToUpdate.productId) &&
         item.size === itemToUpdate.size &&
         item.color === itemToUpdate.color
           ? { ...item, quantity: Math.max(1, item.quantity + amount) }
@@ -36,7 +36,7 @@ export default function CartPage() {
   const removeItem = (itemToRemove) => {
     const nextCart = cart.filter(
       (item) =>
-        item.productId !== itemToRemove.productId ||
+        String(item.productId) !== String(itemToRemove.productId) ||
         item.size !== itemToRemove.size ||
         item.color !== itemToRemove.color
     );

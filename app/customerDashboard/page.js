@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import LogoutButton from "@/component/auth/LogoutButton";
-import styles from "@/component/auth/Auth.module.css";
+import CustomerDashboard from "@/component/customerDashboardSection/CustomerDashboard";
 import { getSession, isAuthConfigured } from "@/data/auth";
+import { isAdminEmail } from "@/data/store";
 
 export const dynamic = "force-dynamic";
 
@@ -12,13 +12,10 @@ export default async function CustomerDashboardPage() {
   if (!session) redirect("/login");
 
   return (
-    <main className={styles.dashboard}>
-      <section className={styles.dashboardCard}>
-        <p className={styles.eyebrow}>YOUR NAYAB CLOTHES ACCOUNT</p>
-        <h1>Welcome, {session.name}</h1>
-        <p>You are signed in as {session.email}.</p>
-        <LogoutButton />
-      </section>
-    </main>
+    <CustomerDashboard
+      name={session.name}
+      email={session.email}
+      isAdmin={isAdminEmail(session.email)}
+    />
   );
 }

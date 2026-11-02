@@ -12,13 +12,13 @@ function ContactHero() {
         </p>
 
         <h1>
-          We're Here to <span>Help You!</span>
+          We&apos;re Here to <span>Help You!</span>
         </h1>
 
         <p>
           Have a question, custom request, or just want to say hello?
           <br />
-          We'd love to hear from you.
+          We&apos;d love to hear from you.
         </p>
 
       </div>

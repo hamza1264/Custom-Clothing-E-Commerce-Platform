@@ -18,7 +18,7 @@ function ContactSupport() {
   {
     icon: <FaTshirt />,
     title: "Custom Assistance",
-    text: "Need help with custom stitching? We're here.",
+    text: "Need help with custom stitching? We are here.",
   },
   {
     icon: <FaBoxOpen />,
@@ -37,7 +37,7 @@ function ContactSupport() {
 
       <div className="support-heading">
 
-        <h2>We're Always Here</h2>
+        <h2>We&apos;re Always Here</h2>
 
         <p>
           Our support team is always ready to assist you with

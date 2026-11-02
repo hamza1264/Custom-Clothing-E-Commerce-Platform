@@ -1,0 +1,532 @@
+.page {
+  display: grid;
+  box-sizing: border-box;
+  min-height: 70vh;
+  grid-template-columns: 248px minmax(0, 1fr);
+  background: #fbf8f6;
+  color: #292326;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  min-height: 580px;
+  flex-direction: column;
+  padding: 28px 20px;
+  border-right: 1px solid #eee4e0;
+  background: #fff;
+}
+
+.brand {
+  margin: 0 0 44px 8px;
+  color: #7d2945;
+  font-size: 21px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand span {
+  margin-left: 4px;
+  color: #b43c61;
+}
+
+.sidebarLabel,
+.eyebrow {
+  margin: 0 0 10px;
+  color: #a17d83;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.sidebarLabel {
+  padding-left: 10px;
+}
+
+.navigation {
+  display: grid;
+  gap: 6px;
+}
+
+.navigation a {
+  display: flex;
+  min-height: 43px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 11px;
+  border-radius: 7px;
+  color: #6a6063;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.navigation a > svg:first-child {
+  color: #a83255;
+  font-size: 15px;
+}
+
+.navigation a:hover,
+.navigation .activeNav {
+  background: #fbf0f3;
+  color: #8f2d4d;
+}
+
+.navCount {
+  display: grid;
+  min-width: 22px;
+  height: 22px;
+  margin-left: auto;
+  padding: 0 5px;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff;
+  color: #8f2d4d;
+  font-size: 11px;
+}
+
+.linkArrow {
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.sidebarBottom {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.sidebarBottom :global(button) {
+  width: 100%;
+  margin-top: 0;
+  text-align: left;
+}
+
+.adminLink {
+  padding: 10px 0;
+  color: #8f2d4d;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.content {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.topbar h1 {
+  margin: 0;
+  color: #2f2529;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.2;
+}
+
+.welcomeText {
+  margin: 8px 0 0;
+  color: #83777a;
+  font-size: 14px;
+}
+
+.shopButton {
+  display: inline-flex;
+  min-height: 42px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #a83255;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.shopButton:hover {
+  background: #872643;
+}
+
+.shopButton svg,
+.textLink svg {
+  font-size: 11px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.summaryCard {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #f0e7e3;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.summaryIcon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 14px;
+  place-items: center;
+  border-radius: 8px;
+  background: #fbf0f3;
+  color: #a83255;
+  font-size: 14px;
+}
+
+.summaryCard p {
+  margin: 0 0 6px;
+  color: #817579;
+  font-size: 12px;
+}
+
+.summaryCard strong {
+  color: #30272b;
+  font-size: clamp(17px, 2vw, 22px);
+  overflow-wrap: anywhere;
+}
+
+.panel,
+.accountPanel {
+  border: 1px solid #f0e7e3;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.panel {
+  margin-bottom: 18px;
+  padding: 22px;
+}
+
+.panelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.panelHeading .eyebrow {
+  margin-bottom: 5px;
+}
+
+.panelHeading h2,
+.accountPanel h2 {
+  margin: 0;
+  color: #30272b;
+  font-size: 19px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #a83255;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.notice {
+  color: #817579;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px;
+  border: 1px solid #f3c7c7;
+  border-radius: 6px;
+  background: #fff5f5;
+  color: #a12626;
+  font-size: 13px;
+}
+
+.emptyState {
+  display: grid;
+  justify-items: center;
+  padding: 30px 16px 22px;
+  text-align: center;
+}
+
+.emptyState > span {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fbf0f3;
+  color: #a83255;
+  font-size: 20px;
+}
+
+.emptyState h3 {
+  margin: 0;
+  color: #30272b;
+  font-size: 17px;
+}
+
+.emptyState p {
+  margin: 8px 0 18px;
+  color: #817579;
+  font-size: 13px;
+}
+
+.orderList {
+  display: grid;
+}
+
+.orderCard {
+  display: grid;
+  grid-template-columns: 38px minmax(130px, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid #f2ece9;
+}
+
+.orderIcon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 8px;
+  background: #fbf0f3;
+  color: #a83255;
+}
+
+.orderDetails strong {
+  color: #342a2e;
+  font-size: 13px;
+}
+
+.orderDetails p {
+  margin: 5px 0 0;
+  color: #8a7f82;
+  font-size: 11px;
+}
+
+.status {
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #fbf4e7;
+  color: #97712c;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status_processing,
+.status_confirmed {
+  background: #fbf0f3;
+  color: #a83255;
+}
+
+.status_shipped {
+  background: #eef5fb;
+  color: #36739b;
+}
+
+.status_delivered {
+  background: #eaf5ee;
+  color: #34704a;
+}
+
+.status_cancelled {
+  background: #f5eded;
+  color: #8c5555;
+}
+
+.orderTotal {
+  color: #342a2e;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.accountPanel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 22px;
+}
+
+.profileAvatar {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f4e3e8;
+  color: #8f2d4d;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.accountPanel .eyebrow {
+  margin-bottom: 5px;
+}
+
+.accountPanel h2 {
+  font-size: 15px;
+}
+
+.accountPanel p:last-child {
+  margin: 4px 0 0;
+  color: #817579;
+  font-size: 12px;
+}
+
+.accountBadge {
+  margin-left: auto;
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: #eaf5ee;
+  color: #34704a;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 950px) {
+  .page {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .content {
+    padding: 28px 22px;
+  }
+
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    display: block;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    min-height: 0;
+    padding: 16px;
+    border-right: 0;
+    border-bottom: 1px solid #eee4e0;
+  }
+
+  .brand {
+    margin: 0 0 14px;
+  }
+
+  .sidebarLabel {
+    display: none;
+  }
+
+  .navigation {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .navigation a {
+    min-height: 52px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px 2px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .navigation a > svg:first-child {
+    font-size: 14px;
+  }
+
+  .navigation .navCount,
+  .linkArrow {
+    display: none;
+  }
+
+  .sidebarBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .sidebarBottom :global(button) {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .adminLink {
+    padding: 8px 0;
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 24px 16px 36px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .orderCard {
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .orderTotal {
+    grid-column: 2 / 4;
+  }
+}
+
+@media (max-width: 390px) {
+  .summaryGrid {
+    gap: 9px;
+  }
+
+  .summaryCard {
+    padding: 13px;
+  }
+
+  .panel {
+    padding: 16px 13px;
+  }
+
+  .panelHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .accountBadge {
+    display: none;
+  }
+}

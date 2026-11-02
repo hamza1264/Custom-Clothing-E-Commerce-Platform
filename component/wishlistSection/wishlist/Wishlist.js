@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useSyncExternalStore } from 'react';
+import React, { useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingBag } from 'lucide-react';
@@ -15,6 +15,7 @@ import './Wishlist.css';
 
 export default function Wishlist() {
   const router = useRouter();
+  const [error, setError] = useState('');
   const wishlistItems = JSON.parse(
     useSyncExternalStore(
       subscribeToWishlist,
@@ -24,36 +25,55 @@ export default function Wishlist() {
   );
 
   const handleRemove = (id) => {
-    saveWishlist(wishlistItems.filter((item) => item.id !== id));
+    saveWishlist(wishlistItems.filter((item) => String(item.id) !== String(id)));
   };
 
-  const handleMoveToCart = (item) => {
-    const cartItem = {
-      productId: item.id,
-      title: item.name,
-      price: item.price,
-      image: item.image,
-      size: 'M',
-      color: 'Default',
-      quantity: 1,
-    };
-    const currentCart = JSON.parse(getCartSnapshot());
-    const existingItem = currentCart.find(
-      (cartEntry) =>
-        cartEntry.productId === cartItem.productId &&
-        cartEntry.size === cartItem.size &&
-        cartEntry.color === cartItem.color
-    );
+  const handleMoveToCart = async (item) => {
+    setError('');
+    try {
+      const response = await fetch(
+        `/api/products/${encodeURIComponent(String(item.id))}`,
+        { cache: 'no-store' }
+      );
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Could not load this product.');
+      }
 
-    if (existingItem) {
-      existingItem.quantity += cartItem.quantity;
-    } else {
-      currentCart.push(cartItem);
+      const product = result.product;
+      const cartItem = {
+        productId: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        size: product.sizes[0],
+        color: product.colors[0]?.name,
+        quantity: 1,
+      };
+      const currentCart = JSON.parse(getCartSnapshot());
+      const existingItem = currentCart.find(
+        (cartEntry) =>
+          String(cartEntry.productId) === cartItem.productId &&
+          cartEntry.size === cartItem.size &&
+          cartEntry.color === cartItem.color
+      );
+
+      if (existingItem) {
+        existingItem.quantity += cartItem.quantity;
+      } else {
+        currentCart.push(cartItem);
+      }
+
+      saveCart(currentCart);
+      saveWishlist(
+        wishlistItems.filter(
+          (wishlistItem) => String(wishlistItem.id) !== String(item.id)
+        )
+      );
+      router.push('/cart');
+    } catch (requestError) {
+      setError(requestError.message || 'Could not move this product to your cart.');
     }
-
-    saveCart(currentCart);
-    saveWishlist(wishlistItems.filter((wishlistItem) => wishlistItem.id !== item.id));
-    router.push('/cart');
   };
 
   return (
@@ -61,6 +81,7 @@ export default function Wishlist() {
       <h2 className="wishlist-heading">
         My Wishlist ({wishlistItems.length})
       </h2>
+      {error && <p role="alert">{error}</p>}
 
       <div className="wishlist-list">
         {wishlistItems.length === 0 ? (

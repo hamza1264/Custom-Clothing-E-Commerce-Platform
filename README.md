@@ -18,10 +18,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-## MongoDB account login
+## MongoDB store backend
 
-The account icon opens the login and signup page. Accounts are stored in MongoDB,
-passwords are hashed, and signed-in sessions use an HTTP-only cookie.
+The store uses MongoDB for its product catalog, accounts, and orders. Product
+catalog requests seed the existing six products the first time the collection
+is used. Checkout stores orders with server-verified prices and shipping;
+customers can track an order using its number and the checkout phone number.
+The existing login/register flow stores password hashes and uses an HTTP-only
+session cookie. Registered accounts are stored in the `users` collection;
+unexpired, non-logged-out sessions are stored separately in `login_sessions`.
+Admin accounts can view both lists at `/admin/customers`.
 
 1. Start a local MongoDB server or create a MongoDB Atlas cluster.
 2. Copy `.env.example` to `.env.local`.
@@ -29,9 +35,29 @@ passwords are hashed, and signed-in sessions use an HTTP-only cookie.
    to your database name.
 4. Set `AUTH_SECRET` to a private random value with at least 32 characters.
    Generate one with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
-5. Restart the Next.js development server.
+5. Set `ADMIN_EMAILS` to one or more comma-separated account email addresses.
+   Register those accounts using the website; only those addresses can manage
+   products or change order statuses.
+6. Restart the Next.js development server.
 
 Keep `.env.local` private and never commit database credentials or session secrets.
+
+### Store API
+
+- `GET /api/products` — list active products.
+- `GET /api/products/:id` — get a product.
+- `POST /api/products` — create a product (admin).
+- `PATCH /api/products/:id` and `DELETE /api/products/:id` — update or remove a
+  product (admin).
+- `POST /api/orders` — place a Cash on Delivery order.
+- `GET /api/orders` — list the signed-in customer's orders.
+- `GET /api/orders/track?orderNumber=...&phone=...` — check order status.
+- `GET /api/admin/orders` — list orders (admin).
+- `PATCH /api/admin/orders/:orderNumber` — update status to `confirmed`,
+  `processing`, `shipped`, `delivered`, or `cancelled` (admin).
+
+Payments currently support Cash on Delivery only; no card processor is
+configured.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

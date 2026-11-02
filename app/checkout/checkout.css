@@ -105,6 +105,17 @@
   background: #982c4f;
 }
 
+.checkout-submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.checkout-error {
+  margin: 0 0 14px;
+  color: #a12626;
+  font-size: 13px;
+}
+
 .checkout-back {
   display: block;
   margin-top: 16px;
