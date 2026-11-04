@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import {
   getServerWishlistSnapshot,
   getWishlistSnapshot,
@@ -127,7 +128,12 @@ function ProductCard({ limit, searchTerm = "", filters }) {
               aria-label={isSaved ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
               aria-pressed={isSaved}
             >
-              <span aria-hidden="true">❤️</span>
+              <Heart
+                size={18}
+                strokeWidth={1.8}
+                fill={isSaved ? "currentColor" : "none"}
+                aria-hidden="true"
+              />
             </button>
           </article>
         );

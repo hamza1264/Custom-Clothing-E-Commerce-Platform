@@ -1,13 +1,7 @@
 "use client";
 
+import { MapPin, Phone, Upload, UserRound } from "lucide-react";
 import { useState } from "react";
-import {
-  FaUpload,
-  FaUser,
-  FaPhone,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
-
 import "./CustomForm.css";
 
 function CustomForm() {
@@ -59,7 +53,7 @@ function CustomForm() {
           {/* Personal Details */}
 
           <div className="form-group-title">
-            <FaUser />
+            <UserRound />
             <h3>Personal Details</h3>
           </div>
 
@@ -194,7 +188,7 @@ function CustomForm() {
 
             <label className="upload-box">
 
-              <FaUpload />
+              <Upload />
 
               <span>
                 Click to upload your design
@@ -225,7 +219,7 @@ function CustomForm() {
           {/* Address */}
 
           <div className="form-group-title">
-            <FaMapMarkerAlt />
+            <MapPin />
             <h3>Delivery Address</h3>
           </div>
 

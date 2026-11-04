@@ -1,8 +1,8 @@
 "use client";
 
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./Auth.module.css";
 
 export default function AuthForm({ initialMode = "login", isConfigured }) {
@@ -132,7 +132,7 @@ export default function AuthForm({ initialMode = "login", isConfigured }) {
               aria-label={showPassword ? "Hide password" : "Show password"}
               aria-pressed={showPassword}
             >
-              {showPassword ? <FaEyeSlash aria-hidden="true" /> : <FaEye aria-hidden="true" />}
+              {showPassword ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}
             </button>
           </span>
           <span className={styles.hint}>Use at least 8 characters.</span>

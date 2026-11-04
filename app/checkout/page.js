@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { CircleCheck } from "lucide-react";
 import {
   getCartSnapshot,
   getServerCartSnapshot,
@@ -77,7 +78,9 @@ export default function CheckoutPage() {
   if (orderNumber) {
     return (
       <main className="checkout-page checkout-success">
-        <span className="checkout-success-mark" aria-hidden="true">✓</span>
+        <span className="checkout-success-mark" aria-hidden="true">
+          <CircleCheck size={30} strokeWidth={1.8} />
+        </span>
         <p className="checkout-eyebrow">ORDER CONFIRMED</p>
         <h1>Thank you, {customer.name}!</h1>
         <p>

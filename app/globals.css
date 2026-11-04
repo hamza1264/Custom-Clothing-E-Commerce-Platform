@@ -19,6 +19,14 @@ svg {
   max-width: 100%;
 }
 
+svg.lucide {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  stroke-width: 1.75;
+  vertical-align: middle;
+}
+
 @media (max-width: 319px) {
   html,
   body {

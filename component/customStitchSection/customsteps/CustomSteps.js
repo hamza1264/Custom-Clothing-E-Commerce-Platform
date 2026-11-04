@@ -1,9 +1,4 @@
-import {
-  FaImage,
-  FaTshirt,
-  FaRulerCombined,
-  FaCheckCircle,
-} from "react-icons/fa";
+import { CircleCheck, ImageIcon, Ruler, Shirt } from "lucide-react";
 
 import "./CustomSteps.css";
 
@@ -11,25 +6,25 @@ function CustomSteps() {
   const steps = [
     {
       number: "01",
-      icon: <FaImage />,
+      icon: <ImageIcon />,
       title: "Share Your Design",
       text: "Upload or share a reference image of the outfit you want.",
     },
     {
       number: "02",
-      icon: <FaTshirt />,
+      icon: <Shirt />,
       title: "Choose Fabric & Color",
       text: "Select your preferred fabric, color and other outfit details.",
     },
     {
       number: "03",
-      icon: <FaRulerCombined />,
+      icon: <Ruler />,
       title: "Add Your Measurements",
       text: "Provide your measurements so your outfit can be made according to your size.",
     },
     {
       number: "04",
-      icon: <FaCheckCircle />,
+      icon: <CircleCheck />,
       title: "Confirm Your Order",
       text: "Review all your details and confirm your custom stitching order.",
     },

@@ -1,8 +1,6 @@
 import Link from "next/link";
-import {
-  FaWhatsapp,
-  FaHeadset,
-} from "react-icons/fa";
+import { Headset } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 import "./TrackHelp.css";
 
@@ -11,7 +9,7 @@ function TrackHelp() {
     <section className="track-help">
 
       <div className="track-help-icon">
-        <FaHeadset />
+        <Headset />
       </div>
 
       <h2>Need Help With Your Order?</h2>

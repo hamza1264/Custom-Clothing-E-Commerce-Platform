@@ -1,9 +1,4 @@
-import {
-  FaCheckCircle,
-  FaBoxOpen,
-  FaTruck,
-  FaHome,
-} from "react-icons/fa";
+import { CircleCheck, House, PackageOpen, Truck } from "lucide-react";
 
 import "./OrderStatus.css";
 
@@ -11,25 +6,25 @@ function OrderStatus() {
 
   const statuses = [
     {
-      icon: <FaCheckCircle />,
+      icon: <CircleCheck />,
       title: "Order Confirmed",
       text: "Your order has been successfully confirmed.",
       date: "Order placed",
     },
     {
-      icon: <FaBoxOpen />,
+      icon: <PackageOpen />,
       title: "Processing",
       text: "Your outfit is being prepared.",
       date: "Processing",
     },
     {
-      icon: <FaTruck />,
+      icon: <Truck />,
       title: "Out for Delivery",
       text: "Your order is on its way to you.",
       date: "Shipping",
     },
     {
-      icon: <FaHome />,
+      icon: <House />,
       title: "Delivered",
       text: "Your order has been delivered successfully.",
       date: "Delivery",

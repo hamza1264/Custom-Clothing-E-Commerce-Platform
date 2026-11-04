@@ -2,38 +2,32 @@ import Image from "next/image";
 import Link from "next/link";
 import "./unstiched.css";
 
-import {
-  FaGlobe,
-  FaUndo,
-  FaLock,
-  FaAward,
-  FaCut,
-} from "react-icons/fa";
+import { Award, Globe2, LockKeyhole, Scissors, Undo2 } from "lucide-react";
 
 export default function CustomStitchBanner() {
 
   const badges = [
     {
       id: 1,
-      icon: <FaGlobe />,
+      icon: <Globe2 />,
       title: "Worldwide Shipping",
       description: "Delivering joy worldwide",
     },
     {
       id: 2,
-      icon: <FaUndo />,
+      icon: <Undo2 />,
       title: "7 Days Return",
       description: "Easy returns & exchanges",
     },
     {
       id: 3,
-      icon: <FaLock />,
+      icon: <LockKeyhole />,
       title: "Secure Payment",
       description: "100% secure checkout",
     },
     {
       id: 4,
-      icon: <FaAward />,
+      icon: <Award />,
       title: "Quality Promise",
       description: "We promise the best quality",
     },
@@ -87,7 +81,7 @@ export default function CustomStitchBanner() {
                 className="banner-btn"
               >
                 <span className="btn-icon">
-                  <FaCut />
+                  <Scissors />
                 </span>
 
                 Start Custom Stitch Order

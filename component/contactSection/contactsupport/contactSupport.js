@@ -1,32 +1,27 @@
 import React from "react";
-import {
-  FaHeadset,
-  FaTshirt,
-  FaBoxOpen,
-  FaUndo
-} from "react-icons/fa";
+import { Headset, PackageOpen, Shirt, Undo2 } from "lucide-react";
 import "./contactSupport.css";
 
 function ContactSupport() {
 
   const supportItems = [
   {
-    icon: <FaHeadset />,
+    icon: <Headset />,
     title: "Quick Support",
     text: "Get fast and friendly support anytime.",
   },
   {
-    icon: <FaTshirt />,
+    icon: <Shirt />,
     title: "Custom Assistance",
     text: "Need help with custom stitching? We are here.",
   },
   {
-    icon: <FaBoxOpen />,
+    icon: <PackageOpen />,
     title: "Order Updates",
     text: "Stay updated with your order at every step.",
   },
   {
-    icon: <FaUndo />,
+    icon: <Undo2 />,
     title: "Easy Returns",
     text: "Hassle-free returns within 7 days.",
   },

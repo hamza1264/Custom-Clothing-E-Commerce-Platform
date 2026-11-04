@@ -76,7 +76,15 @@
 }
 
 .journey-content li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin: 5px 0;
+}
+
+.journey-content li svg {
+    flex: 0 0 auto;
+    color: #b43861;
 }
 
 .journey-content button {

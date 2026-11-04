@@ -1,32 +1,27 @@
 import React from "react";
 import "./whoWeAre.css";
 
-import {
-  FaGem,
-  FaCut,
-  FaHeart,
-  FaCrown,
-} from "react-icons/fa";
+import { Crown, Gem, Heart, Scissors } from "lucide-react";
 
 function WhoWeAre() {
   const features = [
     {
-      icon: <FaGem />,
+      icon: <Gem />,
       title: "Premium Quality",
       text: "We use the finest fabrics and ensure top-notch stitching quality.",
     },
     {
-      icon: <FaCut />,
+      icon: <Scissors />,
       title: "Custom Made",
       text: "Your design, your size, your style — we stitch it exactly how you want.",
     },
     {
-      icon: <FaHeart />,
+      icon: <Heart />,
       title: "Customer First",
       text: "Our customers' satisfaction is our top priority. We are here for you.",
     },
     {
-      icon: <FaCrown />,
+      icon: <Crown />,
       title: "Trusted by Thousands",
       text: "Thousands of happy customers trust us for their everyday & special looks.",
     },

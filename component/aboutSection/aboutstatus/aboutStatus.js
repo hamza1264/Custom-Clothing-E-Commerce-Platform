@@ -1,34 +1,29 @@
 import React from "react";
 import "./aboutStatus.css";
 
-import {
-  FaUsers,
-  FaTshirt,
-  FaCut,
-  FaStar,
-} from "react-icons/fa";
+import { Scissors, Shirt, Star, Users } from "lucide-react";
 
 function AboutStats() {
   const stats = [
     {
       number: "15K+",
       title: "Happy Customers",
-      icon: <FaUsers />,
+      icon: <Users />,
     },
     {
       number: "25K+",
       title: "Outfits Delivered",
-      icon: <FaTshirt />,
+      icon: <Shirt />,
     },
     {
       number: "5K+",
       title: "Custom Designs",
-      icon: <FaCut />,
+      icon: <Scissors />,
     },
     {
       number: "4.8/5",
       title: "Customer Rating",
-      icon: <FaStar />,
+      icon: <Star />,
     },
   ];
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { SlidersHorizontal } from "lucide-react";
 import "./shop.css";
 import ProductCard from "@/component/productcard/productCard";
 import Filter from "@/component/filter/filter";
@@ -54,7 +55,7 @@ function Shop({ searchTerm = '' }) {
             aria-controls="shop-filters"
             onClick={() => setShowFilters((isOpen) => !isOpen)}
           >
-            <span aria-hidden="true">☷</span>
+            <SlidersHorizontal aria-hidden="true" />
             Filters
           </button>
           <div

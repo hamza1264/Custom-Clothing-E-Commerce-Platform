@@ -1,12 +1,8 @@
 import Link from "next/link";
 import "./footer.css";
 
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaWhatsapp,
-  FaCreditCard,
-} from "react-icons/fa";
+import { CreditCard } from "lucide-react";
+import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -136,7 +132,7 @@ export default function Footer() {
           <div className="payment-badges">
 
             <span className="payment-icon">
-              <FaCreditCard />
+              <CreditCard />
             </span>
 
             <span>

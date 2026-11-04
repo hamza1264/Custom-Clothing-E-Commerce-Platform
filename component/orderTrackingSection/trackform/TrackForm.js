@@ -1,7 +1,7 @@
 "use client";
 
+import { Package, Search } from "lucide-react";
 import { useState } from "react";
-import { FaSearch, FaBox } from "react-icons/fa";
 import "./TrackForm.css";
 
 function TrackForm() {
@@ -41,7 +41,7 @@ function TrackForm() {
       <div className="track-form-box">
 
         <div className="track-form-icon">
-          <FaBox />
+          <Package />
         </div>
 
         <h2>Track Your Order</h2>
@@ -64,7 +64,7 @@ function TrackForm() {
               onChange={(e) => setOrderNumber(e.target.value)}
             />
 
-            <FaSearch />
+            <Search />
 
           </div>
 

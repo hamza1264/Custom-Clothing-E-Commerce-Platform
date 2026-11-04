@@ -1,31 +1,26 @@
-import {
-  FaGem,
-  FaRulerCombined,
-  FaCut,
-  FaTruck,
-} from "react-icons/fa";
+import { Gem, Ruler, Scissors, Truck } from "lucide-react";
 
 import "./CustomBenefit.css";
 
 function CustomBenefits() {
   const benefits = [
     {
-      icon: <FaGem />,
+      icon: <Gem />,
       title: "Premium Fabric",
       text: "We use quality fabrics for comfortable and beautiful outfits.",
     },
     {
-      icon: <FaRulerCombined />,
+      icon: <Ruler />,
       title: "Custom Size",
       text: "Provide your own measurements for a personalized fit.",
     },
     {
-      icon: <FaCut />,
+      icon: <Scissors />,
       title: "Your Design",
       text: "Customize your outfit according to your preferred design.",
     },
     {
-      icon: <FaTruck />,
+      icon: <Truck />,
       title: "Safe Delivery",
       text: "Your custom outfit is carefully prepared and delivered safely.",
     },

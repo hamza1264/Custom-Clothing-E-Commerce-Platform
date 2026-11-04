@@ -1,4 +1,5 @@
 import React from "react";
+import { CircleCheck } from "lucide-react";
 import "./ourJourney.css";
 
 function OurJourney() {
@@ -48,9 +49,9 @@ function OurJourney() {
         </p>
 
         <ul>
-          <li>✓ High-quality fabric & stitching</li>
-          <li>✓ Unique designs & customization</li>
-          <li>✓ On-time delivery & great support</li>
+          <li><CircleCheck aria-hidden="true" /> High-quality fabric & stitching</li>
+          <li><CircleCheck aria-hidden="true" /> Unique designs & customization</li>
+          <li><CircleCheck aria-hidden="true" /> On-time delivery & great support</li>
         </ul>
 
         <button>Read Our Story</button>

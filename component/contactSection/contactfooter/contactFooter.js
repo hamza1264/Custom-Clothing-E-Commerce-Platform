@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  FaTruck,
-  FaUndo,
-  FaLock,
-  FaAward,
-  FaWhatsapp,
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { Award, LockKeyhole, Truck, Undo2 } from "lucide-react";
+import { FaWhatsapp, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 import "./contactFooter.css";
 
@@ -102,7 +94,7 @@ function ContactFooter() {
       <div className="service-bar">
 
         <div>
-          <FaTruck className="service-icon" />
+          <Truck className="service-icon" />
 
           <div>
             <h3>Worldwide Shipping</h3>
@@ -112,7 +104,7 @@ function ContactFooter() {
 
 
         <div>
-          <FaUndo className="service-icon" />
+          <Undo2 className="service-icon" />
 
           <div>
             <h3>7 Days Return</h3>
@@ -122,7 +114,7 @@ function ContactFooter() {
 
 
         <div>
-          <FaLock className="service-icon" />
+          <LockKeyhole className="service-icon" />
 
           <div>
             <h3>Secure Payment</h3>
@@ -132,7 +124,7 @@ function ContactFooter() {
 
 
         <div>
-          <FaAward className="service-icon" />
+          <Award className="service-icon" />
 
           <div>
             <h3>Quality Promise</h3>

@@ -75,18 +75,13 @@
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.product-wishlist-button span {
-    filter: grayscale(1);
-    opacity: 0.55;
-    font-size: 19px;
-    line-height: 1;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+.product-wishlist-button svg {
+    transition: color 0.2s ease, fill 0.2s ease;
 }
 
-.product-wishlist-button:hover span,
-.product-wishlist-button.is-saved span {
-    filter: none;
-    opacity: 1;
+.product-wishlist-button:hover,
+.product-wishlist-button.is-saved {
+    color: #b43861;
 }
 
 .product-wishlist-button:hover {
@@ -206,8 +201,9 @@
         height: 32px;
     }
 
-    .product-wishlist-button span {
-        font-size: 16px;
+    .product-wishlist-button svg {
+        width: 16px;
+        height: 16px;
     }
 }
 

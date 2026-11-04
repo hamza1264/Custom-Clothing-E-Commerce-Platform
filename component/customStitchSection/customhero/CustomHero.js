@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaCut } from "react-icons/fa";
+import { Scissors } from "lucide-react";
 import "./CustomHero.css";
 
 function CustomHero() {
@@ -25,7 +25,7 @@ function CustomHero() {
         </p>
 
         <Link href="#custom-order" className="custom-hero-btn">
-          <FaCut />
+          <Scissors />
           Start Your Custom Order
         </Link>
 

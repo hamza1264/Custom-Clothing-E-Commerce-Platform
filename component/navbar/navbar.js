@@ -3,30 +3,21 @@
 import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import {
-  getCartSnapshot,
-  getServerCartSnapshot,
-  subscribeToCart,
-} from "@/data/cartStore";
+  Heart,
+  Menu,
+  Search,
+  ShoppingCart,
+  Truck,
+  UserRound,
+  X,
+} from "lucide-react";
+import { getCartSnapshot, getServerCartSnapshot, subscribeToCart, } from "@/data/cartStore";
 import {
-  getServerWishlistSnapshot,
-  getWishlistSnapshot,
-  subscribeToWishlist,
-} from "@/data/wishlistStore";
+  getServerWishlistSnapshot, getWishlistSnapshot, subscribeToWishlist, } from "@/data/wishlistStore";
 import LogoutButton from "@/component/auth/LogoutButton";
 import "./navbar.css";
 
-import {
-  FaTruck,
-  FaSearch,
-  FaUser,
-  FaHeart,
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-  FaFacebookF,
-  FaInstagram,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,7 +37,7 @@ function Navbar() {
     <>
       {/* Top Shipping Bar */}
       <div className="shipping-bar">
-        <FaTruck className="shipping-icon" />
+        <Truck className="shipping-icon" />
         Free Shipping on all orders above Rs. 5000
       </div>
 
@@ -59,7 +50,7 @@ function Navbar() {
           aria-expanded={isMenuOpen}
           aria-controls="primary-navigation"
         >
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
+          {isMenuOpen ? <X /> : <Menu />}
         </button>
 
         {/* Logo */}
@@ -80,7 +71,7 @@ function Navbar() {
             type="submit"
             aria-label="Search products"
           >
-            <FaSearch />
+            <Search />
           </button>
         </form>
 
@@ -92,7 +83,7 @@ function Navbar() {
           </Link>
 
           <Link href="/login" className="nav-icon" aria-label="Account">
-            <FaUser />
+            <UserRound />
           </Link>
 
           <Link
@@ -100,7 +91,7 @@ function Navbar() {
             className="nav-icon nav-icon-with-count"
             aria-label={`Wishlist, ${wishlist.length} items`}
           >
-            <FaHeart />
+            <Heart />
             <span className="nav-count">{wishlist.length}</span>
           </Link>
 
@@ -109,7 +100,7 @@ function Navbar() {
             className="nav-icon nav-icon-with-count"
             aria-label={`Cart, ${cartCount} items`}
           >
-            <FaShoppingCart />
+            <ShoppingCart />
             <span className="nav-count">{cartCount}</span>
           </Link>
 
@@ -137,7 +128,7 @@ function Navbar() {
             aria-label="Search products"
           />
           <button type="submit" aria-label="Search products">
-            <FaSearch />
+            <Search />
           </button>
         </form>
 

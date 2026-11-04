@@ -1,14 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Award, Scissors, ShoppingBag, Truck, Headset } from "lucide-react";
 import "./hero.css";
-
-import {
-  FaGem,
-  FaCut,
-  FaShoppingBag,
-  FaTruck,
-  FaHeadset,
-} from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -70,7 +63,7 @@ export default function Home() {
         <div className="feature-item">
 
           <span className="feature-icon">
-            <FaGem />
+            <Award size={20} strokeWidth={1.75} aria-hidden="true" />
           </span>
 
           <div className="feature-text">
@@ -84,7 +77,7 @@ export default function Home() {
         <div className="feature-item">
 
           <span className="feature-icon">
-            <FaCut />
+            <Scissors size={20} strokeWidth={1.75} aria-hidden="true" />
           </span>
 
           <div className="feature-text">
@@ -98,7 +91,7 @@ export default function Home() {
         <div className="feature-item">
 
           <span className="feature-icon">
-            <FaShoppingBag />
+            <ShoppingBag size={20} strokeWidth={1.75} aria-hidden="true" />
           </span>
 
           <div className="feature-text">
@@ -112,7 +105,7 @@ export default function Home() {
         <div className="feature-item">
 
           <span className="feature-icon">
-            <FaTruck />
+            <Truck size={20} strokeWidth={1.75} aria-hidden="true" />
           </span>
 
           <div className="feature-text">
@@ -126,7 +119,7 @@ export default function Home() {
         <div className="feature-item">
 
           <span className="feature-icon">
-            <FaHeadset />
+            <Headset size={20} strokeWidth={1.75} aria-hidden="true" />
           </span>
 
           <div className="feature-text">

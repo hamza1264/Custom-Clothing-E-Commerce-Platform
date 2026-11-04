@@ -1,4 +1,4 @@
-import { FaTruck } from "react-icons/fa";
+import { Truck } from "lucide-react";
 import "./TrackHero.css";
 
 function TrackHero() {
@@ -8,7 +8,7 @@ function TrackHero() {
       <div className="track-hero-content">
 
         <div className="track-hero-icon">
-          <FaTruck />
+          <Truck />
         </div>
 
         <span>ORDER TRACKING</span>

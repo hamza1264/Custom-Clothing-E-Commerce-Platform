@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaShoppingBag } from "react-icons/fa";
+import { ShoppingBag } from "lucide-react";
 
 import "./CustomCTA.css";
 
@@ -19,7 +19,7 @@ function CustomCTA() {
         </p>
 
         <Link href="/shop" className="custom-cta-btn">
-          <FaShoppingBag />
+          <ShoppingBag />
           Explore Collection
         </Link>
 

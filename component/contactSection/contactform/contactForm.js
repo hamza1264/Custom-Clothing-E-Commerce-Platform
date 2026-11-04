@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  FaWhatsapp,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt
-} from "react-icons/fa";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import "./contactForm.css";
 
 function ContactForm() {
@@ -52,7 +48,8 @@ function ContactForm() {
           ></textarea>
 
           <button type="submit">
-            ✈ Send Message
+            <Send aria-hidden="true" />
+            Send Message
           </button>
 
         </form>
@@ -87,7 +84,7 @@ function ContactForm() {
           className="contact-phone-link"
         >
           <div className="contact-info-item">
-            <FaPhoneAlt className="contact-icon phone-icon" />
+            <Phone className="contact-icon phone-icon" />
 
             <div>
               <h3>Phone</h3>
@@ -103,7 +100,7 @@ function ContactForm() {
           className="contact-email-link"
         >
           <div className="contact-info-item">
-            <FaEnvelope className="contact-icon email-icon" />
+            <Mail className="contact-icon email-icon" />
 
             <div>
               <h3>Email</h3>
@@ -114,7 +111,7 @@ function ContactForm() {
         </a>
 
         <div className="contact-info-item">
-          <FaMapMarkerAlt className="contact-icon location-icon" />
+          <MapPin className="contact-icon location-icon" />
           <div>
             <h3>Address</h3>
             <p>House #12, Street 5, Gulshan-e-Iqbal,</p>

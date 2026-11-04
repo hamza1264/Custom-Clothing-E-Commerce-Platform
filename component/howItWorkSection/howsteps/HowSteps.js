@@ -1,54 +1,47 @@
 import "./HowSteps.css";
 
-import {
-  FaSearch,
-  FaShoppingCart,
-  FaRulerCombined,
-  FaCut,
-  FaCheckCircle,
-  FaTruck,
-} from "react-icons/fa";
+import { CircleCheck, Ruler, Scissors, Search, ShoppingCart, Truck } from "lucide-react";
 
 function HowSteps() {
   const steps = [
     {
       number: "01",
-      icon: <FaSearch />,
+      icon: <Search />,
       title: "Explore Our Collection",
       description:
         "Browse our collection of unstitched and ready-made clothing and find an outfit you love.",
     },
     {
       number: "02",
-      icon: <FaShoppingCart />,
+      icon: <ShoppingCart />,
       title: "Choose Your Outfit",
       description:
         "Select your favorite product, choose available options, and add it to your shopping cart.",
     },
     {
       number: "03",
-      icon: <FaRulerCombined />,
+      icon: <Ruler />,
       title: "Customize Your Size",
       description:
         "Provide your measurements and select the size according to your requirements.",
     },
     {
       number: "04",
-      icon: <FaCut />,
+      icon: <Scissors />,
       title: "Custom Stitching",
       description:
         "Send your design or reference and select fabric, color, and other details.",
     },
     {
       number: "05",
-      icon: <FaCheckCircle />,
+      icon: <CircleCheck />,
       title: "Confirm Your Order",
       description:
         "Review your selected items and customization details before confirming your order.",
     },
     {
       number: "06",
-      icon: <FaTruck />,
+      icon: <Truck />,
       title: "Delivery",
       description:
         "Your order will be securely packed and delivered to your address.",

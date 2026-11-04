@@ -1,28 +1,28 @@
 "use client";
 
+import {
+  ArrowRight,
+  CircleCheck,
+  CircleUserRound,
+  Clock3,
+  Heart,
+  PackageOpen,
+  ShoppingBag,
+  Store,
+  Truck,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  FaArrowRight,
-  FaBoxOpen,
-  FaCheckCircle,
-  FaClock,
-  FaHeart,
-  FaShoppingBag,
-  FaStore,
-  FaTruck,
-  FaUserCircle,
-} from "react-icons/fa";
 import LogoutButton from "@/component/auth/LogoutButton";
 
 import styles from "./CustomerDashboard.module.css";
 
 const STATUS_ICONS = {
-  confirmed: FaCheckCircle,
-  processing: FaClock,
-  shipped: FaTruck,
-  delivered: FaCheckCircle,
-  cancelled: FaBoxOpen,
+  confirmed: CircleCheck,
+  processing: Clock3,
+  shipped: Truck,
+  delivered: CircleCheck,
+  cancelled: PackageOpen,
 };
 
 function formatDate(value) {
@@ -83,23 +83,23 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
         <p className={styles.sidebarLabel}>MY ACCOUNT</p>
         <nav className={styles.navigation} aria-label="Account navigation">
           <a className={styles.activeNav} href="#overview">
-            <FaUserCircle aria-hidden="true" />
+            <CircleUserRound aria-hidden="true" />
             Overview
           </a>
           <a href="#orders">
-            <FaBoxOpen aria-hidden="true" />
+            <PackageOpen aria-hidden="true" />
             My orders
             <span className={styles.navCount}>{orders.length}</span>
           </a>
           <Link href="/wishlist">
-            <FaHeart aria-hidden="true" />
+            <Heart aria-hidden="true" />
             Wishlist
-            <FaArrowRight className={styles.linkArrow} aria-hidden="true" />
+            <ArrowRight className={styles.linkArrow} aria-hidden="true" />
           </Link>
           <Link href="/shop">
-            <FaStore aria-hidden="true" />
+            <Store aria-hidden="true" />
             Shop collection
-            <FaArrowRight className={styles.linkArrow} aria-hidden="true" />
+            <ArrowRight className={styles.linkArrow} aria-hidden="true" />
           </Link>
         </nav>
 
@@ -123,28 +123,28 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
             </p>
           </div>
           <Link href="/shop" className={styles.shopButton}>
-            Continue shopping <FaArrowRight aria-hidden="true" />
+            Continue shopping <ArrowRight aria-hidden="true" />
           </Link>
         </header>
 
         <section className={styles.summaryGrid} aria-label="Order summary">
           <article className={styles.summaryCard}>
-            <span className={styles.summaryIcon}><FaBoxOpen /></span>
+            <span className={styles.summaryIcon}><PackageOpen /></span>
             <p>Total orders</p>
             <strong>{isLoading ? "—" : orders.length}</strong>
           </article>
           <article className={styles.summaryCard}>
-            <span className={styles.summaryIcon}><FaTruck /></span>
+            <span className={styles.summaryIcon}><Truck /></span>
             <p>In progress</p>
             <strong>{isLoading ? "—" : activeOrders.length}</strong>
           </article>
           <article className={styles.summaryCard}>
-            <span className={styles.summaryIcon}><FaCheckCircle /></span>
+            <span className={styles.summaryIcon}><CircleCheck /></span>
             <p>Delivered</p>
             <strong>{isLoading ? "—" : deliveredOrders.length}</strong>
           </article>
           <article className={styles.summaryCard}>
-            <span className={styles.summaryIcon}><FaShoppingBag /></span>
+            <span className={styles.summaryIcon}><ShoppingBag /></span>
             <p>Total spent</p>
             <strong>
               {isLoading ? "—" : `Rs. ${totalSpent.toLocaleString()}`}
@@ -159,7 +159,7 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
               <h2>Order history</h2>
             </div>
             <Link href="/orderTracking" className={styles.textLink}>
-              Track an order <FaArrowRight aria-hidden="true" />
+              Track an order <ArrowRight aria-hidden="true" />
             </Link>
           </div>
 
@@ -167,18 +167,18 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
           {error && <p className={styles.error} role="alert">{error}</p>}
           {!isLoading && !error && orders.length === 0 && (
             <div className={styles.emptyState}>
-              <span><FaShoppingBag aria-hidden="true" /></span>
+              <span><ShoppingBag aria-hidden="true" /></span>
               <h3>Your next favorite outfit is waiting</h3>
               <p>Your orders will appear here after you place your first order.</p>
               <Link href="/shop" className={styles.shopButton}>
-                Explore the collection <FaArrowRight aria-hidden="true" />
+                Explore the collection <ArrowRight aria-hidden="true" />
               </Link>
             </div>
           )}
           {!isLoading && !error && orders.length > 0 && (
             <div className={styles.orderList}>
               {orders.map((order) => {
-                const StatusIcon = STATUS_ICONS[order.status] ?? FaBoxOpen;
+                const StatusIcon = STATUS_ICONS[order.status] ?? PackageOpen;
                 const itemCount = order.items.reduce(
                   (count, item) => count + item.quantity,
                   0
