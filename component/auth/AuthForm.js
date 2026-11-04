@@ -1,11 +1,15 @@
 "use client";
 
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, LockKeyhole } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Auth.module.css";
 
-export default function AuthForm({ initialMode = "login", isConfigured }) {
+export default function AuthForm({
+  initialMode = "login",
+  isConfigured,
+  returnTo = "/customerDashboard",
+}) {
   const router = useRouter();
   const [mode, setMode] = useState(initialMode);
   const [name, setName] = useState("");
@@ -34,7 +38,7 @@ export default function AuthForm({ initialMode = "login", isConfigured }) {
         return;
       }
 
-      router.replace("/customerDashboard");
+      router.replace(returnTo);
       router.refresh();
     } catch {
       setError("Could not reach the server. Check your connection and try again.");
@@ -45,6 +49,9 @@ export default function AuthForm({ initialMode = "login", isConfigured }) {
 
   return (
     <section className={styles.card}>
+      <div className={styles.cardIcon} aria-hidden="true">
+        <LockKeyhole size={21} strokeWidth={1.8} />
+      </div>
       <p className={styles.eyebrow}>NAYAB CLOTHES ACCOUNT</p>
       <h1 className={styles.title}>
         {isSignup ? "Create your account" : "Welcome back"}

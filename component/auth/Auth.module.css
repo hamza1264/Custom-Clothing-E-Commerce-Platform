@@ -1,26 +1,42 @@
 .page {
   display: grid;
-  min-height: 65vh;
+  min-height: min(760px, calc(100vh - 130px));
   place-items: center;
-  padding: 48px 16px;
-  background: #fdf8f6;
+  padding: clamp(32px, 7vw, 72px) 16px;
+  background:
+    radial-gradient(ellipse at 12% 18%, rgb(180 56 97 / 9%), transparent 34%),
+    radial-gradient(ellipse at 88% 82%, rgb(196 145 116 / 12%), transparent 36%),
+    #fcf8f6;
 }
 
 .card {
+  position: relative;
   width: min(100%, 460px);
-  padding: clamp(24px, 6vw, 42px);
-  border: 1px solid #f0e2d9;
-  border-radius: 14px;
+  padding: clamp(26px, 6vw, 44px);
+  border: 1px solid rgb(240 226 217 / 85%);
+  border-radius: 20px;
   background: #fff;
-  box-shadow: 0 12px 40px rgb(74 32 44 / 8%);
+  box-shadow: 0 22px 65px rgb(74 32 44 / 10%), 0 3px 12px rgb(74 32 44 / 4%);
+}
+
+.cardIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 22px;
+  place-items: center;
+  border: 1px solid #f0dfe0;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fff8f5, #f8e9ed);
+  color: #a83255;
 }
 
 .eyebrow {
-  margin: 0 0 9px;
+  margin: 0 0 10px;
   color: #b43861;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1.7px;
+  letter-spacing: 1.8px;
 }
 
 .title {
@@ -31,7 +47,7 @@
 }
 
 .description {
-  margin: 10px 0 24px;
+  margin: 11px 0 26px;
   color: #707070;
   font-size: 14px;
   line-height: 1.6;
@@ -51,17 +67,19 @@
 .tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
-  margin-bottom: 22px;
-  padding: 4px;
-  border-radius: 8px;
-  background: #f8f2f1;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 5px;
+  border: 1px solid #f1e8e5;
+  border-radius: 10px;
+  background: #faf6f5;
 }
 
 .tabs button {
-  padding: 10px;
+  min-height: 40px;
+  padding: 9px 12px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 7px;
   background: transparent;
   color: #666;
   cursor: pointer;
@@ -72,37 +90,41 @@
 .tabs .activeTab {
   background: #fff;
   color: #a83255;
-  box-shadow: 0 1px 5px rgb(0 0 0 / 8%);
+  box-shadow: 0 2px 8px rgb(74 32 44 / 9%);
 }
 
 .form {
   display: grid;
-  gap: 17px;
+  gap: 18px;
 }
 
 .form label {
   display: grid;
-  gap: 7px;
+  gap: 8px;
   color: #333;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.1px;
 }
 
 .form input {
   width: 100%;
-  min-height: 45px;
-  padding: 10px 12px;
-  border: 1px solid #ded8d6;
-  border-radius: 6px;
-  background: #fff;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #e5dcda;
+  border-radius: 9px;
+  background: #fffdfc;
   color: #222;
   font: inherit;
   font-weight: 400;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .form input:focus {
   border-color: #b43861;
-  outline: 3px solid rgb(180 56 97 / 12%);
+  outline: 0;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(180 56 97 / 12%);
 }
 
 .passwordInput {
@@ -159,20 +181,23 @@
 }
 
 .submit {
-  min-height: 46px;
-  margin-top: 2px;
+  min-height: 49px;
+  margin-top: 3px;
   border: 0;
-  border-radius: 6px;
-  background: #a83255;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #a83255, #bd4968);
   color: #fff;
   cursor: pointer;
   font: inherit;
   font-weight: 700;
-  transition: background 160ms ease;
+  box-shadow: 0 7px 16px rgb(168 50 85 / 18%);
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .submit:hover:not(:disabled) {
-  background: #872643;
+  background: linear-gradient(110deg, #872643, #a83255);
+  box-shadow: 0 9px 20px rgb(168 50 85 / 24%);
+  transform: translateY(-1px);
 }
 
 .submit:disabled {
@@ -181,7 +206,9 @@
 }
 
 .switchMode {
-  margin: 20px 0 0;
+  margin: 22px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid #f1e9e6;
   color: #666;
   font-size: 13px;
   text-align: center;
@@ -195,6 +222,17 @@
   cursor: pointer;
   font: inherit;
   font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .page {
+    min-height: calc(100vh - 110px);
+    padding: 28px 14px;
+  }
+
+  .card {
+    border-radius: 16px;
+  }
 }
 
 .dashboard {

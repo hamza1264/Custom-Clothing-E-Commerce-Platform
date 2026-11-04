@@ -8,14 +8,19 @@ export const dynamic = "force-dynamic";
 export default async function LoginPage({ searchParams }) {
   const params = await searchParams;
   const initialMode = params?.mode === "signup" ? "signup" : "login";
+  const returnTo = params?.returnTo === "/checkout" ? "/checkout" : "/customerDashboard";
   const isConfigured = isAuthConfigured();
   if (isConfigured && (await getSession())) {
-    redirect("/customerDashboard");
+    redirect(returnTo);
   }
 
   return (
     <main className={styles.page}>
-      <AuthForm initialMode={initialMode} isConfigured={isConfigured} />
+      <AuthForm
+        initialMode={initialMode}
+        isConfigured={isConfigured}
+        returnTo={returnTo}
+      />
     </main>
   );
 }

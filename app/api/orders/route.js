@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { getSession, isAuthConfigured } from "@/data/auth";
+import { authNotConfiguredResponse } from "@/data/authRequest";
 import { getDatabase } from "@/data/mongodb";
 import { getShippingCost } from "@/data/cartStore";
 import {
@@ -60,6 +61,16 @@ export async function GET() {
 }
 
 export async function POST(request) {
+  if (!isAuthConfigured()) return authNotConfiguredResponse();
+
+  const session = await getSession();
+  if (!session) {
+    return Response.json(
+      { error: "Please log in before placing your order.", loginRequired: true },
+      { status: 401 }
+    );
+  }
+
   if (!isDatabaseConfigured()) return storeNotConfiguredResponse();
 
   const parsed = await readJsonBody(request);
@@ -130,10 +141,9 @@ export async function POST(request) {
   const shipping = getShippingCost(subtotal);
   const now = new Date();
   const orderNumber = `NF-${randomBytes(10).toString("hex").toUpperCase()}`;
-  const session = isAuthConfigured() ? await getSession() : null;
   const order = {
     orderNumber,
-    userId: session?.id ?? null,
+    userId: session.id,
     customer: {
       name: customer.name.trim(),
       phone: customer.phone.trim(),

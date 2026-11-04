@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CircleCheck } from "lucide-react";
 import {
   getCartSnapshot,
@@ -14,6 +15,7 @@ import {
 import "./checkout.css";
 
 export default function CheckoutPage() {
+  const router = useRouter();
   const cart = JSON.parse(
     useSyncExternalStore(
       subscribeToCart,
@@ -63,7 +65,12 @@ export default function CheckoutPage() {
       });
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error || "Could not place your order.");
+        if (response.status === 401 && result.loginRequired === true) {
+          router.push("/login?returnTo=%2Fcheckout");
+          return;
+        }
+        setOrderError(result.error || "Could not place your order.");
+        return;
       }
 
       saveCart([]);
