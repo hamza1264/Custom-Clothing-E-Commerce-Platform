@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import { getCartSnapshot, getServerCartSnapshot, subscribeToCart, } from "@/data/cartStore";
 import {
-  getServerWishlistSnapshot, getWishlistSnapshot, subscribeToWishlist, } from "@/data/wishlistStore";
+  getServerWishlistSnapshot, getWishlistSnapshot, subscribeToWishlist,
+} from "@/data/wishlistStore";
 import LogoutButton from "@/component/auth/LogoutButton";
 import "./navbar.css";
 
@@ -38,7 +39,7 @@ function Navbar() {
       {/* Top Shipping Bar */}
       <div className="shipping-bar">
         <Truck className="shipping-icon" />
-        Free Shipping on all orders above Rs. 5000
+        <span>Enjoy an Exclusive 25% OFF on All Your Favourite Styles, with Fast & Reliable Delivery Within 48 Hours! </span>
       </div>
 
       <nav className="navbar">

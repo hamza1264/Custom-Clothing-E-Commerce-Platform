@@ -32,16 +32,22 @@ export async function requireAdmin() {
   if (!isAuthConfigured()) {
     return {
       response: Response.json(
-        { error: "Configure MongoDB, AUTH_SECRET, and ADMIN_EMAILS first." },
+        {
+          error:
+            "Configure MongoDB, AUTH_SECRET, ADMIN_EMAILS, and ADMIN_PASSWORD first.",
+        },
         { status: 503 }
       ),
     };
   }
 
-  if (getAdminEmails().length === 0) {
+  if (!isAdminLoginConfigured()) {
     return {
       response: Response.json(
-        { error: "Set ADMIN_EMAILS to enable admin access." },
+        {
+          error:
+            "Set ADMIN_EMAILS and ADMIN_PASSWORD (at least 12 characters) to enable admin access.",
+        },
         { status: 503 }
       ),
     };
@@ -54,7 +60,7 @@ export async function requireAdmin() {
     };
   }
 
-  if (!isAdminEmail(session.email)) {
+  if (!session.isAdmin || !isAdminEmail(session.email)) {
     return {
       response: Response.json({ error: "Admin access is required." }, { status: 403 }),
     };
@@ -71,7 +77,20 @@ function getAdminEmails() {
 }
 
 export function isAdminEmail(email) {
-  return getAdminEmails().includes(email.toLowerCase());
+  return (
+    typeof email === "string" &&
+    getAdminEmails().includes(email.trim().toLowerCase())
+  );
+}
+
+export function isAdminLoginConfigured() {
+  const password = process.env.ADMIN_PASSWORD;
+  return (
+    getAdminEmails().length > 0 &&
+    typeof password === "string" &&
+    password.length >= 12 &&
+    Buffer.byteLength(password, "utf8") <= 1024
+  );
 }
 
 export function publicProduct(product) {

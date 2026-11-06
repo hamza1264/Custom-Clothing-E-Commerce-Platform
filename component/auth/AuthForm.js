@@ -8,10 +8,14 @@ import styles from "./Auth.module.css";
 export default function AuthForm({
   initialMode = "login",
   isConfigured,
+  authConfigured = true,
+  adminOnly = false,
   returnTo = "/customerDashboard",
 }) {
   const router = useRouter();
-  const [mode, setMode] = useState(initialMode);
+  const [mode, setMode] = useState(
+    adminOnly || initialMode !== "signup" ? "login" : initialMode
+  );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +30,12 @@ export default function AuthForm({
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`/api/auth/${isSignup ? "register" : "login"}`, {
+      const endpoint = adminOnly
+        ? "admin-login"
+        : isSignup
+          ? "register"
+          : "login";
+      const response = await fetch(`/api/auth/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -52,49 +61,62 @@ export default function AuthForm({
       <div className={styles.cardIcon} aria-hidden="true">
         <LockKeyhole size={21} strokeWidth={1.8} />
       </div>
-      <p className={styles.eyebrow}>NAYAB CLOTHES ACCOUNT</p>
+      <p className={styles.eyebrow}>
+        {adminOnly ? "NAYAB FASHION · ADMIN" : "NAYAB CLOTHES ACCOUNT"}
+      </p>
       <h1 className={styles.title}>
-        {isSignup ? "Create your account" : "Welcome back"}
+        {adminOnly
+          ? "Admin sign in"
+          : isSignup
+            ? "Create your account"
+            : "Welcome back"}
       </h1>
       <p className={styles.description}>
-        {isSignup
-          ? "Sign up to keep your orders and outfits in one place."
-          : "Log in to continue shopping with Nayab Clothes."}
+        {adminOnly
+          ? "Sign in with the admin credentials configured for this store."
+          : isSignup
+            ? "Sign up to keep your orders and outfits in one place."
+            : "Log in to continue shopping with Nayab Clothes."}
       </p>
 
       {!isConfigured && (
         <p className={styles.setupNotice} role="status">
-          Account access needs MongoDB configuration. Set MONGODB_URI,
-          MONGODB_DB_NAME, and AUTH_SECRET in your deployment environment settings.
+          {adminOnly
+            ? authConfigured
+              ? "Admin login needs ADMIN_EMAILS and an ADMIN_PASSWORD of at least 12 characters in your .env file."
+              : "Account access needs MongoDB configuration. Set MONGODB_URI, MONGODB_DB_NAME, and AUTH_SECRET in your environment settings."
+            : "Account access needs MongoDB configuration. Set MONGODB_URI, MONGODB_DB_NAME, and AUTH_SECRET in your deployment environment settings."}
         </p>
       )}
 
-      <div className={styles.tabs} role="tablist" aria-label="Account access">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={!isSignup}
-          className={!isSignup ? styles.activeTab : ""}
-          onClick={() => {
-            setMode("login");
-            setError("");
-          }}
-        >
-          Log in
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={isSignup}
-          className={isSignup ? styles.activeTab : ""}
-          onClick={() => {
-            setMode("signup");
-            setError("");
-          }}
-        >
-          Sign up
-        </button>
-      </div>
+      {!adminOnly && (
+        <div className={styles.tabs} role="tablist" aria-label="Account access">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={!isSignup}
+            className={!isSignup ? styles.activeTab : ""}
+            onClick={() => {
+              setMode("login");
+              setError("");
+            }}
+          >
+            Log in
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={isSignup}
+            className={isSignup ? styles.activeTab : ""}
+            onClick={() => {
+              setMode("signup");
+              setError("");
+            }}
+          >
+            Sign up
+          </button>
+        </div>
+      )}
 
       <form className={styles.form} onSubmit={handleSubmit}>
         {isSignup && (
@@ -125,8 +147,8 @@ export default function AuthForm({
           <span className={styles.passwordInput}>
             <input
               autoComplete={isSignup ? "new-password" : "current-password"}
-              maxLength={72}
-              minLength={8}
+              maxLength={adminOnly ? 1024 : 72}
+              minLength={adminOnly ? 12 : 8}
               onChange={(event) => setPassword(event.target.value)}
               required
               type={showPassword ? "text" : "password"}
@@ -142,7 +164,9 @@ export default function AuthForm({
               {showPassword ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}
             </button>
           </span>
-          <span className={styles.hint}>Use at least 8 characters.</span>
+          <span className={styles.hint}>
+            Use at least {adminOnly ? 12 : 8} characters.
+          </span>
         </label>
 
         {error && (
@@ -164,18 +188,20 @@ export default function AuthForm({
         </button>
       </form>
 
-      <p className={styles.switchMode}>
-        {isSignup ? "Already have an account?" : "New to Nayab Fashion?"}{" "}
-        <button
-          type="button"
-          onClick={() => {
-            setMode(isSignup ? "login" : "signup");
-            setError("");
-          }}
-        >
-          {isSignup ? "Log in" : "Create an account"}
-        </button>
-      </p>
+      {!adminOnly && (
+        <p className={styles.switchMode}>
+          {isSignup ? "Already have an account?" : "New to Nayab Fashion?"}{" "}
+          <button
+            type="button"
+            onClick={() => {
+              setMode(isSignup ? "login" : "signup");
+              setError("");
+            }}
+          >
+            {isSignup ? "Log in" : "Create an account"}
+          </button>
+        </p>
+      )}
     </section>
   );
 }

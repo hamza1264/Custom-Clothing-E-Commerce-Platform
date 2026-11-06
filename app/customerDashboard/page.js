@@ -15,7 +15,7 @@ export default async function CustomerDashboardPage() {
     <CustomerDashboard
       name={session.name}
       email={session.email}
-      isAdmin={isAdminEmail(session.email)}
+      isAdmin={session.isAdmin && isAdminEmail(session.email)}
     />
   );
 }

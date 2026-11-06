@@ -27,7 +27,10 @@ customers can track an order using its number and the checkout phone number.
 The existing login/register flow stores password hashes and uses an HTTP-only
 session cookie. Registered accounts are stored in the `users` collection;
 unexpired, non-logged-out sessions are stored separately in `login_sessions`.
-Admin accounts can view both lists at `/admin/customers`.
+Admin accounts can review store activity at `/admin`, manage all orders at
+`/admin/orders`, view registered accounts at `/admin/customers`, and see active
+login sessions at `/admin/users`. Admins can also manage the catalog at
+`/admin/products`, where products can be created, updated, archived, or restored.
 
 1. Start a local MongoDB server or create a MongoDB Atlas cluster.
 2. Copy `.env.example` to `.env.local`.
@@ -35,12 +38,16 @@ Admin accounts can view both lists at `/admin/customers`.
    to your database name.
 4. Set `AUTH_SECRET` to a private random value with at least 32 characters.
    Generate one with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
-5. Set `ADMIN_EMAILS` to one or more comma-separated account email addresses.
-   Register those accounts using the website; only those addresses can manage
-   products or change order statuses.
+5. Set `ADMIN_EMAILS` to one or more comma-separated admin email addresses and
+   set `ADMIN_PASSWORD` to a private password with at least 12 characters.
+   Admins sign in directly at `/admin`; that page does not offer sign-up.
+   Customer registration does not grant admin access. Admins can open `/admin`
+   to review store metrics and `/admin/orders` to search orders and update their
+   statuses.
 6. Restart the Next.js development server.
 
-Keep `.env.local` private and never commit database credentials or session secrets.
+Keep `.env.local` private and never commit database credentials, admin
+passwords, or session secrets.
 
 ### Store API
 
@@ -55,6 +62,11 @@ Keep `.env.local` private and never commit database credentials or session secre
 - `GET /api/admin/orders` — list orders (admin).
 - `PATCH /api/admin/orders/:orderNumber` — update status to `confirmed`,
   `processing`, `shipped`, `delivered`, or `cancelled` (admin).
+- `/admin` — admin dashboard with store metrics.
+- `/admin/orders` — search orders and update order statuses (admin).
+- `/admin/customers` — registered accounts (admin).
+- `/admin/users` — active login sessions (admin).
+- `/admin/products` — create, edit, archive, and restore catalog products (admin).
 
 Payments currently support Cash on Delivery only; no card processor is
 configured.

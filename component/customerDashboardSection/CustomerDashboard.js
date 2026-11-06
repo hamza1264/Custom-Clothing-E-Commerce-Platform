@@ -105,9 +105,14 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
 
         <div className={styles.sidebarBottom}>
           {isAdmin && (
-            <Link href="/admin/customers" className={styles.adminLink}>
-              Admin: customers
-            </Link>
+            <>
+              <Link href="/admin" className={styles.adminLink}>
+                Admin dashboard
+              </Link>
+              <Link href="/admin/customers" className={styles.adminLink}>
+                Customer accounts
+              </Link>
+            </>
           )}
           <LogoutButton />
         </div>

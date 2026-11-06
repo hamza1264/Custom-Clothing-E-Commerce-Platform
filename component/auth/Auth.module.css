@@ -323,6 +323,22 @@
   font-weight: 700;
 }
 
+.adminEmptyState {
+  display: grid;
+  min-height: 110px;
+  place-items: center;
+  color: #8a7e82;
+  font-size: 13px;
+  text-align: center;
+}
+
+.adminPanelDescription {
+  margin: -5px 0 16px;
+  color: #82777a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .adminBackLink {
   display: inline-block;
   margin: 14px 0;

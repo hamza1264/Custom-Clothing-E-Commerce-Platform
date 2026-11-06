@@ -44,7 +44,7 @@ async function getLoginSessionsCollection() {
   return collection;
 }
 
-export async function createSession(user) {
+export async function createSession(user, { isAdmin = false } = {}) {
   const sessionId = randomUUID();
   const createdAt = new Date();
   const expiresAt = new Date(createdAt.getTime() + SESSION_MAX_AGE * 1000);
@@ -62,6 +62,7 @@ export async function createSession(user) {
   const token = await new SignJWT({
     email: user.email,
     name: user.name,
+    isAdmin,
   })
     .setProtectedHeader({ alg: "HS256" })
     .setSubject(user.id)
@@ -104,6 +105,7 @@ async function verifySessionToken(token) {
       email: payload.email,
       name: payload.name,
       sessionId: payload.jti,
+      isAdmin: payload.isAdmin === true,
     };
   } catch (error) {
     if (error instanceof errors.JOSEError) return null;

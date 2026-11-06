@@ -8,7 +8,20 @@ export const dynamic = "force-dynamic";
 export default async function LoginPage({ searchParams }) {
   const params = await searchParams;
   const initialMode = params?.mode === "signup" ? "signup" : "login";
-  const returnTo = params?.returnTo === "/checkout" ? "/checkout" : "/customerDashboard";
+  const adminPaths = [
+    "/admin",
+    "/admin/orders",
+    "/admin/products",
+    "/admin/customers",
+    "/admin/users",
+  ];
+  if (adminPaths.includes(params?.returnTo)) {
+    redirect(`/admin?returnTo=${encodeURIComponent(params.returnTo)}`);
+  }
+  const allowedReturnPaths = ["/checkout"];
+  const returnTo = allowedReturnPaths.includes(params?.returnTo)
+    ? params.returnTo
+    : "/customerDashboard";
   const isConfigured = isAuthConfigured();
   if (isConfigured && (await getSession())) {
     redirect(returnTo);
