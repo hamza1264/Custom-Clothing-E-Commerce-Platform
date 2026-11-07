@@ -1,4 +1,6 @@
 import { redirect } from "next/navigation";
+import { ChevronRight, House } from "lucide-react";
+import Link from "next/link";
 import AdminRefreshButton from "@/component/auth/AdminRefreshButton";
 import AdminSidebar from "@/component/auth/AdminSidebar";
 import AdminLoggedInUsersPanel from "@/component/auth/AdminLoggedInUsersPanel";
@@ -15,7 +17,7 @@ export default async function AdminUsersPage() {
   if (!session?.isAdmin || !isAdminEmail(session.email)) redirect(loginUrl);
 
   return (
-    <main className={dashboardStyles.page}>
+    <main className={`${dashboardStyles.page} ${dashboardStyles.usersPage}`}>
       <AdminSidebar
         name={session.name}
         email={session.email}
@@ -23,11 +25,19 @@ export default async function AdminUsersPage() {
       />
       <div className={dashboardStyles.content}>
         <header className={dashboardStyles.topbar}>
-          <div>
-            <p className={dashboardStyles.eyebrow}>NAYAB FASHION · ADMIN</p>
-            <h1>Logged-in users</h1>
+          <div className={dashboardStyles.ordersPageHeading}>
+            <nav className={dashboardStyles.breadcrumbs} aria-label="Breadcrumb">
+              <Link href="/admin" aria-label="Admin dashboard">
+                <House aria-hidden="true" />
+              </Link>
+              <ChevronRight aria-hidden="true" />
+              <span>Admin Dashboard</span>
+              <ChevronRight aria-hidden="true" />
+              <span aria-current="page">Logged-in Users</span>
+            </nav>
+            <h1>Logged-in Users Activity</h1>
             <p className={dashboardStyles.welcomeText}>
-              Accounts with an active session right now.
+              Review active store sessions and recent sign-ins.
             </p>
           </div>
           <AdminRefreshButton />

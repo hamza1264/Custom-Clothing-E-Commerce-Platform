@@ -4,6 +4,7 @@ import React, { useEffect, useState, use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { FaWhatsapp } from 'react-icons/fa';
 import { getCartSnapshot, saveCart } from '@/data/cartStore';
 import '@/component/detailPageSection/detailpage/detailpage.css';
 
@@ -18,6 +19,7 @@ export default function Page({ params }) {
   const [selectedColor, setSelectedColor] = useState('Navy');
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState('');
+  const [purchaseError, setPurchaseError] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -83,6 +85,39 @@ export default function Page({ params }) {
     saveCart(currentCart);
     router.push('/cart');
   };
+
+  const handleBuyNow = () => {
+    if (!product) return;
+
+    const cartItem = {
+      productId: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.images[0],
+      size: selectedSize,
+      color: selectedColor,
+      quantity,
+    };
+
+    try {
+      sessionStorage.setItem('maintainiq-buy-now', JSON.stringify(cartItem));
+      router.push('/checkout?buyNow=1');
+    } catch {
+      setPurchaseError('Could not start checkout. Please try again.');
+    }
+  };
+
+  const whatsappMessage = product
+    ? [
+        'Assalam o Alaikum, I would like to order:',
+        `Product: ${product.title}`,
+        `Product ID: ${product.id}`,
+        `Price: Rs. ${Number(product.price).toLocaleString()}`,
+        `Size: ${selectedSize}`,
+        `Color: ${selectedColor}`,
+        `Quantity: ${quantity}`,
+      ].join('\n')
+    : '';
 
   if (!product) {
     return (
@@ -171,9 +206,26 @@ export default function Page({ params }) {
               className="quantity-input"
             />
           </label>
-          <button type="button" className="add-to-cart-button" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
+          {purchaseError && (
+            <p className="purchase-error" role="alert">{purchaseError}</p>
+          )}
+          <div className="detail-purchase-actions">
+            <button type="button" className="add-to-cart-button" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
+            <button type="button" className="buy-now-button" onClick={handleBuyNow}>
+              Buy Now
+            </button>
+            <a
+              className="whatsapp-order-button"
+              href={`https://wa.me/923710313814?text=${encodeURIComponent(whatsappMessage)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp aria-hidden="true" />
+              Order on WhatsApp
+            </a>
+          </div>
         </div>
 
       </div>

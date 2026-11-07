@@ -130,10 +130,20 @@ export async function getProductsCollection() {
   return collection;
 }
 
+export function isValidProductId(id) {
+  return (
+    typeof id === "string" &&
+    id.length > 0 &&
+    id.length <= 80 &&
+    /^[a-zA-Z0-9_-]+$/.test(id)
+  );
+}
+
 export function isValidProductInput(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) return false;
   const title = input.title ?? input.name;
   return (
+    isValidProductId(input.id) &&
     typeof title === "string" &&
     title.trim().length >= 2 &&
     title.trim().length <= 120 &&

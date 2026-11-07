@@ -1,4 +1,6 @@
 import { redirect } from "next/navigation";
+import { ChevronRight, House } from "lucide-react";
+import Link from "next/link";
 import AdminRefreshButton from "@/component/auth/AdminRefreshButton";
 import AdminSidebar from "@/component/auth/AdminSidebar";
 import AdminCustomerPanel from "@/component/auth/AdminCustomerPanel";
@@ -15,7 +17,7 @@ export default async function AdminCustomersPage() {
   if (!session?.isAdmin || !isAdminEmail(session.email)) redirect(loginUrl);
 
   return (
-    <main className={dashboardStyles.page}>
+    <main className={`${dashboardStyles.page} ${dashboardStyles.customersPage}`}>
       <AdminSidebar
         name={session.name}
         email={session.email}
@@ -23,11 +25,19 @@ export default async function AdminCustomersPage() {
       />
       <div className={dashboardStyles.content}>
         <header className={dashboardStyles.topbar}>
-          <div>
-            <p className={dashboardStyles.eyebrow}>NAYAB FASHION · ADMIN</p>
-            <h1>Registered users</h1>
+          <div className={dashboardStyles.ordersPageHeading}>
+            <nav className={dashboardStyles.breadcrumbs} aria-label="Breadcrumb">
+              <Link href="/admin" aria-label="Admin dashboard">
+                <House aria-hidden="true" />
+              </Link>
+              <ChevronRight aria-hidden="true" />
+              <span>Admin Dashboard</span>
+              <ChevronRight aria-hidden="true" />
+              <span aria-current="page">Registered users</span>
+            </nav>
+            <h1>Registered Users List</h1>
             <p className={dashboardStyles.welcomeText}>
-              All accounts registered with your store.
+              Manage the people who have joined your store.
             </p>
           </div>
           <AdminRefreshButton />

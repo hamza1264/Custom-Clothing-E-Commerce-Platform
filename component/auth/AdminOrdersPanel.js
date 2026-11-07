@@ -1,6 +1,13 @@
 "use client";
 
-import { ClipboardList, Search } from "lucide-react";
+import {
+  CircleCheck,
+  CircleX,
+  ClipboardList,
+  Clock3,
+  Search,
+  ShoppingBag,
+} from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import styles from "./AdminDashboard.module.css";
 
@@ -79,10 +86,53 @@ export default function AdminOrdersPanel() {
         !normalizedSearch ||
         order.orderNumber.toLowerCase().includes(normalizedSearch) ||
         order.customer.name.toLowerCase().includes(normalizedSearch) ||
-        order.customer.phone.toLowerCase().includes(normalizedSearch);
+        order.customer.phone.toLowerCase().includes(normalizedSearch) ||
+        order.items.some(
+          (item) =>
+            String(item.title ?? "").toLowerCase().includes(normalizedSearch) ||
+            String(item.productId ?? "")
+              .toLowerCase()
+              .includes(normalizedSearch)
+        );
       return matchesStatus && matchesSearch;
     });
   }, [orders, search, statusFilter]);
+
+  const orderSummary = useMemo(
+    () => [
+      {
+        label: "Total orders",
+        value: orders.length,
+        detail: "Orders received",
+        icon: ShoppingBag,
+        tone: "rose",
+      },
+      {
+        label: "Pending fulfillment",
+        value: orders.filter(
+          (order) => !["delivered", "cancelled"].includes(order.status)
+        ).length,
+        detail: "Still in progress",
+        icon: Clock3,
+        tone: "amber",
+      },
+      {
+        label: "Completed orders",
+        value: orders.filter((order) => order.status === "delivered").length,
+        detail: "Successfully delivered",
+        icon: CircleCheck,
+        tone: "green",
+      },
+      {
+        label: "Cancelled orders",
+        value: orders.filter((order) => order.status === "cancelled").length,
+        detail: "Cancelled by customer",
+        icon: CircleX,
+        tone: "plum",
+      },
+    ],
+    [orders]
+  );
 
   async function updateOrderStatus(orderNumber, status) {
     setUpdatingOrder(orderNumber);
@@ -117,24 +167,53 @@ export default function AdminOrdersPanel() {
   }
 
   return (
-    <section className={styles.panel} aria-labelledby="orders-title">
+    <>
+      <section className={styles.ordersSummary} aria-label="Order summary">
+        {orderSummary.map(({ label, value, detail, icon: Icon, tone }) => (
+          <article className={styles.ordersStatCard} key={label}>
+            <span className={`${styles.ordersStatIcon} ${styles[`ordersStat_${tone}`]}`}>
+              <Icon aria-hidden="true" />
+            </span>
+            <div className={styles.ordersStatContent}>
+              <p>{label}</p>
+              <strong>{isLoading ? "—" : value}</strong>
+              <small>{detail}</small>
+            </div>
+            <svg
+              className={styles.ordersSparkline}
+              viewBox="0 0 110 44"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M2 39 22 31 39 34 57 17 73 24 92 5 108 12" />
+            </svg>
+          </article>
+        ))}
+      </section>
+
+      <section
+        className={`${styles.panel} ${styles.ordersPanel}`}
+        aria-labelledby="orders-title"
+      >
       <div className={styles.panelHeading}>
         <div>
           <p className={styles.eyebrow}>ORDER MANAGEMENT</p>
           <h2 id="orders-title">All orders</h2>
         </div>
         <span className={styles.ordersCount}>
-          {isLoading ? "Loading..." : `${visibleOrders.length} of ${orders.length}`}
+          {isLoading
+            ? "Loading..."
+            : `${visibleOrders.length} ${visibleOrders.length === 1 ? "order" : "orders"}`}
         </span>
       </div>
 
-      <div className={styles.toolbar}>
+      <div className={`${styles.toolbar} ${styles.ordersToolbar}`}>
         <label className={styles.searchBox}>
           <Search aria-hidden="true" />
           <span className={styles.visuallyHidden}>Search orders</span>
           <input
             type="search"
-            placeholder="Search order, customer or phone"
+            placeholder="Search by order, customer, phone or product"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
@@ -175,12 +254,13 @@ export default function AdminOrdersPanel() {
           <table className={styles.orderTable}>
             <thead>
               <tr>
-                <th>Order</th>
+                <th>Order ID</th>
                 <th>Customer</th>
                 <th>Date</th>
                 <th>Items</th>
                 <th>Total</th>
-                <th>Status</th>
+                <th>Payment</th>
+                <th>Fulfillment status</th>
               </tr>
             </thead>
             <tbody>
@@ -194,17 +274,38 @@ export default function AdminOrdersPanel() {
                     <td className={styles.orderNumber}>{order.orderNumber}</td>
                     <td>
                       <strong className={styles.customerName}>
-                        {order.customer.name}
+                        {order.customer?.name || "Customer"}
                       </strong>
                       <small className={styles.customerPhone}>
-                        {order.customer.phone}
+                        {order.customer?.phone || "—"}
                       </small>
                     </td>
                     <td>{formatDate(order.createdAt)}</td>
-                    <td>{itemCount} {itemCount === 1 ? "item" : "items"}</td>
+                    <td>
+                      <div className={styles.orderItems}>
+                        <strong>
+                          {itemCount} {itemCount === 1 ? "item" : "items"}
+                        </strong>
+                        {order.items.map((item, index) => (
+                          <div
+                            className={styles.orderItem}
+                            key={`${item.productId ?? "product"}-${index}`}
+                          >
+                            <span className={styles.orderItemTitle}>
+                              {item.title || "Product title unavailable"}
+                            </span>
+                            <small className={styles.orderItemMeta}>
+                              ID: {item.productId || "Unavailable"} · Qty:{" "}
+                              {item.quantity}
+                            </small>
+                          </div>
+                        ))}
+                      </div>
+                    </td>
                     <td className={styles.orderTotal}>
                       {formatCurrency(order.total)}
                     </td>
+                    <td>{order.paymentMethod || "—"}</td>
                     <td>
                       <label className={styles.statusControl}>
                         <span className={styles.visuallyHidden}>
@@ -236,6 +337,7 @@ export default function AdminOrdersPanel() {
           </table>
         </div>
       )}
-    </section>
+      </section>
+    </>
   );
 }

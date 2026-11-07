@@ -13,20 +13,28 @@ export async function GET() {
     database
       .collection("users")
       .find({})
-      .project({ _id: 0, name: 1, email: 1, createdAt: 1 })
+      .project({ name: 1, email: 1, createdAt: 1 })
       .sort({ createdAt: -1 })
-      .toArray(),
+      .toArray()
+      .then((users) =>
+        users.map(({ _id, ...user }) => ({ ...user, id: _id.toString() }))
+      ),
     database
       .collection("login_sessions")
       .find({ expiresAt: { $gt: now } })
       .project({
-        _id: 0,
         userId: 0,
         sessionId: 0,
         token: 0,
       })
       .sort({ lastSeenAt: -1 })
-      .toArray(),
+      .toArray()
+      .then((sessions) =>
+        sessions.map(({ _id, ...session }) => ({
+          ...session,
+          id: String(_id),
+        }))
+      ),
   ]);
 
   return Response.json(

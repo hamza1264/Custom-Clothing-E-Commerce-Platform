@@ -9,6 +9,52 @@
     #fcf8f6;
 }
 
+.customerPanel {
+  padding: 16px 13px;
+}
+
+.customerPanel > :global(div:first-child) {
+  align-items: flex-start;
+}
+
+.customerTitle {
+  align-items: flex-start;
+}
+
+.customerTitle h2 {
+  font-size: 17px;
+}
+
+.customerSearch {
+  width: 100%;
+}
+
+.sessionPanel {
+  padding: 16px 13px;
+}
+
+.sessionPanel > :global(div:first-child) {
+  align-items: flex-start;
+}
+
+.sessionTitle {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.sessionTitle h2 {
+  font-size: 16px;
+}
+
+.sessionToolbar {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.sessionToolbar .sessionSearch {
+  width: 100%;
+}
+
 .card {
   position: relative;
   width: min(100%, 460px);
@@ -304,6 +350,360 @@
   overflow-x: auto;
 }
 
+.customerPanel {
+  margin-bottom: 0;
+  padding: clamp(17px, 2.4vw, 23px);
+  border-color: #f0e5e9;
+  border-radius: 16px;
+  box-shadow: 0 8px 26px rgb(70 39 52 / 5%);
+}
+
+.customerPanel > :global(div:first-child) {
+  margin-bottom: 17px;
+}
+
+.customerPanel h2 {
+  margin: 0;
+  color: #302328;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+}
+
+.customerTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.customerTitleIcon {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex: 0 0 35px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f8e5ed;
+  color: #a83255;
+}
+
+.customerTitleIcon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.customerTitle p {
+  margin: 4px 0 0;
+  color: #968a8e;
+  font-size: 11px;
+}
+
+.customerSearch {
+  display: flex;
+  width: min(320px, 100%);
+  min-height: 39px;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px auto;
+  padding: 0 11px;
+  border: 1px solid #e8dce1;
+  border-radius: 9px;
+  background: #fff;
+  color: #8b7b81;
+}
+
+.customerSearch:focus-within {
+  border-color: #c8899c;
+  box-shadow: 0 0 0 3px rgb(180 56 97 / 10%);
+}
+
+.customerSearch svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+}
+
+.customerSearch input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #44373c;
+  font: inherit;
+  font-size: 11px;
+}
+
+.customerSearch input::placeholder {
+  color: #a09598;
+}
+
+.customerTableWrap {
+  overflow: auto;
+  border: 1px solid #f1e7eb;
+  border-radius: 10px;
+}
+
+.customerTable {
+  min-width: 740px;
+}
+
+.customerTable th {
+  border-top: 0;
+  border-color: #efd2de;
+  background: linear-gradient(100deg, #f8e5ed, #f3dce6);
+  color: #5b263c;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.customerTable td {
+  border-color: #f1e9ec;
+  color: #766a6e;
+  font-size: 11px;
+}
+
+.customerTable tbody tr {
+  transition: background 140ms ease;
+}
+
+.customerTable tbody tr:hover {
+  background: #fff9fb;
+}
+
+.customerAvatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #efdce4;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f8e5ed, #f2dce5);
+  color: #8f2d4d;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.customerName {
+  color: #403438 !important;
+  font-weight: 650;
+}
+
+.customerStatus {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.customerStatusActive {
+  background: #e4f3e8;
+  color: #34764d;
+}
+
+.customerStatusRegistered {
+  background: #f4efed;
+  color: #776a6e;
+}
+
+.customerPanel .adminDeleteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-color: #efd0d0;
+  border-radius: 7px;
+}
+
+.customerPanel .adminDeleteButton svg {
+  width: 13px;
+  height: 13px;
+}
+
+.customerPanel .adminEmptyState {
+  min-height: 130px;
+  border: 1px dashed #ead9df;
+  border-radius: 10px;
+  background: #fffcfd;
+}
+
+.sessionPanel {
+  margin-bottom: 0;
+  padding: clamp(17px, 2.4vw, 23px);
+  border-color: #f0e5e9;
+  border-radius: 16px;
+  box-shadow: 0 8px 26px rgb(70 39 52 / 5%);
+}
+
+.sessionTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sessionTitle h2 {
+  margin: 0;
+  color: #302328;
+  font-size: 18px;
+}
+
+.sessionTitle p {
+  margin: 4px 0 0;
+  color: #968a8e;
+  font-size: 10px;
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border-radius: 20px;
+  background: #e4f3e8;
+  color: #34764d;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.liveBadge > span,
+.customerStatusActive > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.sessionToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+.sessionToolbar .adminPanelDescription {
+  margin: 0;
+}
+
+.sessionSearch {
+  display: flex;
+  width: min(280px, 100%);
+  min-height: 41px;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0 11px 0 14px;
+  border: 1px solid #efd6e0;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #fff8fb, #f8e8ef);
+  color: #81465e;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.sessionSearch:focus-within {
+  border-color: #b95b7c;
+  background: #fffafd;
+  box-shadow: 0 0 0 3px rgb(180 56 97 / 12%);
+}
+
+.sessionSearch input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #44373c;
+  font: inherit;
+  font-size: 11px;
+}
+
+.sessionSearch input::placeholder {
+  color: #927d85;
+}
+
+.sessionSearch input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.sessionSearch > svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: #8f2d4d;
+}
+
+.sessionToolbar .sessionSearch {
+  width: min(260px, 45%);
+}
+
+.sessionTable {
+  min-width: 1030px;
+}
+
+.sessionPanel .sessionTable th {
+  border-top: 0;
+  border-color: #efd2de;
+  background: linear-gradient(100deg, #f8e5ed, #f3dce6);
+  color: #5b263c;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.sessionTable td {
+  border-color: #f1e9ec;
+  color: #766a6e;
+  font-size: 10px;
+}
+
+.sessionTable tbody tr {
+  transition: background 140ms ease;
+}
+
+.sessionTable tbody tr:hover {
+  background: #fff9fb;
+}
+
+.sessionUser {
+  display: flex;
+  min-width: 175px;
+  align-items: center;
+  gap: 9px;
+}
+
+.sessionUser > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.sessionUser strong {
+  color: #403438;
+  font-size: 11px;
+}
+
+.sessionUser small {
+  color: #8d8084;
+  font-size: 9px;
+}
+
+.customerStatusActive {
+  align-items: center;
+  gap: 5px;
+}
+
+.sessionPanel .adminDeleteButton {
+  white-space: nowrap;
+}
+
+.sessionPanel .adminDeleteButton svg {
+  width: 13px;
+  height: 13px;
+}
+
 .adminTable {
   width: 100%;
   border-collapse: collapse;
@@ -321,6 +721,28 @@
 .adminTable th {
   color: #555;
   font-weight: 700;
+}
+
+.adminDeleteButton {
+  padding: 6px 10px;
+  border: 1px solid #efd0d0;
+  border-radius: 6px;
+  background: #fff5f5;
+  color: #963c3c;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.adminDeleteButton:hover:not(:disabled) {
+  border-color: #d99a9a;
+  background: #ffebeb;
+}
+
+.adminDeleteButton:disabled {
+  cursor: wait;
+  opacity: 0.6;
 }
 
 .adminEmptyState {

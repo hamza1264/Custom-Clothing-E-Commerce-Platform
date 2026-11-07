@@ -1,8 +1,8 @@
-import { randomUUID } from "node:crypto";
 import {
   cleanProductInput,
   getProductsCollection,
   isDatabaseConfigured,
+  isValidProductId,
   isValidProductInput,
   publicProduct,
   readJsonBody,
@@ -42,6 +42,15 @@ export async function POST(request) {
 
   const parsed = await readJsonBody(request);
   if (parsed.response) return parsed.response;
+  if (!isValidProductId(parsed.body?.id)) {
+    return Response.json(
+      {
+        error:
+          "Enter a product ID using only letters, numbers, hyphens, or underscores (max 80 characters).",
+      },
+      { status: 400 }
+    );
+  }
   if (!isValidProductInput(parsed.body)) {
     return Response.json({ error: "Product details are invalid." }, { status: 400 });
   }
@@ -50,11 +59,21 @@ export async function POST(request) {
   const now = new Date();
   const product = {
     ...cleanProductInput(parsed.body),
-    id: randomUUID(),
+    id: parsed.body.id.trim(),
     createdAt: now,
     updatedAt: now,
   };
-  await collection.insertOne(product);
+  try {
+    await collection.insertOne(product);
+  } catch (error) {
+    if (error?.code === 11000) {
+      return Response.json(
+        { error: "That product ID is already in use. Choose another ID." },
+        { status: 409 }
+      );
+    }
+    throw error;
+  }
 
   return Response.json({ product: publicProduct(product) }, { status: 201 });
 }

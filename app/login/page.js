@@ -18,7 +18,7 @@ export default async function LoginPage({ searchParams }) {
   if (adminPaths.includes(params?.returnTo)) {
     redirect(`/admin?returnTo=${encodeURIComponent(params.returnTo)}`);
   }
-  const allowedReturnPaths = ["/checkout"];
+  const allowedReturnPaths = ["/checkout", "/checkout?buyNow=1"];
   const returnTo = allowedReturnPaths.includes(params?.returnTo)
     ? params.returnTo
     : "/customerDashboard";

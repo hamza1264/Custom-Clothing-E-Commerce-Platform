@@ -3,6 +3,7 @@ import {
   ClipboardList,
   LayoutDashboard,
   Package,
+  Shirt,
   Store,
   UserRound,
   UsersRound,
@@ -18,16 +19,30 @@ export default function AdminSidebar({
   orderCount,
   isLoading,
 }) {
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
   return (
     <aside className={styles.sidebar}>
       <Link href="/" className={styles.brand}>
-        Nayab Fashion<span>✦</span>
+        <span className={styles.brandIcon}>
+          <Shirt aria-hidden="true" />
+        </span>
+        <span className={styles.brandName}>
+          Nayab Fashion<span>✦</span>
+        </span>
       </Link>
 
       <p className={styles.sidebarLabel}>STORE MANAGEMENT</p>
       <nav className={styles.navigation} aria-label="Admin navigation">
         <Link
           className={activeItem === "overview" ? styles.activeNav : ""}
+          aria-current={activeItem === "overview" ? "page" : undefined}
           href="/admin#overview"
         >
           <LayoutDashboard aria-hidden="true" />
@@ -35,6 +50,7 @@ export default function AdminSidebar({
         </Link>
         <Link
           className={activeItem === "orders" ? styles.activeNav : ""}
+          aria-current={activeItem === "orders" ? "page" : undefined}
           href="/admin/orders"
         >
           <ClipboardList aria-hidden="true" />
@@ -47,6 +63,7 @@ export default function AdminSidebar({
         </Link>
         <Link
           className={activeItem === "products" ? styles.activeNav : ""}
+          aria-current={activeItem === "products" ? "page" : undefined}
           href="/admin/products"
         >
           <Package aria-hidden="true" />
@@ -55,6 +72,7 @@ export default function AdminSidebar({
         </Link>
         <Link
           className={activeItem === "customers" ? styles.activeNav : ""}
+          aria-current={activeItem === "customers" ? "page" : undefined}
           href="/admin/customers"
         >
           <UsersRound aria-hidden="true" />
@@ -63,6 +81,7 @@ export default function AdminSidebar({
         </Link>
         <Link
           className={activeItem === "users" ? styles.activeNav : ""}
+          aria-current={activeItem === "users" ? "page" : undefined}
           href="/admin/users"
         >
           <UserRound aria-hidden="true" />
@@ -78,7 +97,9 @@ export default function AdminSidebar({
 
       <div className={styles.sidebarBottom}>
         <Link href="/customerDashboard" className={styles.adminIdentity}>
-          <UserRound aria-hidden="true" />
+          <span className={styles.adminAvatar} aria-hidden="true">
+            {initials}
+          </span>
           <span>
             <small>MY ACCOUNT</small>
             <strong>{name}</strong>

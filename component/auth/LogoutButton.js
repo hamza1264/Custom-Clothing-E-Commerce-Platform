@@ -1,5 +1,6 @@
 "use client";
 
+import { LogOut } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Auth.module.css";
@@ -38,6 +39,7 @@ export default function LogoutButton({ onLoggedOut }) {
         onClick={logout}
         type="button"
       >
+        <LogOut aria-hidden="true" />
         {isSubmitting ? "Logging out..." : "Log out"}
       </button>
     </>
