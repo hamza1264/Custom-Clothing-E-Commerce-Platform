@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Nayab clothes",
-  description: "Discover premium fabrics, fashion, and custom-stitched clothing at Nayab Fashion.",
+  title: "ILHAM COLLECTION",
+  description: "Discover premium fabrics, fashion, and ready-to-wear clothing at ILHAM COLLECTION.",
 };
 
 export default function RootLayout({ children }) {

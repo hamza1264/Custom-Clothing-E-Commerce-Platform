@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="footer-col brand-col">
 
             <h2 className="footer-logo">
-              Nayab Clothes.
+              ILHAM COLLECTION.
             </h2>
 
             <p className="brand-desc">
@@ -71,7 +71,6 @@ export default function Footer() {
             <ul className="footer-links">
               <li><Link href="/">Home</Link></li>
               <li><Link href="/shop">Shop Collection</Link></li>
-              <li><Link href="/customStitch">Custom Stitching</Link></li>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/contect">Contact Us</Link></li>
             </ul>
@@ -122,11 +121,14 @@ export default function Footer() {
 
           <p>
             © {new Date().getFullYear()}{" "}
-            <strong>Hamza Ansari</strong>. All Rights Reserved.
+            <a href="https://hamzaansari.vercel.app/" target="_blank" rel="noopener noreferrer">
+              Hamza Ansari
+            </a>
+            . All Rights Reserved.
           </p>
 
           <p>
-            <strong>Nayab Clothes</strong> — Custom Clothing & Fashion
+            <strong>ILHAM COLLECTION</strong> — Fashion & Ready-to-Wear
           </p>
 
           <div className="payment-badges">

@@ -59,6 +59,7 @@ passwords, or session secrets.
 - `POST /api/orders` — place a Cash on Delivery order.
 - `GET /api/orders` — list the signed-in customer's orders.
 - `GET /api/orders/track?orderNumber=...&phone=...` — check order status.
+- `POST /api/contact` — save a contact form message in the `contact_messages` collection.
 - `GET /api/admin/orders` — list orders (admin).
 - `PATCH /api/admin/orders/:orderNumber` — update status to `confirmed`,
   `processing`, `shipped`, `delivered`, or `cancelled` (admin).

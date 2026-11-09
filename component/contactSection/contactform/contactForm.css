@@ -84,6 +84,29 @@
     background: #982c4f;
 }
 
+.contact-form-box button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.contact-form-status {
+    margin: 14px 0 0;
+    padding: 12px 14px;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.contact-form-status.success {
+    background: #f0f8f1;
+    color: #285d34;
+}
+
+.contact-form-status.error {
+    background: #fff1f1;
+    color: #8c2525;
+}
+
 .contact-whatsapp-link,
 .contact-phone-link,
 .contact-email-link {

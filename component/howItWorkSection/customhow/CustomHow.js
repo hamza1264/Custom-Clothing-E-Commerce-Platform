@@ -1,4 +1,3 @@
-import Link from "next/link";
 import "./CustomHow.css";
 
 function CustomHow() {
@@ -23,12 +22,14 @@ function CustomHow() {
           let us create an outfit according to your requirements.
         </p>
 
-        <Link
-          href="/customStitch"
+        <a
+          href="https://wa.me/923710313814?text=Assalam-o-Alaikum%2C%20I%20would%20like%20to%20ask%20about%20custom%20stitching."
+          target="_blank"
+          rel="noopener noreferrer"
           className="custom-how-btn"
         >
-          Start Custom Stitching
-        </Link>
+          Ask About Custom Stitching
+        </a>
 
       </div>
 

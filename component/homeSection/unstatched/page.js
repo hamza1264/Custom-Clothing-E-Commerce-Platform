@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import "./unstiched.css";
 
 import { Award, Globe2, LockKeyhole, Scissors, Undo2 } from "lucide-react";
@@ -76,8 +75,10 @@ export default function CustomStitchBanner() {
                 and we&apos;ll stitch it exactly how you want.
               </p>
 
-              <Link
-                href="/customStitch"
+              <a
+                href="https://wa.me/923710313814?text=Assalam-o-Alaikum%2C%20I%20would%20like%20to%20place%20a%20custom%20stitching%20order."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="banner-btn"
               >
                 <span className="btn-icon">
@@ -85,7 +86,7 @@ export default function CustomStitchBanner() {
                 </span>
 
                 Start Custom Stitch Order
-              </Link>
+              </a>
 
             </div>
 

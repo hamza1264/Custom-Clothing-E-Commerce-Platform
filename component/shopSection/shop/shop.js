@@ -6,16 +6,19 @@ import "./shop.css";
 import ProductCard from "@/component/productcard/productCard";
 import Filter from "@/component/filter/filter";
 
-function Shop({ searchTerm = '' }) {
+const SHOP_CATEGORIES = ["Unstitched", "Stitched / Ready-Made"];
+
+function Shop({ searchTerm = '', categoryTerm = '' }) {
   const [showMore, setShowMore] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
-    categories: [],
+    categories: SHOP_CATEGORIES.includes(categoryTerm) ? [categoryTerm] : [],
     minPrice: '',
     maxPrice: '',
     sizes: [],
   });
   const normalizedSearch = searchTerm.trim();
+
   const clearFilters = () => {
     setFilters({
       categories: [],

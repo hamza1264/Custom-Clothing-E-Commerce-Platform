@@ -62,7 +62,7 @@ export default function AuthForm({
         <LockKeyhole size={21} strokeWidth={1.8} />
       </div>
       <p className={styles.eyebrow}>
-        {adminOnly ? "NAYAB FASHION · ADMIN" : "NAYAB CLOTHES ACCOUNT"}
+        {adminOnly ? "ILHAM COLLECTION · ADMIN" : "ILHAM COLLECTION ACCOUNT"}
       </p>
       <h1 className={styles.title}>
         {adminOnly
@@ -76,7 +76,7 @@ export default function AuthForm({
           ? "Sign in with the admin credentials configured for this store."
           : isSignup
             ? "Sign up to keep your orders and outfits in one place."
-            : "Log in to continue shopping with Nayab Clothes."}
+            : "Log in to continue shopping with ILHAM COLLECTION."}
       </p>
 
       {!isConfigured && (
@@ -190,7 +190,7 @@ export default function AuthForm({
 
       {!adminOnly && (
         <p className={styles.switchMode}>
-          {isSignup ? "Already have an account?" : "New to Nayab Fashion?"}{" "}
+          {isSignup ? "Already have an account?" : "New to ILHAM COLLECTION?"}{" "}
           <button
             type="button"
             onClick={() => {

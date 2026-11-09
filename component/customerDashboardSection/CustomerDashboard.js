@@ -77,7 +77,7 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
     <main className={styles.page}>
       <aside className={styles.sidebar}>
         <Link href="/" className={styles.brand}>
-          Nayab Fashion<span>✦</span>
+          ILHAM COLLECTION<span>✦</span>
         </Link>
 
         <p className={styles.sidebarLabel}>MY ACCOUNT</p>
@@ -121,7 +121,7 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
       <div className={styles.content}>
         <header className={styles.topbar}>
           <div>
-            <p className={styles.eyebrow}>NAYAB FASHION ACCOUNT</p>
+            <p className={styles.eyebrow}>ILHAM COLLECTION ACCOUNT</p>
             <h1 id="overview">Welcome back, {name}</h1>
             <p className={styles.welcomeText}>
               Here&apos;s what&apos;s happening with your account.

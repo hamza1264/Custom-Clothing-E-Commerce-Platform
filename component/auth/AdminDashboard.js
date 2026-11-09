@@ -11,6 +11,7 @@ import {
   CircleDollarSign,
   ClipboardList,
   House,
+  MessageSquareText,
   Package,
   PackageCheck,
   ShoppingBag,
@@ -66,10 +67,11 @@ export default function AdminDashboard({ name, email }) {
       setError("");
 
       try {
-        const [orderData, customerData, productData] = await Promise.all([
+        const [orderData, customerData, productData, contactMessageData] = await Promise.all([
           getJson("/api/admin/orders"),
           getJson("/api/admin/customers"),
           getJson("/api/products?includeInactive=true"),
+          getJson("/api/admin/contact-messages"),
         ]);
         if (active) {
           setDashboardData({
@@ -77,6 +79,7 @@ export default function AdminDashboard({ name, email }) {
             customers: customerData.registeredUsers,
             activeUsers: customerData.loggedInUsers,
             products: productData.products,
+            contactMessagesCount: contactMessageData.totalCount,
           });
         }
       } catch (requestError) {
@@ -108,6 +111,7 @@ export default function AdminDashboard({ name, email }) {
   const products = dashboardData ? dashboardData.products : EMPTY_ARRAY;
   const customers = dashboardData ? dashboardData.customers : EMPTY_ARRAY;
   const activeUsers = dashboardData ? dashboardData.activeUsers : EMPTY_ARRAY;
+  const contactMessagesCount = dashboardData?.contactMessagesCount ?? 0;
   const revenue = orders
     .filter((order) => order.status !== "cancelled")
     .reduce((total, order) => total + order.total, 0);
@@ -299,6 +303,16 @@ export default function AdminDashboard({ name, email }) {
               <strong>{isLoading ? "—" : activeUsers.length}</strong>
             </div>
             <Link href="/admin/users" aria-label="View active users">
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </article>
+          <article className={styles.overviewPeopleCard}>
+            <span className={`${styles.overviewPeopleIcon} ${styles.ordersStat_plum}`}><MessageSquareText /></span>
+            <div>
+              <p>Contact messages</p>
+              <strong>{isLoading ? "—" : contactMessagesCount}</strong>
+            </div>
+            <Link href="/admin/contact-messages" aria-label="View contact messages">
               <ArrowRight aria-hidden="true" />
             </Link>
           </article>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./filter.css";
 
-const CATEGORIES = ["Unstitched", "Stitched / Ready-Made", "Custom Design"];
+const CATEGORIES = ["Unstitched", "Stitched / Ready-Made"];
 const SIZES = ["XS", "S", "M", "L", "XL"];
 
 function Filter({ filters, onChange, onClear, onClose }) {

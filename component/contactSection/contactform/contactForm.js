@@ -1,9 +1,60 @@
+"use client";
+
 import React from "react";
+import { useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import "./contactForm.css";
 
 function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(null);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmissionStatus(null);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        setSubmissionStatus({
+          type: "error",
+          message: result.error || "Your message could not be sent. Please try again.",
+        });
+        return;
+      }
+
+      form.reset();
+      setSubmissionStatus({
+        type: "success",
+        message: "Thanks for reaching out. Your message has been sent successfully.",
+      });
+    } catch {
+      setSubmissionStatus({
+        type: "error",
+        message: "We couldn't reach the server. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <section className="contact-form-section">
 
@@ -12,45 +63,75 @@ function ContactForm() {
 
         <h2>Get in Touch</h2>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
-          <label>Full Name</label>
+          <label htmlFor="contact-name">Full Name</label>
           <input
             type="text"
+            id="contact-name"
+            name="name"
             placeholder="Enter your full name"
+            autoComplete="name"
+            minLength={2}
+            maxLength={100}
+            required
           />
 
-          <label>Email Address</label>
+          <label htmlFor="contact-email">Email Address</label>
           <input
             type="email"
+            id="contact-email"
+            name="email"
             placeholder="Enter your email"
+            autoComplete="email"
+            maxLength={254}
+            required
           />
 
-          <label>Phone Number</label>
+          <label htmlFor="contact-phone">Phone Number (optional)</label>
           <input
-            type="text"
+            type="tel"
+            id="contact-phone"
+            name="phone"
             placeholder="Enter your phone number"
+            autoComplete="tel"
+            pattern="[0-9+()\s-]{0,30}"
+            maxLength={30}
           />
 
-          <label>Subject</label>
-          <select>
-            <option>Select subject</option>
+          <label htmlFor="contact-subject">Subject</label>
+          <select id="contact-subject" name="subject" defaultValue="" required>
+            <option value="" disabled>Select subject</option>
             <option>General Inquiry</option>
             <option>Custom Stitching</option>
             <option>Order Issue</option>
             <option>Delivery</option>
           </select>
 
-          <label>Your Message</label>
+          <label htmlFor="contact-message">Your Message</label>
           <textarea
+            id="contact-message"
+            name="message"
             placeholder="Type your message here..."
             rows="5"
-          ></textarea>
+            minLength={10}
+            maxLength={3000}
+            required
+          />
 
-          <button type="submit">
+          <button type="submit" disabled={isSubmitting}>
             <Send aria-hidden="true" />
-            Send Message
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
+
+          {submissionStatus && (
+            <p
+              className={`contact-form-status ${submissionStatus.type}`}
+              role={submissionStatus.type === "error" ? "alert" : "status"}
+            >
+              {submissionStatus.message}
+            </p>
+          )}
 
         </form>
 

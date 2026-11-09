@@ -14,7 +14,7 @@ function AboutHero() {
                 </h1>
 
                 <p className="about-description">
-                    At Nayab Clothes, we believe fashion is more than just clothing —
+                    At ILHAM COLLECTION, we believe fashion is more than just clothing —
                     it&apos;s about you. We stitch happiness with every thread.
                 </p>
 

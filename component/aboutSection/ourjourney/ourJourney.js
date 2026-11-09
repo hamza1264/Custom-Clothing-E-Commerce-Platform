@@ -42,7 +42,7 @@ function OurJourney() {
         </h2>
 
         <p>
-          Nayab Clothes started with a simple idea — to make custom stitching
+          ILHAM COLLECTION started with a simple idea — to make custom stitching
           easy, affordable, and reliable for everyone. What began as a
           small passion project has now grown into a trusted brand loved
           by customers.

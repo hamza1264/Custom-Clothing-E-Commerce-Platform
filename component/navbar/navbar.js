@@ -4,6 +4,7 @@ import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import {
   Heart,
+  ChevronDown,
   Menu,
   Search,
   ShoppingCart,
@@ -22,6 +23,7 @@ import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const cart = JSON.parse(
     useSyncExternalStore(subscribeToCart, getCartSnapshot, getServerCartSnapshot)
   );
@@ -56,7 +58,7 @@ function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="logo">
-          Nayab Clothes<span>✦</span>
+          ILHAM COLLECTION<span>✦</span>
         </Link>
 
         {/* Search */}
@@ -137,7 +139,42 @@ function Navbar() {
           <div className="mobile-page-links">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-            <Link href="/customStitch" onClick={() => setIsMenuOpen(false)}>Custom Stitching</Link>
+            <div className="mobile-category-group">
+              <button
+                type="button"
+                className="category-toggle mobile-category-toggle"
+                aria-expanded={isCategoriesOpen}
+                aria-controls="mobile-category-menu"
+                onClick={() => setIsCategoriesOpen((isOpen) => !isOpen)}
+              >
+                Categories
+                <ChevronDown aria-hidden="true" />
+              </button>
+              <div
+                className={`category-menu mobile-category-menu ${isCategoriesOpen ? "is-open" : ""}`}
+                id="mobile-category-menu"
+                hidden={!isCategoriesOpen}
+              >
+                <Link
+                  href={{ pathname: "/shop", query: { category: "Unstitched" } }}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  Unstitched
+                </Link>
+                <Link
+                  href={{ pathname: "/shop", query: { category: "Stitched / Ready-Made" } }}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsCategoriesOpen(false);
+                  }}
+                >
+                  Stitched / Ready-Made
+                </Link>
+              </div>
+            </div>
             <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
             <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
             <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
@@ -187,7 +224,36 @@ function Navbar() {
         <div className="desktop-nav-links">
           <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-          <Link href="/customStitch" onClick={() => setIsMenuOpen(false)}>Custom Stitch</Link>
+          <div className="nav-category">
+            <button
+              type="button"
+              className="category-toggle"
+              aria-expanded={isCategoriesOpen}
+              aria-controls="desktop-category-menu"
+              onClick={() => setIsCategoriesOpen((isOpen) => !isOpen)}
+            >
+              Categories
+              <ChevronDown aria-hidden="true" />
+            </button>
+            <div
+              className={`category-menu desktop-category-menu ${isCategoriesOpen ? "is-open" : ""}`}
+              id="desktop-category-menu"
+              hidden={!isCategoriesOpen}
+            >
+              <Link
+                href={{ pathname: "/shop", query: { category: "Unstitched" } }}
+                onClick={() => setIsCategoriesOpen(false)}
+              >
+                Unstitched
+              </Link>
+              <Link
+                href={{ pathname: "/shop", query: { category: "Stitched / Ready-Made" } }}
+                onClick={() => setIsCategoriesOpen(false)}
+              >
+                Stitched / Ready-Made
+              </Link>
+            </div>
+          </div>
           <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
           <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
           <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>

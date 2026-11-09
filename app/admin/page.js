@@ -15,6 +15,7 @@ export default async function AdminDashboardPage({ searchParams }) {
     "/admin/products",
     "/admin/customers",
     "/admin/users",
+    "/admin/contact-messages",
   ];
   const returnTo = adminPaths.includes(params?.returnTo)
     ? params.returnTo

@@ -2,6 +2,7 @@ import {
   ArrowRight,
   ClipboardList,
   LayoutDashboard,
+  Mail,
   Package,
   Shirt,
   Store,
@@ -34,7 +35,7 @@ export default function AdminSidebar({
           <Shirt aria-hidden="true" />
         </span>
         <span className={styles.brandName}>
-          Nayab Fashion<span>✦</span>
+          ILHAM COLLECTION<span>✦</span>
         </span>
       </Link>
 
@@ -60,6 +61,15 @@ export default function AdminSidebar({
               {isLoading ? "—" : orderCount}
             </span>
           )}
+        </Link>
+        <Link
+          className={activeItem === "contact-messages" ? styles.activeNav : ""}
+          aria-current={activeItem === "contact-messages" ? "page" : undefined}
+          href="/admin/contact-messages"
+        >
+          <Mail aria-hidden="true" />
+          Contact messages
+          <ArrowRight className={styles.linkArrow} aria-hidden="true" />
         </Link>
         <Link
           className={activeItem === "products" ? styles.activeNav : ""}

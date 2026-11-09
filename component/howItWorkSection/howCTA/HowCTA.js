@@ -20,12 +20,14 @@ function HowCTA() {
           Shop Collection
         </Link>
 
-        <Link
-          href="/customStitch"
+        <a
+          href="https://wa.me/923710313814?text=Assalam-o-Alaikum%2C%20I%20would%20like%20to%20ask%20about%20custom%20stitching."
+          target="_blank"
+          rel="noopener noreferrer"
           className="cta-secondary"
         >
-          Custom Stitch
-        </Link>
+          Ask About Custom Stitching
+        </a>
 
       </div>
 
