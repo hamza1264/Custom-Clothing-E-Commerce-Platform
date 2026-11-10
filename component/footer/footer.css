@@ -1,7 +1,7 @@
 /* Footer Base Styles */
 .footer-section {
-    background-color: #FAF4F0;
-    border-top: 1px solid #f0e6e0;
+    background-color: #F5F1E6;
+    border-top: 1px solid #e9e3d6;
     padding-top: 50px;
     padding-bottom: 20px;
     margin-top: 60px;
@@ -20,11 +20,16 @@
 
 /* Brand Column */
 .footer-logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: #b8465e;
+    display: block;
+    width: 190px;
+    max-width: 100%;
     margin-bottom: 12px;
+}
 
+.footer-logo img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .brand-desc {

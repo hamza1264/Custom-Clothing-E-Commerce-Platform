@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "ILHAM COLLECTION",
   description: "Discover premium fabrics, fashion, and ready-to-wear clothing at ILHAM COLLECTION.",
+  icons: {
+    icon: "/ilham-collection-logo.jpeg",
+  },
 };
 
 export default function RootLayout({ children }) {

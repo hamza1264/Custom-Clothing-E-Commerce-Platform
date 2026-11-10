@@ -4,12 +4,12 @@ import {
   LayoutDashboard,
   Mail,
   Package,
-  Shirt,
   Store,
   UserRound,
   UsersRound,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import LogoutButton from "@/component/auth/LogoutButton";
 import styles from "./AdminDashboard.module.css";
 
@@ -31,12 +31,12 @@ export default function AdminSidebar({
   return (
     <aside className={styles.sidebar}>
       <Link href="/" className={styles.brand}>
-        <span className={styles.brandIcon}>
-          <Shirt aria-hidden="true" />
-        </span>
-        <span className={styles.brandName}>
-          ILHAM COLLECTION<span>✦</span>
-        </span>
+        <Image
+          src="/ilham-collection-logo.jpeg"
+          alt="ILHAM COLLECTION"
+          width={226}
+          height={146}
+        />
       </Link>
 
       <p className={styles.sidebarLabel}>STORE MANAGEMENT</p>

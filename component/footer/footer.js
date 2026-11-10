@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import "./footer.css";
 
 import { CreditCard } from "lucide-react";
@@ -15,9 +16,14 @@ export default function Footer() {
           {/* Brand Info Column */}
           <div className="footer-col brand-col">
 
-            <h2 className="footer-logo">
-              ILHAM COLLECTION.
-            </h2>
+            <Link href="/" className="footer-logo" aria-label="ILHAM COLLECTION home">
+              <Image
+                src="/ilham-collection-logo.jpeg"
+                alt="ILHAM COLLECTION"
+                width={226}
+                height={146}
+              />
+            </Link>
 
             <p className="brand-desc">
               Your destination for premium quality fabrics and custom-stitched

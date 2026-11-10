@@ -2,6 +2,7 @@
 
 import React, { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Heart,
   ChevronDown,
@@ -57,8 +58,14 @@ function Navbar() {
         </button>
 
         {/* Logo */}
-        <Link href="/" className="logo">
-          ILHAM COLLECTION<span>✦</span>
+        <Link href="/" className="logo" aria-label="ILHAM COLLECTION home">
+          <Image
+            src="/ilham-collection-logo.jpeg"
+            alt="ILHAM COLLECTION"
+            width={226}
+            height={146}
+            priority
+          />
         </Link>
 
         {/* Search */}
@@ -107,6 +114,44 @@ function Navbar() {
             <span className="nav-count">{cartCount}</span>
           </Link>
 
+        </div>
+
+        <div className="desktop-nav-links">
+          <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+          <div className="nav-category">
+            <button
+              type="button"
+              className="category-toggle"
+              aria-expanded={isCategoriesOpen}
+              aria-controls="desktop-category-menu"
+              onClick={() => setIsCategoriesOpen((isOpen) => !isOpen)}
+            >
+              Categories
+              <ChevronDown aria-hidden="true" />
+            </button>
+            <div
+              className={`category-menu desktop-category-menu ${isCategoriesOpen ? "is-open" : ""}`}
+              id="desktop-category-menu"
+              hidden={!isCategoriesOpen}
+            >
+              <Link
+                href={{ pathname: "/shop", query: { category: "Unstitched" } }}
+                onClick={() => setIsCategoriesOpen(false)}
+              >
+                Unstitched
+              </Link>
+              <Link
+                href={{ pathname: "/shop", query: { category: "Stitched / Ready-Made" } }}
+                onClick={() => setIsCategoriesOpen(false)}
+              >
+                Stitched / Ready-Made
+              </Link>
+            </div>
+          </div>
+          <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+          <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+          <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
         </div>
       </nav>
 
@@ -221,43 +266,6 @@ function Navbar() {
           <LogoutButton onLoggedOut={() => setIsMenuOpen(false)} />
         </div>
 
-        <div className="desktop-nav-links">
-          <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-          <div className="nav-category">
-            <button
-              type="button"
-              className="category-toggle"
-              aria-expanded={isCategoriesOpen}
-              aria-controls="desktop-category-menu"
-              onClick={() => setIsCategoriesOpen((isOpen) => !isOpen)}
-            >
-              Categories
-              <ChevronDown aria-hidden="true" />
-            </button>
-            <div
-              className={`category-menu desktop-category-menu ${isCategoriesOpen ? "is-open" : ""}`}
-              id="desktop-category-menu"
-              hidden={!isCategoriesOpen}
-            >
-              <Link
-                href={{ pathname: "/shop", query: { category: "Unstitched" } }}
-                onClick={() => setIsCategoriesOpen(false)}
-              >
-                Unstitched
-              </Link>
-              <Link
-                href={{ pathname: "/shop", query: { category: "Stitched / Ready-Made" } }}
-                onClick={() => setIsCategoriesOpen(false)}
-              >
-                Stitched / Ready-Made
-              </Link>
-            </div>
-          </div>
-          <Link href="/howItWork" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
-          <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-          <Link href="/contect" onClick={() => setIsMenuOpen(false)}>Contact</Link>
-        </div>
       </div>
     </>
   );
