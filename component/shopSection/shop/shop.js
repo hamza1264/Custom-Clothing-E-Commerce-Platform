@@ -9,7 +9,6 @@ import Filter from "@/component/filter/filter";
 const SHOP_CATEGORIES = ["Unstitched", "Stitched / Ready-Made"];
 
 function Shop({ searchTerm = '', categoryTerm = '' }) {
-  const [showMore, setShowMore] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     categories: SHOP_CATEGORIES.includes(categoryTerm) ? [categoryTerm] : [],
@@ -89,17 +88,12 @@ function Shop({ searchTerm = '', categoryTerm = '' }) {
 
           {/* Products */}
           <div className="products-container">
-            <ProductCard searchTerm={normalizedSearch} filters={filters} />
-          </div>
-
-          {/* Button - Products ke neeche */}
-          <div className="load-more-container">
-            <button
-              className="load-more-btn"
-              onClick={() => setShowMore(!showMore)}
-            >
-              {showMore ? "Show Less" : "Load More Products"}
-            </button>
+            <ProductCard
+              key={JSON.stringify([normalizedSearch, filters])}
+              searchTerm={normalizedSearch}
+              filters={filters}
+              infiniteScroll
+            />
           </div>
 
         </div>

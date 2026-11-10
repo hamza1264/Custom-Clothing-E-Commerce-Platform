@@ -29,6 +29,11 @@
     text-align: center;
 }
 
+.product-load-sentinel {
+    grid-column: 1 / -1;
+    min-height: 1px;
+}
+
 .product-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(36, 24, 28, 0.1);

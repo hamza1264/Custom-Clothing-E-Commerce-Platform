@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useSyncExternalStore } from "react";
+import React, { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import {
@@ -11,9 +11,11 @@ import {
 } from "@/data/wishlistStore";
 import "./productCard.css";
 
-function ProductCard({ limit, searchTerm = "", filters }) {
+function ProductCard({ limit, searchTerm = "", filters, infiniteScroll = false }) {
   const [products, setProducts] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(12);
   const [catalogError, setCatalogError] = useState("");
+  const loadMoreRef = useRef(null);
   const wishlist = JSON.parse(
     useSyncExternalStore(
       subscribeToWishlist,
@@ -43,6 +45,56 @@ function ProductCard({ limit, searchTerm = "", filters }) {
     };
   }, []);
 
+  const matchingProducts = useMemo(() => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+    return products
+      .filter((product) => product.name.toLowerCase().includes(normalizedSearch))
+      .filter((product) => {
+        if (!filters) return true;
+
+        const { categories, minPrice, maxPrice, sizes } = filters;
+        const matchesCategory =
+          categories.length === 0 || categories.includes(product.category);
+        const matchesMinPrice = minPrice === "" || product.price >= Number(minPrice);
+        const matchesMaxPrice = maxPrice === "" || product.price <= Number(maxPrice);
+        const matchesSize =
+          sizes.length === 0 || sizes.some((size) => product.sizes.includes(size));
+        return (
+          matchesCategory &&
+          matchesMinPrice &&
+          matchesMaxPrice &&
+          matchesSize
+        );
+      });
+  }, [products, searchTerm, filters]);
+
+  const displayedProducts = infiniteScroll
+    ? matchingProducts.slice(0, visibleCount)
+    : matchingProducts.slice(0, limit ?? matchingProducts.length);
+
+  useEffect(() => {
+    if (
+      !infiniteScroll ||
+      catalogError ||
+      visibleCount >= matchingProducts.length ||
+      !loadMoreRef.current
+    ) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((count) => Math.min(count + 12, matchingProducts.length));
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(loadMoreRef.current);
+    return () => observer.disconnect();
+  }, [catalogError, infiniteScroll, matchingProducts.length, visibleCount]);
+
   const toggleWishlist = (product) => {
     const isSaved = wishlist.some((item) => String(item.id) === product.id);
     const nextWishlist = isSaved
@@ -61,29 +113,7 @@ function ProductCard({ limit, searchTerm = "", filters }) {
     saveWishlist(nextWishlist);
   };
 
-  const normalizedSearch = searchTerm.trim().toLowerCase();
-  const visibleProducts = products
-    .filter((product) => product.name.toLowerCase().includes(normalizedSearch))
-    .filter((product) => {
-      if (!filters) return true;
-
-      const { categories, minPrice, maxPrice, sizes } = filters;
-      const matchesCategory =
-        categories.length === 0 || categories.includes(product.category);
-      const matchesMinPrice = minPrice === "" || product.price >= Number(minPrice);
-      const matchesMaxPrice = maxPrice === "" || product.price <= Number(maxPrice);
-      const matchesSize =
-        sizes.length === 0 || sizes.some((size) => product.sizes.includes(size));
-      return (
-        matchesCategory &&
-        matchesMinPrice &&
-        matchesMaxPrice &&
-        matchesSize
-      );
-    })
-    .slice(0, limit ?? products.length);
-
-  if (visibleProducts.length === 0) {
+  if (displayedProducts.length === 0) {
     if (catalogError) {
       return <p className="no-products-found" role="alert">{catalogError}</p>;
     }
@@ -95,7 +125,7 @@ function ProductCard({ limit, searchTerm = "", filters }) {
 
   return (
     <>
-      {visibleProducts.map((product) => {
+      {displayedProducts.map((product) => {
         const isSaved = wishlist.some(
           (item) => String(item.id) === product.id
         );
@@ -138,6 +168,14 @@ function ProductCard({ limit, searchTerm = "", filters }) {
           </article>
         );
       })}
+      {infiniteScroll && displayedProducts.length < matchingProducts.length && (
+        <div
+          ref={loadMoreRef}
+          className="product-load-sentinel"
+          role="status"
+          aria-label="Loading more products"
+        />
+      )}
     </>
   );
 }
