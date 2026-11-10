@@ -159,15 +159,60 @@ export const initialProducts = [
   },
 ];
 
+export const NAMED_COLOR_SWATCHES = {
+  black: "#000000",
+  brown: "#8B4513",
+  "nana brown": "#8B5A2B",
+  "nano brown": "#8B5A2B",
+  gray: "#808080",
+  grey: "#808080",
+  navy: "#000080",
+  blue: "#0000FF",
+  "royal blue": "#4169E1",
+  teal: "#008080",
+  turquoise: "#40E0D0",
+  red: "#FF0000",
+  burgundy: "#800020",
+  green: "#008000",
+  olive: "#808000",
+  mint: "#98FF98",
+  white: "#FFFFFF",
+  cream: "#FFFDD0",
+  beige: "#F5F5DC",
+  maroon: "#800000",
+  pink: "#FFC0CB",
+  "hot pink": "#FF69B4",
+  coral: "#FF7F50",
+  purple: "#800080",
+  lavender: "#E6E6FA",
+  yellow: "#FFFF00",
+  orange: "#FFA500",
+  gold: "#FFD700",
+  silver: "#C0C0C0",
+  charcoal: "#36454F",
+  ivory: "#FFFFF0",
+};
+
+function getColorSwatch(name) {
+  const normalizedName = name.trim().toLowerCase().replace(/[\s_-]+/g, " ");
+  return NAMED_COLOR_SWATCHES[normalizedName] ?? "#777777";
+}
+
 export function normalizeProduct(product) {
   const images = Array.isArray(product.images)
     ? product.images.filter((image) => typeof image === "string")
     : [];
   const colors = Array.isArray(product.colors)
     ? product.colors
-        .map((color) =>
-          typeof color === "string" ? { name: color, hex: "#777777" } : color
-        )
+        .map((color) => {
+          if (typeof color === "string") {
+            return { name: color, hex: getColorSwatch(color) };
+          }
+          if (typeof color?.name === "string" && !color.hex) {
+            return { ...color, hex: getColorSwatch(color.name) };
+          }
+          return color;
+        })
         .filter((color) => typeof color?.name === "string")
     : [];
 

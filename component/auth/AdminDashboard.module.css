@@ -31,23 +31,6 @@
     linear-gradient(180deg, #321923 0%, #27171e 60%, #24151b 100%);
 }
 
-.brand {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 35px;
-  padding: 6px;
-  border-radius: 6px;
-  background: #f5f1e6;
-  text-decoration: none;
-}
-
-.brand img {
-  display: block;
-  width: 150px;
-  max-width: 100%;
-  height: auto;
-}
-
 .sidebarLabel,
 .eyebrow {
   margin: 0 0 10px;

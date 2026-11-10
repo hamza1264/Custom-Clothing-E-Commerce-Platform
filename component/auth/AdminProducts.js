@@ -14,6 +14,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import AdminRefreshButton from "@/component/auth/AdminRefreshButton";
 import AdminSidebar from "@/component/auth/AdminSidebar";
+import { NAMED_COLOR_SWATCHES } from "@/data/products";
 import dashboardStyles from "./AdminDashboard.module.css";
 import styles from "./AdminProducts.module.css";
 
@@ -178,6 +179,25 @@ export default function AdminProducts({ name, email }) {
   function updateDraft(event) {
     const { name, value } = event.target;
     setDraft((current) => ({ ...current, [name]: value }));
+  }
+
+  function addNamedColor(event) {
+    const colorName = event.target.value;
+    if (!colorName) return;
+
+    const hex = NAMED_COLOR_SWATCHES[colorName];
+    setDraft((current) => {
+      const existingColors = splitList(current.colors);
+      const alreadyAdded = existingColors.some(
+        (color) => color.split(":")[0].trim().toLowerCase() === colorName
+      );
+      if (alreadyAdded) return current;
+
+      return {
+        ...current,
+        colors: [...existingColors, `${colorName}:${hex}`].join(", "),
+      };
+    });
   }
 
   async function saveProduct(event) {
@@ -448,8 +468,25 @@ export default function AdminProducts({ name, email }) {
                   <input name="sizes" value={draft.sizes} onChange={updateDraft} placeholder="S, M, L" required />
                 </label>
                 <label>
-                  Colors (comma-separated)
-                  <input name="colors" value={draft.colors} onChange={updateDraft} placeholder="Navy:#1c2d42, Cream" required />
+                  Choose colors
+                  <select value="" onChange={addNamedColor}>
+                    <option value="">Select a color to add</option>
+                    {Object.entries(NAMED_COLOR_SWATCHES).map(([colorName, hex]) => (
+                      <option key={colorName} value={colorName}>
+                        {colorName.replace(/\b\w/g, (letter) => letter.toUpperCase())} ({hex})
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className={styles.wideField}>
+                  Selected colors (comma-separated; use Name:#HEX for custom shades)
+                  <input
+                    name="colors"
+                    value={draft.colors}
+                    onChange={updateDraft}
+                    placeholder="Nana Brown:#8B5A2B, Black:#000000"
+                    required
+                  />
                 </label>
                 <label className={styles.wideField}>
                   Product description

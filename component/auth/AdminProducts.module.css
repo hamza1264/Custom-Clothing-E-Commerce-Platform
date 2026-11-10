@@ -252,6 +252,7 @@
 
 .form input,
 .form textarea,
+.form select,
 .filter select {
   width: 100%;
   min-height: 39px;
@@ -271,6 +272,7 @@
 
 .form input:focus,
 .form textarea:focus,
+.form select:focus,
 .filter select:focus {
   border-color: #c8899c;
   outline: 0;

@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import LogoutButton from "@/component/auth/LogoutButton";
 
 import styles from "./CustomerDashboard.module.css";
@@ -77,15 +76,6 @@ export default function CustomerDashboard({ name, email, isAdmin }) {
   return (
     <main className={styles.page}>
       <aside className={styles.sidebar}>
-        <Link href="/" className={styles.brand}>
-          <Image
-            src="/ilham-collection-logo.jpeg"
-            alt="ILHAM COLLECTION"
-            width={226}
-            height={146}
-          />
-        </Link>
-
         <p className={styles.sidebarLabel}>MY ACCOUNT</p>
         <nav className={styles.navigation} aria-label="Account navigation">
           <a className={styles.activeNav} href="#overview">

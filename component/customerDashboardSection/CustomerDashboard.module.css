@@ -19,23 +19,6 @@
   background: #fff;
 }
 
-.brand {
-  display: block;
-  width: 160px;
-  max-width: 100%;
-  margin: 0 0 44px 8px;
-  padding: 6px;
-  border-radius: 6px;
-  background: #f5f1e6;
-  text-decoration: none;
-}
-
-.brand img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .sidebarLabel,
 .eyebrow {
   margin: 0 0 10px;
@@ -438,11 +421,6 @@
     padding: 16px;
     border-right: 0;
     border-bottom: 1px solid #eee4e0;
-  }
-
-  .brand {
-    width: 130px;
-    margin: 0 0 14px;
   }
 
   .sidebarLabel {
