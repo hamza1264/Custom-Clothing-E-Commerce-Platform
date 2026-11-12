@@ -44,7 +44,17 @@ login sessions at `/admin/users`. Admins can also manage the catalog at
    Customer registration does not grant admin access. Admins can open `/admin`
    to review store metrics and `/admin/orders` to search orders and update their
    statuses.
-6. Restart the Next.js development server.
+6. For signup verification emails, use a Gmail account with 2-Step
+   Verification enabled. Create a Google App Password and set `SMTP_USER` to
+   that Gmail address and `SMTP_PASSWORD` to the App Password (without spaces).
+   Optionally set `EMAIL_FROM` to a display name and that same Gmail address.
+7. Set `APP_URL` to the public base URL of the site (for local development,
+   `http://localhost:3000`), then restart the Next.js development server.
+
+Customer sign-up sends a one-time email verification link that expires after
+24 hours. The account is created only after the link is opened, and unverified
+sign-ups cannot log in. Add the SMTP and `APP_URL` settings to the deployment
+environment before enabling registration. Gmail sending limits apply.
 
 Keep `.env.local` private and never commit database credentials, admin
 passwords, or session secrets.

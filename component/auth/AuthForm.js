@@ -10,6 +10,8 @@ export default function AuthForm({
   isConfigured,
   authConfigured = true,
   adminOnly = false,
+  emailVerified = false,
+  emailVerificationFailed = false,
   returnTo = "/customerDashboard",
 }) {
   const router = useRouter();
@@ -21,12 +23,20 @@ export default function AuthForm({
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState(
+    emailVerified
+      ? "Your email is verified. You can now log in."
+      : emailVerificationFailed
+        ? "This verification link is invalid or expired. Please sign up again."
+        : ""
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const isSignup = mode === "signup";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+    setNotice("");
     setIsSubmitting(true);
 
     try {
@@ -44,6 +54,11 @@ export default function AuthForm({
 
       if (!response.ok) {
         setError(result.error || "Unable to sign in. Please try again.");
+        return;
+      }
+
+      if (isSignup) {
+        setNotice(result.message);
         return;
       }
 
@@ -99,6 +114,7 @@ export default function AuthForm({
             onClick={() => {
               setMode("login");
               setError("");
+              setNotice("");
             }}
           >
             Log in
@@ -111,6 +127,7 @@ export default function AuthForm({
             onClick={() => {
               setMode("signup");
               setError("");
+              setNotice("");
             }}
           >
             Sign up
@@ -174,6 +191,11 @@ export default function AuthForm({
             {error}
           </p>
         )}
+        {notice && (
+          <p className={styles.success} role="status">
+            {notice}
+          </p>
+        )}
 
         <button
           className={styles.submit}
@@ -196,6 +218,7 @@ export default function AuthForm({
             onClick={() => {
               setMode(isSignup ? "login" : "signup");
               setError("");
+              setNotice("");
             }}
           >
             {isSignup ? "Log in" : "Create an account"}

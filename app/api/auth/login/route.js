@@ -34,7 +34,7 @@ export async function POST(request) {
   const passwordMatches =
     user && (await bcrypt.compare(password, user.passwordHash));
 
-  if (!user || !passwordMatches) {
+  if (!user || !passwordMatches || user.emailVerifiedAt === null) {
     return Response.json(
       { error: "Email or password is incorrect." },
       { status: 401 }

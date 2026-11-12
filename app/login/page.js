@@ -32,6 +32,8 @@ export default async function LoginPage({ searchParams }) {
       <AuthForm
         initialMode={initialMode}
         isConfigured={isConfigured}
+        emailVerified={params?.verified === "1"}
+        emailVerificationFailed={params?.verified === "0"}
         returnTo={returnTo}
       />
     </main>

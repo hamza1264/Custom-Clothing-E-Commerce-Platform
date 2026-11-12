@@ -226,6 +226,17 @@
   line-height: 1.5;
 }
 
+.success {
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #cce4d2;
+  border-radius: 6px;
+  background: #f3fbf5;
+  color: #28643a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .submit {
   min-height: 49px;
   margin-top: 3px;

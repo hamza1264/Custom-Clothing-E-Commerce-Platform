@@ -1,6 +1,10 @@
 import bcrypt from "bcryptjs";
-import { ObjectId } from "mongodb";
-import { createSession, isAuthConfigured } from "@/data/auth";
+import {
+  createEmailVerificationToken,
+  isEmailVerificationConfigured,
+  sendEmailVerification,
+} from "@/data/emailVerification";
+import { isAuthConfigured } from "@/data/auth";
 import {
   authNotConfiguredResponse,
   isValidEmail,
@@ -13,6 +17,15 @@ export const runtime = "nodejs";
 
 export async function POST(request) {
   if (!isAuthConfigured()) return authNotConfiguredResponse();
+  if (!isEmailVerificationConfigured()) {
+    return Response.json(
+      {
+        error:
+          "Email verification is not configured. Set SMTP_USER, SMTP_PASSWORD, and APP_URL.",
+      },
+      { status: 503 }
+    );
+  }
 
   const parsed = await readAuthRequest(request);
   if (parsed.response) return parsed.response;
@@ -45,16 +58,37 @@ export async function POST(request) {
   const users = database.collection("users");
   await users.createIndex({ email: 1 }, { unique: true });
 
-  const user = {
+  if (await users.findOne({ email }, { projection: { _id: 1 } })) {
+    return Response.json(
+      { error: "An account with this email already exists. Please log in." },
+      { status: 409 }
+    );
+  }
+
+  const passwordHash = await bcrypt.hash(password, 12);
+  const verification = createEmailVerificationToken();
+  const pendingRegistrations = database.collection("pending_email_verifications");
+  await pendingRegistrations.createIndex({ email: 1 }, { unique: true });
+  await pendingRegistrations.createIndex(
+    { expiresAt: 1 },
+    { expireAfterSeconds: 0 }
+  );
+
+  const pendingRegistration = {
     name: normalizedName,
     email,
-    passwordHash: await bcrypt.hash(password, 12),
+    passwordHash,
     createdAt: new Date(),
+    tokenHash: verification.tokenHash,
+    expiresAt: verification.expiresAt,
   };
 
-  let result;
   try {
-    result = await users.insertOne(user);
+    await pendingRegistrations.updateOne(
+      { email },
+      { $set: pendingRegistration },
+      { upsert: true }
+    );
   } catch (error) {
     if (error?.code === 11000) {
       return Response.json(
@@ -65,14 +99,33 @@ export async function POST(request) {
     throw error;
   }
 
-  await createSession({
-    id: result.insertedId.toString(),
-    name: user.name,
-    email: user.email,
-  });
+  try {
+    await sendEmailVerification({
+      email,
+      name: normalizedName,
+      token: verification.token,
+    });
+  } catch (error) {
+    await pendingRegistrations.deleteOne({
+      email,
+      tokenHash: verification.tokenHash,
+    });
+    console.error("Could not send signup verification email.", error);
+    return Response.json(
+      {
+        error:
+          error instanceof Error
+            ? `Could not send a verification email: ${error.message}`
+            : "Could not send a verification email. Please check the email service configuration.",
+      },
+      { status: 502 }
+    );
+  }
 
   return Response.json(
-    { user: { name: user.name, email: user.email } },
-    { status: 201 }
+    {
+      message: `A verification link has been sent to ${email}. Open it to finish creating your account.`,
+    },
+    { status: 202 }
   );
 }

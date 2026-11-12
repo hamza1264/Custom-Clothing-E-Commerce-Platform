@@ -32,7 +32,7 @@
 .logo {
   display: block;
   grid-area: logo;
-  width: 140px;
+  width: 90px;
   margin: 0;
   padding: 0;
   line-height: 0;
@@ -261,12 +261,11 @@
 @media (max-width: 700px) {
   .navbar {
     grid-template-areas:
-      "logo logo"
-      "menu actions";
-    grid-template-rows: auto auto;
-    grid-template-columns: 36px minmax(0, 1fr);
-    gap: 8px 12px;
-    padding: 8px 16px 12px;
+      "menu logo actions";
+    grid-template-rows: auto;
+    grid-template-columns: minmax(36px, 1fr) auto minmax(36px, 1fr);
+    gap: 0 12px;
+    padding: 0 16px 5px;
   }
 
   .mobile-menu-toggle {
@@ -274,6 +273,7 @@
     grid-area: menu;
     width: 36px;
     height: 36px;
+    justify-self: start;
     align-items: center;
     justify-content: center;
     order: 0;
@@ -281,7 +281,9 @@
 
   .navbar>.logo {
     position: static;
-    width: 120px;
+    width: 60px;
+    margin-top: 0px;
+    justify-self: center;
   }
 
   .search-box {
@@ -298,6 +300,8 @@
   }
 
   .nav-actions {
+    align-self: center;
+    transform: none;
     justify-self: end;
     gap: 14px;
   }

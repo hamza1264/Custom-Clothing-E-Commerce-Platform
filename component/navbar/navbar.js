@@ -60,7 +60,7 @@ function Navbar() {
         {/* Logo */}
         <Link href="/" className="logo" aria-label="ILHAM COLLECTION home">
           <Image
-            src="/ilham-collection-logo.jpeg"
+            src="/ilham-collection-no-flower.png"
             alt="ILHAM COLLECTION"
             width={226}
             height={146}

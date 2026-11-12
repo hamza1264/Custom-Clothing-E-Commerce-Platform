@@ -18,7 +18,7 @@ export const metadata = {
   title: "ILHAM COLLECTION",
   description: "Discover premium fabrics, fashion, and ready-to-wear clothing at ILHAM COLLECTION.",
   icons: {
-    icon: "/ilham-collection-logo.jpeg",
+    icon: "/ilham-collection.jpeg",
   },
 };
 
