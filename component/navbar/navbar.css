@@ -7,6 +7,8 @@
 }
 
 .navbar {
+  position: relative;
+  z-index: 30;
   display: grid;
   grid-template-areas:
     "logo search actions"

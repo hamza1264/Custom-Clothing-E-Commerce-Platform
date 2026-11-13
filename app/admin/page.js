@@ -14,6 +14,7 @@ export default async function AdminDashboardPage({ searchParams }) {
     "/admin/orders",
     "/admin/products",
     "/admin/customers",
+    "/admin/pending-verifications",
     "/admin/users",
     "/admin/contact-messages",
   ];

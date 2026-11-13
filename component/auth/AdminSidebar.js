@@ -3,6 +3,7 @@ import {
   ClipboardList,
   LayoutDashboard,
   Mail,
+  MailCheck,
   Package,
   Store,
   UserRound,
@@ -77,6 +78,19 @@ export default function AdminSidebar({
         >
           <UsersRound aria-hidden="true" />
           Registered users
+          <ArrowRight className={styles.linkArrow} aria-hidden="true" />
+        </Link>
+        <Link
+          className={
+            activeItem === "pending-verifications" ? styles.activeNav : ""
+          }
+          aria-current={
+            activeItem === "pending-verifications" ? "page" : undefined
+          }
+          href="/admin/pending-verifications"
+        >
+          <MailCheck aria-hidden="true" />
+          Pending verifications
           <ArrowRight className={styles.linkArrow} aria-hidden="true" />
         </Link>
         <Link
